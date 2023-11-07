@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="actions">
+        <div>
+          <label for="imageInput">Please Select Image</label>
+          <input id="imageInput" type="file" />
+          <button id="deleteButton">Delete</button>
+        </div>
+        <div>
+          <label for="logoColor">Logo Color</label>
+          <input type="color" id="logoColor" />
+        </div>
+        <!-- <div>
+          <img src=""/>
+        </div> -->
+      </div>
+      <div class="bgImage">
+        <div class="canvas-wrapper">
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="./src/index.ts" type="module"></script>
+  </body>
+</html>
