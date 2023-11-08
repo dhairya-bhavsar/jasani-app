@@ -44,3 +44,50 @@ li {
     background-color: #efefef;
     padding: 0.5em 0;
 }
+
+
+/* Product List style start */
+
+.product-listing {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap between products */
+    flex-direction: row;
+    margin: 20px;
+}
+
+.single-product {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    width: 200px; /* Set the width of each product box */
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-sku {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+
+
+
+/* Product List style end */
