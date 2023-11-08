@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    width: 90%;
+    margin: 0 auto;
+    background-color: lightgrey;
+    font-size: 16px;
+}
+
+#wrapper {
+    background-color: white;
+}
+
+h1 {
+    margin: 1% 0;
+    padding: .25em;
+    background-color: #efefef;
+}
+ul {
+    text-align: center;
+}
+h1, p {
+    text-align: center;
+}
+#content {
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+#nav, #feature, #footer {
+    margin: 1% 0;
+}
+
+li {
+    display: inline;
+    padding: 0.5em;
+}
+#nav, #footer {
+    position: fixed;
+    width: 90%;
+    bottom: 0;
+    background-color: #efefef;
+    padding: 0.5em 0;
+}
