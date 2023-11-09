@@ -1,10 +1,13 @@
-import {appendElementWithId} from "../../helpers/helper";
+import {TitleComponent} from "../title/title";
+
 export const  CanvasComponent = () => {
     return `
-        <div class="bgImage">
+        <section>
+            ${TitleComponent({title: "Canvas", backNode: true})}
           <div class="canvas-wrapper">
-            <canvas id="canvas"></canvas>
+            Canvas
           </div>
-        </div>`
+        </section
+    >`
 }
-appendElementWithId('content', CanvasComponent())
+

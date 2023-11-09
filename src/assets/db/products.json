@@ -4,8 +4,8 @@
           "name": "Bottle",
           "price": 12.99,
           "sku": "SKU001",
-          "image": "/public/images/bag/back.jpeg",
-          "childrenImg": ["/public/images/bottle/front.jpeg", "/public/images/bottle/back.jpeg"],
+          "image": "bottle_front.jpeg",
+          "childrenImg": ["bottle_front.jpeg"],
           "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
       },
       {
@@ -13,8 +13,8 @@
           "price": 19.99,
           "sizes": ["S", "M", "L", "XL"],
           "sku": "SKU002",
-          "image": "/public/images/t-shirt/front.jpeg",
-          "childrenImg": ["/public/images/t-shirt/front.jpeg", "/public/images/t-shirt/back.jpeg"],
+          "image": "tshirt_front.jpeg",
+          "childrenImg": ["tshirt_front.jpeg", "tshirt_back.jpeg"],
           "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
       },
       {
@@ -22,16 +22,16 @@
           "price": 9.99,
           "size": "One Size",
           "sku": "SKU003",
-          "image": "/public/images/cap/front.jpeg",
-          "childrenImg": ["/public/images/cap/front.jpeg", "/public/images/cap/back.jpeg"],
+          "image": "cap_front.jpeg",
+          "childrenImg": ["cap_front.jpeg", "cap_back.jpeg"],
           "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
       },
       {
           "name": "Bag",
           "price": 29.99,
           "sku": "SKU004",
-          "image": "/public/images/bag/front.jpeg",
-          "childrenImg": ["/public/images/bag/front.jpeg", "/public/images/bag/back.jpeg"],
+          "image": "bag_front.jpeg",
+          "childrenImg": ["bag_front.jpeg", "bag_back.jpeg"],
           "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
       }
   ]

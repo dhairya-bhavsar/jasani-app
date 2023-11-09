@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     width: 90%;
     margin: 0 auto;
@@ -17,18 +18,22 @@ h1 {
     padding: .25em;
     background-color: #efefef;
 }
+
 ul {
     text-align: center;
 }
+
 h1, p {
     text-align: center;
 }
+
 #content {
     overflow: auto;
     display: flex;
     justify-content: center;
-    height: auto;
+    height: calc(100vh - 135px);
 }
+
 #nav, #feature, #footer {
     margin: 1% 0;
 }
@@ -37,6 +42,7 @@ li {
     display: inline;
     padding: 0.5em;
 }
+
 #nav, #footer {
     position: fixed;
     width: 90%;
@@ -51,23 +57,30 @@ li {
 .product-listing {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust the gap between products */
+    gap: 1.2rem;
     flex-direction: row;
-    margin: 20px;
+    margin: 1.5rem;
 }
 
 .single-product {
     cursor: pointer;
     border: 1px solid #ddd;
-    padding: 15px;
+    padding: 1rem;
     text-align: center;
-    width: 200px; /* Set the width of each product box */
+    width: 14rem;
+    height: 24rem;
+    font-size: 1rem;
+}
+
+.single-product:hover {
+    background: #0000000a;
+    border: 2px solid black;
 }
 
 .product-image {
     max-width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 0.8rem;
 }
 
 .product-name {
@@ -86,8 +99,30 @@ li {
     color: #1a1a1a;
     margin-bottom: 10px;
 }
-
-
-
-
 /* Product List style end */
+
+
+/*
+Product Title Component*/
+.title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: azure;
+}
+
+.title > .btn {
+    position: absolute;
+    left: 0.2rem;
+    top: 20%;
+}
+
+.btn {
+    background-color: #4141e3b0;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 20%;
+    cursor: pointer;
+}
