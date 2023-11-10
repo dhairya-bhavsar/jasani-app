@@ -1,4 +1,5 @@
 import { fabric } from "fabric";
+import { images } from "../../assets/images";
 
 //Download link helper
 const generateDownloadLink = (canvas, name, type) => {
@@ -205,6 +206,20 @@ const generateDownloadLink = (canvas, name, type) => {
         }
         document.getElementById(ele.name).classList.remove("tabHide");
         document.getElementById(ele.name).classList.add("tabShow");
+      });
+    });
+  };
+
+
+  // image section view change handler
+  export function viewChangeHandler(productDetail,productCanvas){
+    document.querySelectorAll(".section-img-container").forEach((el) => {
+      el.addEventListener("click", () => {
+        const newBGImage = productDetail.childrenImg.find(
+          ({ id }) => id === el.id
+        );
+        setBackgroundImg(productCanvas, images[newBGImage.path]);
+        setCustomiseCanvas(newBGImage);
       });
     });
   }

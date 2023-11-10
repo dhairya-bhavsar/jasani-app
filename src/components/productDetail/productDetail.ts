@@ -1,22 +1,34 @@
-import {
-  appendElementWithId
-} from "../../helpers/helper";
 import * as productData from "../../assets/db/products.json";
-import {initialCallHandler, initialiseCanvas, setBackgroundImg, setCustomiseCanvas } from "../canvas/canvasController";
-import { fabric } from "fabric";
+import {
+  initialCallHandler,
+  initialiseCanvas,
+  setBackgroundImg,
+  setCustomiseCanvas,
+  viewChangeHandler,
+} from "../canvas/canvasController";
 import { TitleComponent } from "../title/title";
 import { CanvasComponent } from "../canvas/canvas";
 import { images } from "../../assets/images";
 const { products } = productData;
-let selectedImgForBG ;
 
-export const ProductDetail = ({id}) => {
-  const productDetail = products.find((product)=> id === product.sku);
-  selectedImgForBG = productDetail.childrenImg[0];
+export const ProductDetail = ({ id }) => {
+    
+
+  const productDetail = products.find((product) => id === product.sku);
+  const selectedImgForBG = productDetail.childrenImg[0];
+  console.log(productDetail.childrenImg[0], "productDetail.childrenImg[0]");
+
+  setTimeout(() => {
+    const { canvas, productCanvas } = initialiseCanvas(selectedImgForBG);
+    initialCallHandler(canvas, productCanvas);
+    setCustomiseCanvas(selectedImgForBG);
+    setBackgroundImg(productCanvas, images[selectedImgForBG.path]);
+    viewChangeHandler(productDetail,productCanvas);
+  }, 0);
 
   return `
     <div class="product-detail">
-        ${TitleComponent({title: "Product Listing Page", backNode: true})}
+        ${TitleComponent({ title: "Product Listing Page", backNode: true })}
         <div class="product-show">
 
             <div class="product-right-div">
@@ -63,11 +75,13 @@ export const ProductDetail = ({id}) => {
                     <div id="1" class="tabView tabShow">
                         <p class="font-bold">Choose Branding Area</p>
                         <div class="image-views">
-                            ${productDetail.childrenImg.map(({path})=>{
-                                return `<div class="section-img-container" id="111">
+                            ${productDetail.childrenImg
+                              .map(({ path, id }) => {
+                                return `<div class="section-img-container" id=${id}>
                                            <img src=${images[path]}/>
-                                         </div>`
-                            }).join(" ")}
+                                         </div>`;
+                              })
+                              .join(" ")}
                         </div>
                     </div>
 
@@ -132,19 +146,3 @@ export const ProductDetail = ({id}) => {
     </div>
     `;
 };
-
-
-// const {canvas, productCanvas} = initialiseCanvas(selectedImgForBG)
-
-
-// document.querySelectorAll(".section-img-container").forEach((el) => {
-//   el.addEventListener("click", () => {
-//       selectedImgForBG = products[0].childrenImg.find(({ id }) => id === el.id);
-//      setBackgroundImg(productCanvas,selectedImgForBG.id === "111" ? capFront :capBack);
-//      setCustomiseCanvas(selectedImgForBG);
-//   });
-// });
-
-// initialCallHandler(canvas,productCanvas);
-// setCustomiseCanvas(selectedImgForBG);
-// setBackgroundImg(productCanvas, selectedImgForBG);
