@@ -1,13 +1,19 @@
-import {TitleComponent} from "../title/title";
+import { fabric } from "fabric";
 
 export const  CanvasComponent = () => {
     return `
-        <section>
-            ${TitleComponent({title: "Canvas", backNode: true})}
-          <div class="canvas-wrapper">
-            Canvas
-          </div>
+    <section>
+            <div class="product-canvas">
+            <canvas id="ProductCanvas"></canvas>
+            <div class="productCanvasWrapper" id="productCanvasWrapper">
+            <canvas id="canvas"></canvas>
+            </div>
+        </div>
         </section
     >`
 }
+
+
+
+// appendElementWithId('content', CanvasComponent())
 

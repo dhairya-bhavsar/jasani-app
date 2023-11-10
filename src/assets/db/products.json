@@ -1,38 +1,126 @@
 {
   "products": [
-      {
-          "name": "Bottle",
-          "price": 12.99,
-          "sku": "SKU001",
-          "image": "bottle_front.jpeg",
-          "childrenImg": ["bottle_front.jpeg"],
-          "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
-      },
-      {
-          "name": "T-Shirt",
-          "price": 19.99,
-          "sizes": ["S", "M", "L", "XL"],
-          "sku": "SKU002",
-          "image": "tshirt_front.jpeg",
-          "childrenImg": ["tshirt_front.jpeg", "tshirt_back.jpeg"],
-          "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
-      },
-      {
-          "name": "Cap",
-          "price": 9.99,
-          "size": "One Size",
-          "sku": "SKU003",
-          "image": "cap_front.jpeg",
-          "childrenImg": ["cap_front.jpeg", "cap_back.jpeg"],
-          "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
-      },
-      {
-          "name": "Bag",
-          "price": 29.99,
-          "sku": "SKU004",
-          "image": "bag_front.jpeg",
-          "childrenImg": ["bag_front.jpeg", "bag_back.jpeg"],
-          "availableTechniques": ["Inkjet Color", "Embroidery", "Screen", "Debossing/embossing", "Digital print", "Heat transfer"]
-      }
+    {
+      "name": "Bottle",
+      "price": 12.99,
+      "sku": "SKU001",
+      "image": "bottle_front.jpeg",
+      "childrenImg": [
+        {
+          "path": "bottle_front.jpeg",
+          "top": "200px",
+          "left": "176px",
+          "hight": 50,
+          "width": 150,
+          "id": "111"
+        }
+      ],
+      "availableTechniques": [
+        "Inkjet Color",
+        "Embroidery",
+        "Screen",
+        "Debossing/embossing",
+        "Digital print",
+        "Heat transfer"
+      ]
+    },
+    {
+      "name": "T-Shirt",
+      "price": 19.99,
+      "sizes": ["S", "M", "L", "XL"],
+      "sku": "SKU002",
+      "image": "tshirt_front.jpeg",
+      "childrenImg": [
+        {
+          "path": "tshirt_front.jpeg",
+          "top": "200px",
+          "left": "176px",
+          "hight": 50,
+          "width": 150,
+          "id": "111"
+        },
+        {
+          "path": "tshirt_back.jpeg",
+          "top": "50px",
+          "left": "50px",
+          "hight": 150,
+          "width": 50,
+          "id": "222"
+        }
+      ],
+      "availableTechniques": [
+        "Inkjet Color",
+        "Embroidery",
+        "Screen",
+        "Debossing/embossing",
+        "Digital print",
+        "Heat transfer"
+      ]
+    },
+    {
+      "name": "Cap",
+      "price": 9.99,
+      "size": "One Size",
+      "sku": "SKU003",
+      "image": "cap_front.jpeg",
+      "childrenImg": [
+        {
+          "path": "cap_front.jpeg",
+          "top": "200px",
+          "left": "176px",
+          "hight": 50,
+          "width": 150,
+          "id": "111"
+        },
+        {
+          "path": "cap_back.jpeg",
+          "top": "50px",
+          "left": "50px",
+          "hight": 150,
+          "width": 50,
+          "id": "222"
+        }
+      ],
+      "availableTechniques": [
+        "Inkjet Color",
+        "Embroidery",
+        "Screen",
+        "Debossing/embossing",
+        "Digital print",
+        "Heat transfer"
+      ]
+    },
+    {
+      "name": "Bag",
+      "price": 29.99,
+      "sku": "SKU004",
+      "image": "bag_front.jpeg",
+      "childrenImg": [
+        {
+          "path": "bag_front.jpeg",
+          "top": "200px",
+          "left": "176px",
+          "hight": 50,
+          "width": 150,
+          "id": "111"
+        },
+        {
+          "path": "bag_back.jpeg",
+          "top": "50px",
+          "left": "50px",
+          "hight": 150,
+          "width": 50,
+          "id": "222"
+        }
+      ],
+      "availableTechniques": [
+        "Inkjet Color",
+        "Embroidery",
+        "Screen",
+        "Debossing/embossing",
+        "Digital print",
+        "Heat transfer"
+      ]
+    }
   ]
 }
