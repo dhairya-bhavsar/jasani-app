@@ -20,7 +20,7 @@ export const ProductDetail = ({ id }) => {
 
   setTimeout(() => {
     const { canvas, productCanvas } = initialiseCanvas(selectedImgForBG);
-    initialCallHandler(canvas, productCanvas);
+    initialCallHandler(canvas, productCanvas,selectedImgForBG);
     setCustomiseCanvas(selectedImgForBG);
     setBackgroundImg(productCanvas, images[selectedImgForBG.path]);
     viewChangeHandler(productDetail,productCanvas,canvas);
@@ -44,6 +44,7 @@ export const ProductDetail = ({ id }) => {
                         <button id="deleteButton">Delete</button>
                         <button id="downloadImgButton">Get Image</button>
                         <button id="getJson">Get JSON</button>
+                        <button id="downloadFullImage">Download Full Image</button>
                     </div>
                 </div>
             </div>

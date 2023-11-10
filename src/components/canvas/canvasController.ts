@@ -219,18 +219,57 @@ export function viewChangeHandler(productDetail, productCanvas, canvas) {
         width: newBGImage.width,
         height: newBGImage.height,
       });
+      downloadFullImage(canvas,productCanvas,newBGImage)
     });
   });
 }
 
 //Download merged images
 
-// const downloadFullImage = (canvas,productCanvas) =>{
+const downloadFullImage = (canvas, productCanvas,selectedImage) => {
+  document
+    .getElementById("downloadFullImage")
+    .addEventListener("click", () => {
+      if (canvas && productCanvas) {
+        const tempCanvasElement = document.createElement("canvas");
+        tempCanvasElement.setAttribute("id", "tempCanvas");
 
-// }
+        const tempCanvas = new fabric.Canvas("tempCanvas", {
+          width: 500,
+          height: 500,
+        });
+        const productCanvasJson = JSON.stringify(productCanvas.toJSON());
+
+        const sectionImage = canvas.toDataURL({
+          format: "png",
+          quality: 1,
+        });
+
+        tempCanvas.loadFromJSON(productCanvasJson, () => {
+          
+          fabric.Image.fromURL(
+            sectionImage,
+            function (myImg) {
+              
+              const img1 = myImg.set({
+                left: +selectedImage?.left.slice(0,-2) ?? 0,
+                top: +selectedImage?.top.slice(0,-2) ?? 0,
+                
+              });
+              tempCanvas.add(img1);
+              setTimeout(()=>{
+                generateDownloadLink(tempCanvas, "full-image.png", "image");
+              },2000)
+            }
+            );
+          });
+          
+        }
+    });
+};
 
 //One time initialiasation for add canvas fuctionality
-export const initialCallHandler = (canvas, productCanvas) => {
+export const initialCallHandler = (canvas, productCanvas,selectedImage) => {
   addImageToCancasHandler(canvas);
   addTextToCanvasHandler(canvas);
   changeTextColor(canvas);
@@ -238,4 +277,5 @@ export const initialCallHandler = (canvas, productCanvas) => {
   deleteSelectedObjects(canvas);
   downloadJson(canvas, productCanvas);
   openTab();
+  downloadFullImage(canvas, productCanvas,selectedImage);
 };
