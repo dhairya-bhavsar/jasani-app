@@ -23,7 +23,7 @@ export const ProductDetail = ({ id }) => {
     initialCallHandler(canvas, productCanvas);
     setCustomiseCanvas(selectedImgForBG);
     setBackgroundImg(productCanvas, images[selectedImgForBG.path]);
-    viewChangeHandler(productDetail,productCanvas);
+    viewChangeHandler(productDetail,productCanvas,canvas);
   }, 0);
 
   return `

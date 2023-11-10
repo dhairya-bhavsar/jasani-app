@@ -10,8 +10,8 @@
           "path": "bottle_front.jpeg",
           "top": "200px",
           "left": "176px",
-          "hight": 50,
-          "width": 150,
+          "height": 200,
+          "width": 200,
           "id": "111"
         }
       ],
@@ -35,16 +35,16 @@
           "path": "tshirt_front.jpeg",
           "top": "200px",
           "left": "176px",
-          "hight": 50,
-          "width": 150,
+          "height": 200,
+          "width": 300,
           "id": "111"
         },
         {
           "path": "tshirt_back.jpeg",
           "top": "50px",
           "left": "50px",
-          "hight": 150,
-          "width": 50,
+          "height": 300,
+          "width": 200,
           "id": "222"
         }
       ],
@@ -68,7 +68,7 @@
           "path": "cap_front.jpeg",
           "top": "200px",
           "left": "176px",
-          "hight": 50,
+          "height": 50,
           "width": 150,
           "id": "111"
         },
@@ -76,7 +76,7 @@
           "path": "cap_back.jpeg",
           "top": "50px",
           "left": "50px",
-          "hight": 150,
+          "height": 150,
           "width": 50,
           "id": "222"
         }
@@ -100,7 +100,7 @@
           "path": "bag_front.jpeg",
           "top": "200px",
           "left": "176px",
-          "hight": 50,
+          "height": 50,
           "width": 150,
           "id": "111"
         },
@@ -108,7 +108,7 @@
           "path": "bag_back.jpeg",
           "top": "50px",
           "left": "50px",
-          "hight": 150,
+          "height": 150,
           "width": 50,
           "id": "222"
         }
