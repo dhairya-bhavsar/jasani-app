@@ -8,10 +8,10 @@
       "childrenImg": [
         {
           "path": "bottle_front.jpeg",
-          "top": "200px",
-          "left": "176px",
-          "height": 200,
-          "width": 200,
+          "top": "280px",
+          "left": "191px",
+          "height": 40,
+          "width": 105,
           "id": "111"
         }
       ],
@@ -35,16 +35,16 @@
           "path": "tshirt_front.jpeg",
           "top": "200px",
           "left": "176px",
-          "height": 200,
-          "width": 300,
+          "height": 150,
+          "width": 150,
           "id": "111"
         },
         {
           "path": "tshirt_back.jpeg",
-          "top": "50px",
-          "left": "50px",
+          "top": "90px",
+          "left": "158px",
           "height": 300,
-          "width": 200,
+          "width": 190,
           "id": "222"
         }
       ],
@@ -66,18 +66,18 @@
       "childrenImg": [
         {
           "path": "cap_front.jpeg",
-          "top": "200px",
-          "left": "176px",
+          "top": "220px",
+          "left": "150px",
           "height": 50,
-          "width": 150,
+          "width": 200,
           "id": "111"
         },
         {
           "path": "cap_back.jpeg",
-          "top": "50px",
-          "left": "50px",
-          "height": 150,
-          "width": 50,
+          "top": "393px",
+          "left": "180px",
+          "height": 40,
+          "width": 120,
           "id": "222"
         }
       ],
@@ -98,17 +98,17 @@
       "childrenImg": [
         {
           "path": "bag_front.jpeg",
-          "top": "200px",
-          "left": "176px",
-          "height": 50,
-          "width": 150,
+          "top": "316px",
+          "left": "84px",
+          "height": 135,
+          "width": 330,
           "id": "111"
         },
         {
           "path": "bag_back.jpeg",
-          "top": "50px",
-          "left": "50px",
-          "height": 150,
+          "top": "145px",
+          "left": "260px",
+          "height": 30,
           "width": 50,
           "id": "222"
         }

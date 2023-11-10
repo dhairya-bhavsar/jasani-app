@@ -223,6 +223,12 @@ export function viewChangeHandler(productDetail, productCanvas, canvas) {
   });
 }
 
+//Download merged images
+
+// const downloadFullImage = (canvas,productCanvas) =>{
+
+// }
+
 //One time initialiasation for add canvas fuctionality
 export const initialCallHandler = (canvas, productCanvas) => {
   addImageToCancasHandler(canvas);
