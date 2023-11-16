@@ -82,15 +82,8 @@ li {
     margin-bottom: 0.8rem;
 }
 
-.product-name {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
 .product-sku {
-  font-size: 14px;
   color: #777;
-  margin-bottom: 5px;
 }
 
 .product-price {
@@ -112,8 +105,6 @@ li {
 }
 
 .canvas-actions {
-  margin: 0 2rem;
-  margin: 0 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -128,22 +119,28 @@ li {
 .product-show {
   width: 100%;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   padding: 1rem;
+  justify-content: space-between;
 }
 
 .product-right-div {
-  width: 630px;
-  height: 667px;
+  width: 50%;
   flex-shrink: 0;
-  /* background-color: #ddd; */
-  padding: 1rem;
-  transform: translateY(-42px);
 }
 /* Product List style end */
+.product-info {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    padding: 0 0 1rem;
+}
 
-.product-info p {
-  text-align: left;
+.product-info h2, p {
+  margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 /*
@@ -171,8 +168,7 @@ Product Title Component*/
     cursor: pointer;
 }
 .product-left-div {
-  width: 60rem;
-  height: 444px;
+  width: 50%;
 }
 
 .font-bold {
@@ -192,7 +188,7 @@ Product Title Component*/
 
 .unit-charge {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .charge-section span {
@@ -245,9 +241,10 @@ Product Title Component*/
 .inputLabel,
 .textInput button,#nextStepButton {
   color: #fff;
-  width: 8rem;
+  width: 6rem;
   height: 2rem;
   background-color: #057ac7;
+    padding: 1.2rem;
 }
 
 .bg-blue {
@@ -285,6 +282,12 @@ Product Title Component*/
   background: none;
   cursor: pointer;
 }
+
+.step-button.active {
+    box-shadow: 0 0 10px #0625ed;
+    border-radius: 10%;
+}
+
 .second-step {
   display: flex;
   margin: 1rem 0;
@@ -372,9 +375,9 @@ Product Title Component*/
   height: 500px;
   flex-shrink: 0; */
   /* background-image: url("./util/images/frontView.jpg"); */
-  /* background-color: #cccccc; 
+  /* background-color: #cccccc;
   background-position: center;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-size: cover;
   border: 2px solid black;
   background-image: url("../images/cap/front.jpeg"); */

@@ -12,11 +12,9 @@ import { images } from "../../assets/images";
 const { products } = productData;
 
 export const ProductDetail = ({ id }) => {
-    
-
+  // @ts-ignore
   const productDetail = products.find((product) => id === product.sku);
   const selectedImgForBG = productDetail.childrenImg[0];
-  console.log(productDetail.childrenImg[0], "productDetail.childrenImg[0]");
 
   setTimeout(() => {
     const { canvas, productCanvas } = initialiseCanvas(selectedImgForBG);
@@ -27,24 +25,23 @@ export const ProductDetail = ({ id }) => {
   }, 0);
 
   return `
-    <div class="product-detail">
+    <section class="product-detail">
         ${TitleComponent({ title: "Product Listing Page", backNode: true })}
-        <div class="product-show">
-
+        <section class="product-show">
             <div class="product-right-div">
                 <div class="product-info">
-                    <h2>${productDetail.name}</h2>
-                    <p>${productDetail.sku}</p>
+                    <h2 class="product-name">${productDetail.name}</h2>
+                    <p class="product-sku">${productDetail.sku}</p>
                 </div>
 
                 <div class="canvas-section">
                     ${CanvasComponent()}
 
                     <div class="canvas-actions">
-                        <button id="deleteButton">Delete</button>
-                        <button id="downloadImgButton">Get Image</button>
-                        <button id="getJson">Get JSON</button>
-                        <button id="downloadFullImage">Download Full Image</button>
+                        <button id="deleteButton" class="inputLabel">Delete</button>
+                        <button id="downloadImgButton" class="inputLabel">Get Image</button>
+                        <button id="getJson" class="inputLabel">Get JSON</button>
+                        <button id="downloadFullImage" class="inputLabel">Download Image</button>
                     </div>
                 </div>
             </div>
@@ -67,7 +64,7 @@ export const ProductDetail = ({ id }) => {
 
                 <div class="stepper-section">
                     <div class="tabButtons">
-                        <button class="step-button" name="1">Step 1</button>
+                        <button class="step-button active" name="1">Step 1</button>
                         <button class="step-button" name="2">Step 2</button>
                         <button class="step-button" name="3">Step 3</button>
                         <button class="step-button" name="4">Step 4</button>
@@ -96,8 +93,8 @@ export const ProductDetail = ({ id }) => {
                                   .map((el) => {
                                     return `
                                     <div>
-                                      <input type="radio" id="huey" name="drone" value=${el} checked />
-                                      <label for="huey">${el}</label>
+                                      <input type="radio" id="${el}" name="drone" value=${el} checked />
+                                      <label for="${el}">${el}</label>
                                     </div>
                                     `;
                                   })
@@ -144,6 +141,6 @@ export const ProductDetail = ({ id }) => {
                 </div>
 
             </div>
-    </div>
+    </section>
     `;
 };

@@ -1,19 +1,15 @@
-import { fabric } from "fabric";
+
 
 export const  CanvasComponent = () => {
     return `
-    <section>
+        <section>
             <div class="product-canvas">
-            <canvas id="ProductCanvas"></canvas>
-            <div class="productCanvasWrapper" id="productCanvasWrapper">
-            <canvas id="canvas"></canvas>
+                <canvas id="ProductCanvas"></canvas>
+                <div class="productCanvasWrapper" id="productCanvasWrapper">
+                    <canvas id="canvas"></canvas>
+                </div>
             </div>
-        </div>
-        </section
-    >`
+        </section>
+    `
 }
-
-
-
-// appendElementWithId('content', CanvasComponent())
 
