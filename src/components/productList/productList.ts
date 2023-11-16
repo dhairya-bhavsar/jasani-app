@@ -17,9 +17,9 @@ export const ProductList = () => {
             return `
             <div class="single-product" id=${sku}>
               <img class="product-image" alt="${image}" src="${images[image]}"/>
-              <p  class="product-name" id="name">${name}</p>
-              <p class="product-sku" id="sku" class="sku">${sku}</p>
-              <p class="product-price">AED ${price}</p>
+              <p  class="product-name title_center" id="name">${name}</p>
+              <p class="product-sku title_center" id="sku" class="sku">${sku}</p>
+              <p class="product-price title_center">AED ${price}</p>
             </div>
           `;
         }).join(' ')}

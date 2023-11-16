@@ -3,7 +3,7 @@
 }
 
 body {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   background-color: lightgrey;
   font-size: 16px;
@@ -28,10 +28,12 @@ h1, p {
 }
 
 #content {
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     height: calc(100vh - 135px);
+    width: 1440px;
+    margin: 0 auto;
 }
 
 #nav, #feature, #footer {
@@ -58,7 +60,7 @@ li {
     flex-wrap: wrap;
     gap: 1.2rem;
     flex-direction: row;
-    margin: 1.5rem;
+    margin: 1.5rem 0;
 }
 
 .single-product {
@@ -69,11 +71,16 @@ li {
     width: 14rem;
     height: 24rem;
     font-size: 1rem;
+    transition: all 0.5s;
 }
 
 .single-product:hover {
     background: #0000000a;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    border: 1px solid #057AC7;
+    margin: 0;
+    padding: 0;
+    
 }
 
 .product-image {
@@ -151,7 +158,8 @@ Product Title Component*/
     justify-content: center;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: azure;
+    /* background-color: azure; */
+    background-color: #efefef;
 }
 
 .title > .btn {
@@ -402,3 +410,24 @@ Product Title Component*/
 }
 
 /* canvas style end */
+
+
+/*new css by Vimal Vyas*/
+h1.text_margin
+{
+  margin: 0;
+  background: #057AC7;
+  color: #fff;
+}
+.title_center {
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+div#footer {
+  text-align: center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background: transparent;
+}
