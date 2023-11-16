@@ -4,24 +4,52 @@ import {
   initialiseCanvas,
   setBackgroundImg,
   setCustomiseCanvas,
-  viewChangeHandler,
 } from "../canvas/canvasController";
 import { TitleComponent } from "../title/title";
 import { CanvasComponent } from "../canvas/canvas";
 import { images } from "../../assets/images";
+import { selectTechniqueHandler, viewChangeHandler } from "./productDetailController";
+import { replaceInnerChildElements } from "../../helpers/helper";
 const { products } = productData;
 
 export const ProductDetail = ({ id }) => {
   // @ts-ignore
   const productDetail = products.find((product) => id === product.sku);
   const selectedImgForBG = productDetail.childrenImg[0];
+  let selectedTechnique = productDetail.availableTechniques[0];
+
+  /*
+  * newTechnique : selected technique
+  */
+  const setNewImageSections = (newTechnique) => {
+    const availableSections = document.getElementById("available-sections");
+    const newChild = `
+        <div class="image-views">
+             ${newTechnique.availableSections
+               .map(({ path, id }) => {
+                 return `<div class="section-img-container" id=${id}>
+                            <img src=${images[path]}/>
+                          </div>`;
+               })
+               .join(" ")}
+        </div>
+    `;
+    replaceInnerChildElements(availableSections,newChild);
+  };
 
   setTimeout(() => {
     const { canvas, productCanvas } = initialiseCanvas(selectedImgForBG);
-    initialCallHandler(canvas, productCanvas,selectedImgForBG);
+    initialCallHandler(canvas, productCanvas, selectedImgForBG);
     setCustomiseCanvas(selectedImgForBG);
     setBackgroundImg(productCanvas, images[selectedImgForBG.path]);
-    viewChangeHandler(productDetail,productCanvas,canvas);
+    viewChangeHandler(productDetail, productCanvas, canvas);
+
+    selectTechniqueHandler(
+      productDetail,
+      setNewImageSections,
+      productCanvas,
+      canvas
+    );
   }, 0);
 
   return `
@@ -71,36 +99,50 @@ export const ProductDetail = ({ id }) => {
                     </div>
 
                     <div id="1" class="tabView tabShow">
-                        <p class="font-bold">Choose Branding Area</p>
-                        <div class="image-views">
-                            ${productDetail.childrenImg
-                              .map(({ path, id }) => {
-                                return `<div class="section-img-container" id=${id}>
-                                           <img src=${images[path]}/>
-                                         </div>`;
-                              })
-                              .join(" ")}
-                        </div>
-                    </div>
 
-                    <div id="2" class="tabView tabHide">
-                        <p class="font-bold">Add Branding Options</p>
-
-                        <div class="second-step">
+                        <div class="technique-selector">
                             <p class="font-bold">Choose technique:</p>
                             <div class="techniques">
                                 ${productDetail.availableTechniques
                                   .map((el) => {
                                     return `
-                                    <div>
-                                      <input type="radio" id="${el}" name="drone" value=${el} checked />
-                                      <label for="${el}">${el}</label>
+                                    <div class="technique-option" id=${el.id}>
+                                        <div class="technique-option-header">
+                                            <p class="font-bold"> ${
+                                              el.techniqueName
+                                            } </p>
+                                        </div>
+                                        <div class="technique-option-body">
+                                            <p>${
+                                              typeof el.maxColor === "number"
+                                                ? `Max. ${el.maxColor} color(s)`
+                                                : el.maxColor
+                                            }</p>
+                                            <p>${el.daysRequire} Days</p>
+                                        </div>
                                     </div>
                                     `;
                                   })
                                   .join(" ")}
                             </div>
                         </div>
+
+                        <p class="font-bold">Choose Branding Area</p>
+                        
+                        <div id="available-sections">
+                           <div class="image-views">
+                                ${selectedTechnique.availableSections
+                                  .map(({ path, id }) => {
+                                    return `<div class="section-img-container" id=${id}>
+                                               <img src=${images[path]}/>
+                                             </div>`;
+                                  })
+                                  .join(" ")}
+                           </div>
+                        </div>
+                    </div>
+
+                    <div id="2" class="tabView tabHide">
 
                         <div class="uploadLogo">
                             <p class="font-bold">Upload file (optional)</p>
