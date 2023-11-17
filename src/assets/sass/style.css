@@ -224,7 +224,7 @@ Product Title Component*/
   flex-direction: column;
   justify-content: space-between;
   margin-top: 1.563rem;
-  
+
 }
 
 .stepper-actions {
@@ -290,10 +290,10 @@ Product Title Component*/
   background: #FFF;
 }
 
-.technique-option.active, .section-img-container.active {  
+.technique-option.active, .section-img-container.active {
   border: 2px solid #057AC7;
 }
-.step-button { 
+.step-button {
   cursor: pointer;
   background: none;
   border: none;

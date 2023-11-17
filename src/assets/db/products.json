@@ -31,7 +31,33 @@
           "isRecommended": true,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t1"
+          "id" : "t1",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Heat transfer",
@@ -48,7 +74,33 @@
           "isRecommended": false,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t2"
+          "id" : "t2",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Digital print",
@@ -65,7 +117,33 @@
           "isRecommended": false,
           "maxColor": "Full color",
           "daysRequire": 2,
-          "id" : "t3"
+          "id" : "t3",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "150",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            }
+          ]
         }
       ]
     },
@@ -109,7 +187,33 @@
           "isRecommended": true,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t1"
+          "id" : "t1",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Heat transfer",
@@ -134,7 +238,33 @@
           "isRecommended": false,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t2"
+          "id" : "t2",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Digital print",
@@ -151,7 +281,33 @@
           "isRecommended": false,
           "maxColor": "Full color",
           "daysRequire": 2,
-          "id" : "t3"
+          "id" : "t3",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "150",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            }
+          ]
         }
       ]
     },
@@ -195,7 +351,33 @@
           "isRecommended": true,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t1"
+          "id" : "t1",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Heat transfer",
@@ -220,7 +402,33 @@
           "isRecommended": false,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t2"
+          "id" : "t2",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Digital print",
@@ -237,7 +445,33 @@
           "isRecommended": false,
           "maxColor": "Full color",
           "daysRequire": 2,
-          "id" : "t3"
+          "id" : "t3",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "150",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            }
+          ]
         }
       ]
     },
@@ -280,7 +514,33 @@
           "isRecommended": true,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t1"
+          "id" : "t1",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Heat transfer",
@@ -305,7 +565,33 @@
           "isRecommended": false,
           "maxColor": 5,
           "daysRequire": 2,
-          "id" : "t2"
+          "id" : "t2",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "125",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "2"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "1.5"
+            }
+          ]
         },
         {
           "techniqueName": "Digital print",
@@ -322,7 +608,33 @@
           "isRecommended": false,
           "maxColor": "Full color",
           "daysRequire": 2,
-          "id" : "t3"
+          "id" : "t3",
+          "pricing": [
+            {
+              "min_qty": "1",
+              "max_qty": "99",
+              "price_fixed_cost": "150",
+              "price_per_unit_cost": "0"
+            },
+            {
+              "min_qty": "100",
+              "max_qty": "149",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3.5"
+            },
+            {
+              "min_qty": "150",
+              "max_qty": "200",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            },
+            {
+              "min_qty": "200",
+              "max_qty": "",
+              "price_fixed_cost": "0",
+              "price_per_unit_cost": "3"
+            }
+          ]
         }
       ]
     }

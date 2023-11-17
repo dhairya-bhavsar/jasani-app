@@ -8,7 +8,7 @@ import {
 import { TitleComponent } from "../title/title";
 import { CanvasComponent } from "../canvas/canvas";
 import { images } from "../../assets/images";
-import { selectTechniqueHandler, viewChangeHandler } from "./productDetailController";
+import { priceCalculator, qtyChangeHandler, selectTechniqueHandler, viewChangeHandler } from "./productDetailController";
 import { replaceInnerChildElements } from "../../helpers/helper";
 const { products } = productData;
 
@@ -43,13 +43,15 @@ export const ProductDetail = ({ id }) => {
     setCustomiseCanvas(selectedImgForBG);
     setBackgroundImg(productCanvas, images[selectedImgForBG.path]);
     viewChangeHandler(productDetail, productCanvas, canvas);
-
     selectTechniqueHandler(
       productDetail,
       setNewImageSections,
       productCanvas,
       canvas
     );
+
+    qtyChangeHandler(selectedTechnique.pricing);
+    priceCalculator(1,selectedTechnique.pricing);
   }, 0);
 
   return `
@@ -77,24 +79,14 @@ export const ProductDetail = ({ id }) => {
             <div class="product-left-div">
 
                 <div class="charge-section">
-                <div class="main_section">
-                    <p class="font-bold text_left">Branding charge estimator</p>
-                    <div class="text_qty">
-                    <label class="text_label">quantity:</label>
-                    
-                    <input type="text" name="quantity" class="input_area">
-                    
-                    </div>
+                    <div class="main_section qty-selection">
+                        <p class="font-bold text_left">Branding charge estimator</p>
+                        <div class="text_qty">
+                         <label class="text_label">quantity:</label>
+                         <input type="number" name="quantity" id="qtySelector" value="1" min="1" class="input_area">
+                        </div>
                     </div>
                     <div class="unit-charge">
-                        <div>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
-                            <span>Total branding charge:<p class="font-bold"> AED 10</p></span>
-                        </div>
-                        <div>
-                            <span>Per unit product cost: <p class="font-bold"> AED 10</p></span>
-                            <span>Total product cost: <p class="font-bold"> AED 10</p></span>
-                        </div>
                     </div>
                 </div>
 
@@ -111,7 +103,7 @@ export const ProductDetail = ({ id }) => {
                         <div class="technique-selector">
                             <p class="font-bold">Choose technique:</p>
                             <div class="techniques">
-                                ${productDetail.availableTechniques
+                                ${productDetail?.availableTechniques
                                   .map((el) => {
                                     return `
                                     <div class="technique-option" id=${el.id}>

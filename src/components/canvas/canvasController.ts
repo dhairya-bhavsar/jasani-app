@@ -1,5 +1,4 @@
 import { fabric } from "fabric";
-import { images } from "../../assets/images";
 
 //Download link helper
 const generateDownloadLink = (canvas, name, type) => {
@@ -96,7 +95,7 @@ const generateDownloadLink = (canvas, name, type) => {
     const addTextButton = document.getElementById("applyText");
 
     addTextButton?.addEventListener("click", () => {
-      const addedText = document.getElementById("addedText").value;
+      const addedText = (document.getElementById("addedText") as HTMLInputElement).value;
       if (addedText) {
         const text = new fabric.Textbox(addedText, {
           top: 20,
@@ -111,7 +110,7 @@ const generateDownloadLink = (canvas, name, type) => {
     document.getElementById("textColor")?.addEventListener("input", () => {
       const selectedObjects = canvas.getActiveObjects();
 
-      const newColor = document.getElementById("textColor")?.value;
+      const newColor = (document.getElementById("textColor") as HTMLInputElement).value;
 
       if (newColor) {
         selectedObjects.forEach((object) => {
