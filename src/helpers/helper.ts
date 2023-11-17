@@ -47,3 +47,14 @@ export const replaceCurrentElementWithNewId = (id?: string, content?: any, route
 //         })
 //     });
 // }
+
+
+
+/*
+* section : The main container or div in which you need to replace html.
+* newContent : new HTML in string
+*/
+export const replaceInnerChildElements = (section : HTMLElement, newContent : string) =>{
+    section.innerHTML = ""
+    section.appendChild(new DOMParser().parseFromString(newContent, "text/html").body.firstChild);
+}

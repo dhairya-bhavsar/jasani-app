@@ -193,9 +193,9 @@ const generateDownloadLink = (canvas, name, type) => {
       document.getElementById("productCanvasWrapper").style.left =
       selectedImgForBG.left;
     document.getElementById("productCanvasWrapper").style.width =
-      selectedImgForBG.width;
+      `${selectedImgForBG.width}px`;
     document.getElementById("productCanvasWrapper").style.height =
-      selectedImgForBG.height;
+    `${selectedImgForBG.height}px`;
   }
 };
 
@@ -217,27 +217,9 @@ export function openTab() {
   });
 }
 
-// image section view change handler
-export function viewChangeHandler(productDetail, productCanvas, canvas) {
-  document.querySelectorAll(".section-img-container").forEach((el) => {
-    el.addEventListener("click", () => {
-      const newBGImage = productDetail.childrenImg.find(
-        ({ id }) => id === el.id
-      );
-      setBackgroundImg(productCanvas, images[newBGImage.path]);
-      setCustomiseCanvas(newBGImage);
-      canvas.setDimensions({
-        width: newBGImage.width,
-        height: newBGImage.height,
-      });
-      downloadFullImage(canvas,productCanvas,newBGImage)
-    });
-  });
-}
-
 //Download merged images
 
-const downloadFullImage = (canvas, productCanvas,selectedImage) => {
+export const downloadFullImage = (canvas, productCanvas,selectedImage) => {
   document
     .getElementById("downloadFullImage")
     .addEventListener("click", () => {

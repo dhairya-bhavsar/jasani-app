@@ -16,12 +16,57 @@
         }
       ],
       "availableTechniques": [
-        "Inkjet Color",
-        "Embroidery",
-        "Screen",
-        "Debossing/embossing",
-        "Digital print",
-        "Heat transfer"
+        {
+          "techniqueName": "Screen",
+          "availableSections": [
+            {
+              "path": "bottle_front.jpeg",
+              "top": "280px",
+              "left": "191px",
+              "height": 40,
+              "width": 105,
+              "id": "111"
+            }
+          ],
+          "isRecommended": true,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t1"
+        },
+        {
+          "techniqueName": "Heat transfer",
+          "availableSections": [
+            {
+              "path": "bottle_front.jpeg",
+              "top": "280px",
+              "left": "191px",
+              "height": 40,
+              "width": 105,
+              "id": "111"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t2"
+        },
+        {
+          "techniqueName": "Digital print",
+          "availableSections": [
+            {
+              "path": "bottle_front.jpeg",
+              "top": "280px",
+              "left": "191px",
+              "height": 40,
+              "width": 105,
+              "id": "111"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": "Full color",
+          "daysRequire": 2,
+          "id" : "t3"
+        }
       ]
     },
     {
@@ -49,12 +94,65 @@
         }
       ],
       "availableTechniques": [
-        "Inkjet Color",
-        "Embroidery",
-        "Screen",
-        "Debossing/embossing",
-        "Digital print",
-        "Heat transfer"
+        {
+          "techniqueName": "Screen",
+          "availableSections": [
+            {
+              "path": "tshirt_front.jpeg",
+              "top": "200px",
+              "left": "176px",
+              "height": 150,
+              "width": 150,
+              "id": "111"
+            }
+          ],
+          "isRecommended": true,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t1"
+        },
+        {
+          "techniqueName": "Heat transfer",
+          "availableSections": [
+            {
+              "path": "tshirt_front.jpeg",
+              "top": "200px",
+              "left": "176px",
+              "height": 150,
+              "width": 150,
+              "id": "111"
+            },
+            {
+              "path": "tshirt_back.jpeg",
+              "top": "90px",
+              "left": "158px",
+              "height": 300,
+              "width": 190,
+              "id": "222"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t2"
+        },
+        {
+          "techniqueName": "Digital print",
+          "availableSections": [
+            {
+              "path": "tshirt_back.jpeg",
+              "top": "90px",
+              "left": "158px",
+              "height": 300,
+              "width": 190,
+              "id": "222"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": "Full color",
+          "daysRequire": 2,
+          "id" : "t3"
+        }
       ]
     },
     {
@@ -82,12 +180,65 @@
         }
       ],
       "availableTechniques": [
-        "Inkjet Color",
-        "Embroidery",
-        "Screen",
-        "Debossing/embossing",
-        "Digital print",
-        "Heat transfer"
+        {
+          "techniqueName": "Screen",
+          "availableSections": [
+            {
+              "path": "cap_front.jpeg",
+              "top": "220px",
+              "left": "150px",
+              "height": 50,
+              "width": 200,
+              "id": "111"
+            }
+          ],
+          "isRecommended": true,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t1"
+        },
+        {
+          "techniqueName": "Heat transfer",
+          "availableSections": [
+            {
+              "path": "cap_front.jpeg",
+              "top": "220px",
+              "left": "150px",
+              "height": 50,
+              "width": 200,
+              "id": "111"
+            },
+            {
+              "path": "cap_back.jpeg",
+              "top": "393px",
+              "left": "180px",
+              "height": 40,
+              "width": 120,
+              "id": "222"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t2"
+        },
+        {
+          "techniqueName": "Digital print",
+          "availableSections": [
+            {
+              "path": "cap_back.jpeg",
+              "top": "393px",
+              "left": "180px",
+              "height": 40,
+              "width": 120,
+              "id": "222"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": "Full color",
+          "daysRequire": 2,
+          "id" : "t3"
+        }
       ]
     },
     {
@@ -114,12 +265,65 @@
         }
       ],
       "availableTechniques": [
-        "Inkjet Color",
-        "Embroidery",
-        "Screen",
-        "Debossing/embossing",
-        "Digital print",
-        "Heat transfer"
+        {
+          "techniqueName": "Screen",
+          "availableSections": [
+            {
+              "path": "bag_front.jpeg",
+              "top": "316px",
+              "left": "84px",
+              "height": 135,
+              "width": 330,
+              "id": "111"
+            }
+          ],
+          "isRecommended": true,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t1"
+        },
+        {
+          "techniqueName": "Heat transfer",
+          "availableSections": [
+            {
+              "path": "bag_front.jpeg",
+              "top": "316px",
+              "left": "84px",
+              "height": 135,
+              "width": 330,
+              "id": "111"
+            },
+            {
+              "path": "bag_back.jpeg",
+              "top": "145px",
+              "left": "260px",
+              "height": 30,
+              "width": 50,
+              "id": "222"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": 5,
+          "daysRequire": 2,
+          "id" : "t2"
+        },
+        {
+          "techniqueName": "Digital print",
+          "availableSections": [
+            {
+              "path": "bag_back.jpeg",
+              "top": "145px",
+              "left": "260px",
+              "height": 30,
+              "width": 50,
+              "id": "222"
+            }
+          ],
+          "isRecommended": false,
+          "maxColor": "Full color",
+          "daysRequire": 2,
+          "id" : "t3"
+        }
       ]
     }
   ]
