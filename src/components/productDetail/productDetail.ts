@@ -68,8 +68,6 @@ export const ProductDetail = ({ id }) => {
                     ${CanvasComponent()}
 
                     <div class="canvas-actions">
-                         <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_in.png']}" class="Zoom_img"/>zoom in</button>
-                         <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_out.png']}" class="Zoom_img"/>zoom out</button>
                          <button id="downloadFullImage" class="inputLabel"><img src="${images['Save.png']}" class="Save_img"/>save logo for future use</button>
                         <button id="deleteButton" class="inputLabel">Delete</button>
                         <button id="downloadImgButton" class="inputLabel">Get Image</button>
@@ -191,3 +189,6 @@ export const ProductDetail = ({ id }) => {
     </section>
     `;
 };
+
+// <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_in.png']}" class="Zoom_img"/>zoom in</button>
+// <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_out.png']}" class="Zoom_img"/>zoom out</button>
