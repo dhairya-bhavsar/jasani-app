@@ -178,13 +178,14 @@ Product Title Component*/
     border-radius: 20%;
     cursor: pointer;
 }
+
 .product-left-div {
   width: 50%;
 }
 
 .font-bold {
   margin: 0;
-  padding: 0%;
+  padding: 0;
   color: #000;
   font-family: Raleway;
   font-size: 18px;
@@ -546,7 +547,7 @@ p.font-bold {
 }
 .remark-text-area {
   margin-top: 1rem;
-  padding: 0;
+  padding: 0.5rem;
 }
 
 /*button new style chages Vimal vyas*/
@@ -590,6 +591,6 @@ button#downloadFullImage
   justify-content: center;
   align-items: center;
 }
-input#addedText {
-  margin-left: 1.2rem;
-}
+/*input#addedText {*/
+/*  margin-left: 1.2rem;*/
+/*}*/
