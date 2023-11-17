@@ -68,10 +68,11 @@ export const ProductDetail = ({ id }) => {
                     ${CanvasComponent()}
 
                     <div class="canvas-actions">
+                         <button id="downloadFullImage" class="inputLabel"><img src="${images['Save.png']}" class="Save_img"/>save logo for future use</button>
                         <button id="deleteButton" class="inputLabel">Delete</button>
                         <button id="downloadImgButton" class="inputLabel">Get Image</button>
                         <button id="getJson" class="inputLabel">Get JSON</button>
-                        <button id="downloadFullImage" class="inputLabel">Download Image</button>
+                        
                     </div>
                 </div>
             </div>
@@ -145,7 +146,7 @@ export const ProductDetail = ({ id }) => {
                     <div id="2" class="tabView tabHide">
 
                         <div class="uploadLogo">
-                            <p class="font-bold">Upload file (optional)</p>
+                            <p class="font-bold upload_file_center">Upload file (optional)</p>
                             <label for="imageInput" class="inputLabel">Upload</label>
                             <input id="imageInput" type="file" />
                         </div>
@@ -188,3 +189,6 @@ export const ProductDetail = ({ id }) => {
     </section>
     `;
 };
+
+// <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_in.png']}" class="Zoom_img"/>zoom in</button>
+// <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_out.png']}" class="Zoom_img"/>zoom out</button>

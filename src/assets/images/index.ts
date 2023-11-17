@@ -7,6 +7,11 @@ import cap_front from './cap_front.jpg';
 import tshirt_back from './tshirt_back.jpg';
 import tshirt_front from './tshirt_front.jpg';
 import left_arrow from './left-arrow.png';
+import Zoom_in from './Zoom_in.png';
+import Zoom_out from './Zoom_out.png';
+import Save from './Save.png';
+
+
 
 export const images = {
     "bag_back.jpeg": bag_back,
@@ -16,5 +21,9 @@ export const images = {
     "cap_front.jpeg": cap_front,
     "tshirt_back.jpeg": tshirt_back,
     "tshirt_front.jpeg": tshirt_front,
-    "left_arrow.png": left_arrow
+    "left_arrow.png": left_arrow,
+    "Zoom_in.png": Zoom_in,
+    "Zoom_out.png": Zoom_out,
+    "Save.png": Save
+
 };
