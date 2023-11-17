@@ -168,7 +168,7 @@ Product Title Component*/
 .title > .btn {
     position: absolute;
     left: 0.2rem;
-    top: 20%;
+    top: 16%;
 }
 
 .btn {
@@ -224,7 +224,7 @@ Product Title Component*/
   flex-direction: column;
   justify-content: space-between;
   margin-top: 1.563rem;
-  
+
 }
 
 .stepper-actions {
@@ -281,6 +281,14 @@ Product Title Component*/
   margin-top: 1rem;
 }
 
+.tabView.tabShow {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.tabView.tabShow > p {
+  margin: 0;
+}
+
 .tabButtons {
   border-radius: 0;
   justify-content:space-between;
@@ -290,10 +298,10 @@ Product Title Component*/
   background: #FFF;
 }
 
-.technique-option.active, .section-img-container.active {  
+.technique-option.active, .section-img-container.active {
   border: 2px solid #057AC7;
 }
-.step-button { 
+.step-button {
   cursor: pointer;
   background: none;
   border: none;
@@ -364,15 +372,18 @@ Product Title Component*/
 .techniques {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  gap: 1rem;
   margin: 1rem 0;
 }
 
 .technique-option{
-  width: 9rem;
+  width: 30%;
   border: 1px solid #000;
   cursor: pointer;
   border-radius: 2px;
+}
+.technique-selector > p.font-bold {
+  margin: 0;
 }
 
 .technique-option-header{
@@ -533,6 +544,11 @@ p.font-bold {
 .technique-option-header > p {
   margin: 0;
 }
+.remark-text-area {
+  margin-top: 1rem;
+  padding: 0;
+}
+
 /*button new style chages Vimal vyas*/
 
 button#zoomIn {
@@ -559,7 +575,7 @@ button#Redo{
   justify-content: center;
   align-items: center;
 }
-button#downloadFullImage 
+button#downloadFullImage
 {
   display: flex;
   flex-direction: column;

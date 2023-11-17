@@ -1,4 +1,5 @@
 import { images } from "../../assets/images";
+import { replaceInnerChildElements } from "../../helpers/helper";
 import {
   setBackgroundImg,
   setCustomiseCanvas,
@@ -43,6 +44,8 @@ export const selectTechniqueHandler = (
 
   availableOptions.forEach((element) => {
     element.addEventListener("click", () => {
+      const currentQty = document.getElementById("qtySelector")?.value;
+
       const newTechnique = productDetail.availableTechniques.find(
         (option) => option.id === element.id
       );
@@ -53,7 +56,17 @@ export const selectTechniqueHandler = (
         images[newTechnique.availableSections[0].path]
       );
       viewChangeHandler(newTechnique, productCanvas, canvas);
+      canvas.setDimensions({
+        width: newTechnique.availableSections[0].width,
+        height: newTechnique.availableSections[0].height,
+      });
+      downloadFullImage(
+        canvas,
+        productCanvas,
+        newTechnique.availableSections[0]
+      );
       setCustomiseCanvas(newTechnique.availableSections[0]);
+      priceCalculator(currentQty, newTechnique.pricing);
     });
   });
 };
@@ -93,3 +106,61 @@ export function viewChangeHandler(newTechnique, productCanvas, canvas) {
     });
   });
 }
+
+/*
+ * qty : quantity added by user.
+ * pricing : pricing object related to selected printing technique.
+ */
+export const priceCalculator = (qty, pricing) => {
+  const priceParentNode = document.getElementById("unitCharge");
+  if (+qty <= 0) {
+    return;
+  }
+
+  const pricingData = pricing?.find((data) => {
+    if (+qty >= +data.min_qty && +qty <= +data.max_qty) {
+      return true;
+    }
+    if (
+      !(+qty >= +data.min_qty && +qty <= +data.max_qty) &&
+      data.max_qty === ""
+    ) {
+      return true;
+    }
+  });
+
+  const totalCost = (
+    +pricingData?.price_fixed_cost +
+    pricingData?.price_per_unit_cost * +qty
+  ).toFixed(2);
+
+  const printCost = (+totalCost / +qty).toFixed(2);
+
+  const newPriceHTML = `
+    <div class="unit-charge">
+       <div>
+          <span>Setup Charge(fixed): <p class="font-bold"> AED ${pricingData?.price_fixed_cost}</p></span>
+          <span>Print Charge(per unit): <p class="font-bold"> AED ${pricingData?.price_per_unit_cost}</p></span>
+        </div>
+        <div class="cost-calculation">
+          <span>Total Cost: <p class="font-bold"> AED ${totalCost}</p></span>
+          <span>Print Cost: <p class="font-bold"> AED ${printCost}</p></span>
+        </div>
+    </div>
+  `;
+
+  replaceInnerChildElements(priceParentNode, newPriceHTML);
+};
+
+/*
+ *pricing : pricing object related to selected printing technique.
+ */
+export const qtyChangeHandler = (pricing) => {
+  ["keyup", "change"].forEach((eventName) => {
+    document
+      .getElementById("qtySelector")
+      .addEventListener(eventName, (event) => {
+        priceCalculator(event.target.value, pricing);
+      });
+  });
+};
