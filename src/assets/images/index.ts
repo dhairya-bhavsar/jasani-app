@@ -6,6 +6,7 @@ import cap_back from './cap_back.jpg';
 import cap_front from './cap_front.jpg';
 import tshirt_back from './tshirt_back.jpg';
 import tshirt_front from './tshirt_front.jpg';
+import left_arrow from './left-arrow.png';
 
 export const images = {
     "bag_back.jpeg": bag_back,
@@ -15,4 +16,5 @@ export const images = {
     "cap_front.jpeg": cap_front,
     "tshirt_back.jpeg": tshirt_back,
     "tshirt_front.jpeg": tshirt_front,
+    "left_arrow.png": left_arrow
 };

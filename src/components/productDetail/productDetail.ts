@@ -79,27 +79,20 @@ export const ProductDetail = ({ id }) => {
             <div class="product-left-div">
 
                 <div class="charge-section">
-
-                    <div class="qty-selection">
-                        <p class="font-bold">Branding charge estimator</p>
-
-                        <div>
-                            <label for="qtySelector" class="font-bold">Qty : </label>
-                            <input type="number" id="qtySelector" value="1" min="1" max="100"/>
+                    <div class="main_section qty-selection">
+                        <p class="font-bold text_left">Branding charge estimator</p>
+                        <div class="text_qty">
+                         <label class="text_label">quantity:</label>
+                         <input type="number" name="quantity" id="qtySelector" value="1" min="1" class="input_area">
                         </div>
-
                     </div>
-
-                    <div class="unit-charge" id="unitCharge">
-                        <div class="temp-unit-charge">
-                            
-                        </div>
+                    <div id="unitCharge">
                     </div>
                 </div>
 
                 <div class="stepper-section">
                     <div class="tabButtons">
-                        <button class="step-button active" name="1">Step 1</button>
+                        <button class="step-button active" name="1">Step 1</button>                       
                         <button class="step-button" name="2">Step 2</button>
                         <button class="step-button" name="3">Step 3</button>
                         <button class="step-button" name="4">Step 4</button>
@@ -175,12 +168,20 @@ export const ProductDetail = ({ id }) => {
 
                     <div id="4" class="tabView tabHide">
                         <p class="font-bold">Add Remarks for the Printer (optional)</p>
+                        <textarea name="remark" class="remark-text-area" id="remark" cols="3" 
+                        placeholder="Please enter remark" rows="3"></textarea>
                     </div>
 
                     <div class="nextStep">
                         <button id="nextStepButton">Next</button>
                     </div>
 
+                </div>
+
+                <div class="stepper-actions">
+                    <button>Discard</button>
+                    <button>Preview</button>
+                    <button>Finish</button>
                 </div>
 
             </div>

@@ -1,4 +1,5 @@
 import {AddEventBackButton} from "../../../index";
+import { images } from "../../assets/images";
 
 export type TitleComponentProps = {
     title: string;
@@ -13,7 +14,7 @@ export const  TitleComponent = (props: TitleComponentProps) => {
 
     return `
          <h1 class="title">
-            ${backNode ? '<button class="btn" id="back-btn">Back</button>': ''}
+            ${backNode ? `<button class="btn btn-blue" id="back-btn"><img src="${images['left_arrow.png']}" class="arrow_img"/>Go Back</button>`: ''}
             ${title}   
          </h1>
     `
