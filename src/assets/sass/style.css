@@ -548,3 +548,48 @@ p.font-bold {
   margin-top: 1rem;
   padding: 0;
 }
+
+/*button new style chages Vimal vyas*/
+
+button#zoomIn {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+}
+button#Undo{
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+}
+button#Redo{
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+}
+button#downloadFullImage
+{
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+.upload_file_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input#addedText {
+  margin-left: 1.2rem;
+}
