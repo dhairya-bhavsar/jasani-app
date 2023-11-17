@@ -77,22 +77,30 @@ export const ProductDetail = ({ id }) => {
             <div class="product-left-div">
 
                 <div class="charge-section">
-                    <p class="font-bold">Branding charge estimator</p>
+                <div class="main_section">
+                    <p class="font-bold text_left">Branding charge estimator</p>
+                    <div class="text_qty">
+                    <label class="text_label">quantity:</label>
+                    
+                    <input type="text" name="quantity" class="input_area">
+                    
+                    </div>
+                    </div>
                     <div class="unit-charge">
                         <div>
                             <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
+                            <span>Total branding charge:<p class="font-bold"> AED 10</p></span>
                         </div>
                         <div>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
+                            <span>Per unit product cost: <p class="font-bold"> AED 10</p></span>
+                            <span>Total product cost: <p class="font-bold"> AED 10</p></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="stepper-section">
                     <div class="tabButtons">
-                        <button class="step-button active" name="1">Step 1</button>
+                        <button class="step-button active" name="1">Step 1</button>                       
                         <button class="step-button" name="2">Step 2</button>
                         <button class="step-button" name="3">Step 3</button>
                         <button class="step-button" name="4">Step 4</button>
@@ -179,7 +187,7 @@ export const ProductDetail = ({ id }) => {
                 <div class="stepper-actions">
                     <button>Discard</button>
                     <button>Preview</button>
-                    <button class="bg-blue">Finish</button>
+                    <button>Finish</button>
                 </div>
 
             </div>
