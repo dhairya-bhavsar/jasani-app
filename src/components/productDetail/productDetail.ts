@@ -8,7 +8,7 @@ import {
 import { TitleComponent } from "../title/title";
 import { CanvasComponent } from "../canvas/canvas";
 import { images } from "../../assets/images";
-import { selectTechniqueHandler, viewChangeHandler } from "./productDetailController";
+import { priceCalculator, qtyChangeHandler, selectTechniqueHandler, viewChangeHandler } from "./productDetailController";
 import { replaceInnerChildElements } from "../../helpers/helper";
 const { products } = productData;
 
@@ -43,13 +43,15 @@ export const ProductDetail = ({ id }) => {
     setCustomiseCanvas(selectedImgForBG);
     setBackgroundImg(productCanvas, images[selectedImgForBG.path]);
     viewChangeHandler(productDetail, productCanvas, canvas);
-
     selectTechniqueHandler(
       productDetail,
       setNewImageSections,
       productCanvas,
       canvas
     );
+
+    qtyChangeHandler(selectedTechnique.pricing);
+    priceCalculator(1,selectedTechnique.pricing);
   }, 0);
 
   return `
@@ -77,15 +79,20 @@ export const ProductDetail = ({ id }) => {
             <div class="product-left-div">
 
                 <div class="charge-section">
-                    <p class="font-bold">Branding charge estimator</p>
-                    <div class="unit-charge">
+
+                    <div class="qty-selection">
+                        <p class="font-bold">Branding charge estimator</p>
+
                         <div>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
+                            <label for="qtySelector" class="font-bold">Qty : </label>
+                            <input type="number" id="qtySelector" value="1" min="1" max="100"/>
                         </div>
-                        <div>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
-                            <span>Per unit branding charge: <p class="font-bold"> AED 10</p></span>
+
+                    </div>
+
+                    <div class="unit-charge" id="unitCharge">
+                        <div class="temp-unit-charge">
+                            
                         </div>
                     </div>
                 </div>
@@ -103,7 +110,7 @@ export const ProductDetail = ({ id }) => {
                         <div class="technique-selector">
                             <p class="font-bold">Choose technique:</p>
                             <div class="techniques">
-                                ${productDetail.availableTechniques
+                                ${productDetail?.availableTechniques
                                   .map((el) => {
                                     return `
                                     <div class="technique-option" id=${el.id}>
@@ -174,12 +181,6 @@ export const ProductDetail = ({ id }) => {
                         <button id="nextStepButton">Next</button>
                     </div>
 
-                </div>
-
-                <div class="stepper-actions">
-                    <button>Discard</button>
-                    <button>Preview</button>
-                    <button class="bg-blue">Finish</button>
                 </div>
 
             </div>

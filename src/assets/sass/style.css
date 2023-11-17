@@ -186,9 +186,21 @@ Product Title Component*/
   flex-direction: column;
 }
 
-.unit-charge {
+.qty-selection {
+  display: flex;
+  gap: 3rem;
+  margin: 1rem 0;
+}
+
+.qty-selection input {
+  width: 4rem;
+}
+
+.unit-charge, .temp-unit-charge {
   display: flex;
   justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 1rem;
 }
 
 .charge-section span {
