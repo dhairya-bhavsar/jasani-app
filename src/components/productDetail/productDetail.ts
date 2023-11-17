@@ -86,7 +86,7 @@ export const ProductDetail = ({ id }) => {
                          <input type="number" name="quantity" id="qtySelector" value="1" min="1" class="input_area">
                         </div>
                     </div>
-                    <div class="unit-charge">
+                    <div id="unitCharge">
                     </div>
                 </div>
 
@@ -168,6 +168,8 @@ export const ProductDetail = ({ id }) => {
 
                     <div id="4" class="tabView tabHide">
                         <p class="font-bold">Add Remarks for the Printer (optional)</p>
+                        <textarea name="remark" class="remark-text-area" id="remark" cols="3" 
+                        placeholder="Please enter remark" rows="3"></textarea>
                     </div>
 
                     <div class="nextStep">

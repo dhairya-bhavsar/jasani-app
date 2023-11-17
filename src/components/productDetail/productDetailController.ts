@@ -137,7 +137,7 @@ export const priceCalculator = (qty, pricing) => {
   const printCost = (+totalCost / +qty).toFixed(2);
 
   const newPriceHTML = `
-    <div class="temp-unit-charge">
+    <div class="unit-charge">
        <div>
           <span>Setup Charge(fixed): <p class="font-bold"> AED ${pricingData?.price_fixed_cost}</p></span>
           <span>Print Charge(per unit): <p class="font-bold"> AED ${pricingData?.price_per_unit_cost}</p></span>
