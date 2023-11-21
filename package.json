@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "open-cli http://localhost:3336 && parcel index.html -p 3336",
     "demo:dev": "open-cli https://jasani.demo.brainvire.dev/ && parcel index.html -p 3336",
-    "start": "parcel index.html",
+    "start": "parcel index.html -p 3336",
     "build": "parcel build index.html"
   },
   "dependencies": {
