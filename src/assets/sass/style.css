@@ -557,22 +557,10 @@ button#zoomIn {
   margin:0;
   padding: 0;
   height: 1rem;
+  cursor: not-allowed;
 }
-button#Undo{
-  display: flex;
-  flex-direction: column;
-  border: none;
-  background: transparent;
-  justify-content: center;
-  align-items: center;
-}
-button#Redo{
-  display: flex;
-  flex-direction: column;
-  border: none;
-  background: transparent;
-  justify-content: center;
-  align-items: center;
+button#zoomOut {
+  cursor: not-allowed;
 }
 button#downloadFullImage
 {

@@ -77,15 +77,12 @@ export const ProductDetail = ({ id }) => {
                     ${CanvasComponent()}
 
                     <div class="canvas-actions">
-                         <button id="zoomIn" class="inputLabel label_space"><img src="${images['Zoom_in.png']}" class="Zoom_img"/>Zoom in</button>
-                         <button id="zoomOut" class="inputLabel"><img src="${images['Zoom_out.png']}" class="Zoom_img"/>Zoom out</button>
+                         <button id="zoomIn" class="inputLabel label_space" disabled><img src="${images['Zoom_in.png']}" class="Zoom_img"/>Zoom in</button>
+                         <button id="zoomOut" class="inputLabel" disabled><img src="${images['Zoom_out.png']}" class="Zoom_img"/>Zoom out</button>
                          <button id="downloadFullImage" class="inputLabel"><img src="${
                            images["Save.png"]
                          }" class="Save_img"/>save logo for future use</button>
                         <button id="deleteButton" class="inputLabel"><img src="${images['recycle_bin.png']}" class="recycle_bin_img"/>Delete</button>
-                        <button id="downloadImgButton" class="inputLabel">Get Image</button>
-                        <button id="getJson" class="inputLabel">Get JSON</button>
-                        
                     </div>
                 </div>
             </div>
@@ -204,5 +201,5 @@ export const ProductDetail = ({ id }) => {
     `;
 };
 
-// <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_in.png']}" class="Zoom_img"/>zoom in</button>
-// <button id="zoomIn" class="inputZoomin"><img src="${images['Zoom_out.png']}" class="Zoom_img"/>zoom out</button>
+// <button id="downloadImgButton" class="inputLabel">Get Image</button>
+// <button id="getJson" class="inputLabel">Get JSON</button>
