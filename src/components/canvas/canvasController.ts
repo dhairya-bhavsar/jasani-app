@@ -1,4 +1,5 @@
 import { fabric } from "fabric";
+import { addTextToCanvasHandler, changeFontFamilyHandler, changeFontSizeHandler, changeTextAlignHandler, changeTextColor, editTextHandler, fontBoldUnderlineAndItalicHandler} from "../productDetail/textController";
 
 //Download link helper
 const generateDownloadLink = (canvas, name, type) => {
@@ -89,40 +90,6 @@ const generateDownloadLink = (canvas, name, type) => {
       }
     });
   }
-
-  //To add Text
-  export function addTextToCanvasHandler(canvas) {
-    const addTextButton = document.getElementById("applyText");
-
-    addTextButton?.addEventListener("click", () => {
-      const addedText = (document.getElementById("addedText") as HTMLInputElement).value;
-      if (addedText) {
-        const text = new fabric.Textbox(addedText, {
-          top: 20,
-        });
-        canvas.add(text);
-      }
-    });
-  }
-
-  //To Change text color
-  export const changeTextColor = (canvas) => {
-    document.getElementById("textColor")?.addEventListener("input", () => {
-      const selectedObjects = canvas.getActiveObjects();
-
-      const newColor = (document.getElementById("textColor") as HTMLInputElement).value;
-
-      if (newColor) {
-        selectedObjects.forEach((object) => {
-          if (object.type === "textbox") {
-            object.set("fill", newColor);
-          }
-        });
-
-        canvas.renderAll();
-      }
-    });
-  };
 
   // Function to delete all selected objects
   export const deleteSelectedObjects = (canvas) => {
@@ -253,6 +220,12 @@ export const downloadFullImage = (canvas, productCanvas,selectedImage) => {
     });
 };
 
+const clearCanvasHandler = (canvas) =>{
+  document.getElementById("clearCanvas").addEventListener("click",()=>{
+    canvas.clear();
+  })
+}
+
 //One time initialiasation for add canvas fuctionality
 export const initialCallHandler = (canvas, productCanvas,selectedImage) => {
   addImageToCancasHandler(canvas);
@@ -263,4 +236,10 @@ export const initialCallHandler = (canvas, productCanvas,selectedImage) => {
   downloadJson(canvas, productCanvas);
   openTab();
   downloadFullImage(canvas, productCanvas,selectedImage);
+  clearCanvasHandler(canvas);
+  changeFontFamilyHandler(canvas);
+  changeFontSizeHandler(canvas);
+  fontBoldUnderlineAndItalicHandler(canvas);
+  editTextHandler(canvas);
+  changeTextAlignHandler(canvas)
 };

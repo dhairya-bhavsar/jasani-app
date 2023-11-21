@@ -601,9 +601,7 @@ button#downloadFullImage
   justify-content: center;
   align-items: center;
 }
-input#addedText {
-  margin-left: 1.2rem;
-}
+
 button#zoomOut {
   display: flex;
   flex-direction: column;
@@ -724,3 +722,79 @@ section.product-detail {
   padding-bottom: 2rem;
 }
 }
+input#addedText {
+  margin-left: 1.2rem;
+}
+
+.text-customisation-main{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 0.4rem;
+  padding: 1rem;
+}
+
+.show-selected-text{
+  text-align: center;
+}
+
+.show-selected-text input{
+  border-radius: 0.3rem;
+  width: 100%;
+  text-align: center;
+  height: 2rem;
+}
+
+.text-customisation{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.customisation-option{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.bold-font, .italic-font, .underline-font{
+  font-size: 2rem;
+  font-weight: bolder;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+
+#fontBold, #fontItalic, #fontUnderline{
+  display: none;
+}
+
+.italic-font{
+  font-style: italic;
+}
+
+.underline-font{
+  text-decoration: underline;
+}
+
+.bold-font.active, .italic-font.active, .underline-font.active{
+  opacity: 1;
+  font-weight: bolder;
+}
+
+#textColor, #fontSize, #fontType, #fontUnderline,  #textAlign {
+  height: 2.2rem;
+}
+
+#fontSize{
+  width: 3rem;
+}
+
+#selectedText{
+  display: none;
+  height: auto;
+}
+/*input#addedText {*/
+/*  margin-left: 1.2rem;*/
+/*}*/

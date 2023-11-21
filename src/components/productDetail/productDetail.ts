@@ -8,7 +8,12 @@ import {
 import { TitleComponent } from "../title/title";
 import { CanvasComponent } from "../canvas/canvas";
 import { images } from "../../assets/images";
-import { priceCalculator, qtyChangeHandler, selectTechniqueHandler, viewChangeHandler } from "./productDetailController";
+import {
+  priceCalculator,
+  qtyChangeHandler,
+  selectTechniqueHandler,
+  viewChangeHandler,
+} from "./productDetailController";
 import { replaceInnerChildElements } from "../../helpers/helper";
 const { products } = productData;
 
@@ -19,8 +24,8 @@ export const ProductDetail = ({ id }) => {
   let selectedTechnique = productDetail.availableTechniques[0];
 
   /*
-  * newTechnique : selected technique
-  */
+   * newTechnique : selected technique
+   */
   const setNewImageSections = (newTechnique) => {
     const availableSections = document.getElementById("available-sections");
     const newChild = `
@@ -34,7 +39,7 @@ export const ProductDetail = ({ id }) => {
                .join(" ")}
         </div>
     `;
-    replaceInnerChildElements(availableSections,newChild);
+    replaceInnerChildElements(availableSections, newChild);
   };
 
   setTimeout(() => {
@@ -51,7 +56,7 @@ export const ProductDetail = ({ id }) => {
     );
 
     qtyChangeHandler(selectedTechnique.pricing);
-    priceCalculator(1,selectedTechnique.pricing);
+    priceCalculator(1, selectedTechnique.pricing);
   }, 0);
 
   return `
@@ -70,7 +75,9 @@ export const ProductDetail = ({ id }) => {
                     <div class="canvas-actions">
                          <button id="zoomIn" class="inputLabel label_space"><img src="${images['Zoom_in.png']}" class="Zoom_img"/>Zoom in</button>
                          <button id="zoomOut" class="inputLabel"><img src="${images['Zoom_out.png']}" class="Zoom_img"/>Zoom out</button>
-                         <button id="downloadFullImage" class="inputLabel"><img src="${images['Save.png']}" class="Save_img"/>save logo for future use</button>
+                         <button id="downloadFullImage" class="inputLabel"><img src="${
+                           images["Save.png"]
+                         }" class="Save_img"/>save logo for future use</button>
                         <button id="deleteButton" class="inputLabel"><img src="${images['recycle_bin.png']}" class="recycle_bin_img"/>Delete</button>
                         <button id="downloadImgButton" class="inputLabel">Get Image</button>
                         <button id="getJson" class="inputLabel">Get JSON</button>
@@ -159,12 +166,61 @@ export const ProductDetail = ({ id }) => {
                         <p class="font-bold">Add Text (optional)</p>
                         <div class="textInput">
                             <input type="text" id="addedText"/>
-                            <button id="applyText">Apply</button>
+                            <button id="applyText">Add</button>
                         </div>
+                        
+                        <div class="text-customisation-main">
+                            <div class="show-selected-text">
+                                <input type="text" id="selectedText"/>
+                            </div>
+                            
+                            <div class="text-customisation">
+                                <div class="customisation-option">
+                                    <select id="fontType">
+                                        <option value="Times New Roman">Times New Roman</option>
+                                        <option value="Arial">Arial</option>
+                                        <option value="Tahoma">Tahoma</option>
+                                    </select>
+                                    <label for="fontType">Font Type</label>
+                                </div>
 
-                        <div>
-                            <label for="textColor">Text Color:</label>
-                            <input type="color" id="textColor" value="#000000" />
+                                <div class="customisation-option">
+                                    <input type="number" id="fontSize" value="40" />
+                                    <label for="textColor">Font Size</label>
+                                </div>
+
+                                <div class="customisation-option">
+                                    <input type="color" id="textColor" value="#000000" />
+                                    <label for="textColor">Color</label>
+                                </div>
+
+                                <div class="customisation-option">
+                                    <input type="checkbox" id="fontBold" value="Bold"/>
+                                    <label for="fontBold" class="bold-font" id="boldFontLabel">B</label>
+                                    <label for="fontBold">Bold</p>
+                                </div>
+
+                                <div class="customisation-option">
+                                    <input type="checkbox" id="fontItalic" value="Italic" />
+                                    <label for="fontItalic" class="italic-font" id="italicFontLabel">I</label>
+                                    <label for="fontItalic">Italic</label>
+                                </div>
+
+                                <div class="customisation-option">
+                                    <input type="checkbox" id="fontUnderline" value="underline" />
+                                    <label for="fontUnderline" class="underline-font" id="underlineFontLabel">U</label>
+                                    <label for="fontUnderline">UnderLine</label>
+                                </div>
+
+                                <div class="customisation-option">
+                                    <select id="textAlign">
+                                        <option value="left">Left</option>
+                                        <option value="center">Center</option>
+                                        <option value="right">Right</option>
+                                    </select>
+                                    <label for="textAlign">Text Alignment</label>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -182,7 +238,7 @@ export const ProductDetail = ({ id }) => {
                 </div>
 
                 <div class="stepper-actions">
-                    <button>Discard</button>
+                    <button id="clearCanvas">Discard</button>
                     <button>Preview</button>
                     <button>Finish</button>
                 </div>
