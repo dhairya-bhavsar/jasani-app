@@ -58,3 +58,15 @@ export const replaceInnerChildElements = (section : HTMLElement, newContent : st
     section.innerHTML = ""
     section.appendChild(new DOMParser().parseFromString(newContent, "text/html").body.firstChild);
 }
+
+/*
+* id : input box id you want to clear
+*/
+export const clearInputBoxHandler = (id : string) =>{
+    (document.getElementById(id) as HTMLInputElement).value = "";
+}
+
+/*
+* id : id of any element you want
+*/
+export const getElement = (id) => document.getElementById(id);

@@ -743,6 +743,7 @@ div#available-sections {
   font-weight: bolder;
   opacity: 0.5;
   cursor: pointer;
+  height: 2rem;
 }
 
 
@@ -764,7 +765,7 @@ div#available-sections {
 }
 
 #textColor, #fontSize, #fontType, #fontUnderline,  #textAlign {
-  height: 2.2rem;
+  height: 2rem;
 }
 
 #fontSize{
