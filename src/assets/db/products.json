@@ -4,28 +4,18 @@
       "name": "Bottle",
       "price": 12.99,
       "sku": "SKU001",
-      "image": "bottle_front.jpeg",
-      "childrenImg": [
-        {
-          "path": "bottle_front.jpeg",
-          "top": "280px",
-          "left": "191px",
-          "height": 40,
-          "width": 105,
-          "id": "111"
-        }
-      ],
+      "image": "plain_bottle.jpg",
       "availableTechniques": [
         {
           "techniqueName": "Laser Engraving",
           "availableSections": [
             {
-              "path": "bottle_front.jpeg",
+              "path": "bottle_20_110.jpg",
               "top": "280px",
               "left": "191px",
-              "height": 44,
-              "width": 109,
-              "id": "111"
+              "height": 110,
+              "width": 20,
+              "id": "110"
             }
           ],
           "isRecommended": true,
@@ -58,49 +48,6 @@
               "price_per_unit_cost": "1.5"
             }
           ]
-        },
-        {
-          "techniqueName": "Digital print",
-          "availableSections": [
-            {
-              "path": "bottle_front.jpeg",
-              "top": "280px",
-              "left": "191px",
-              "height": 44,
-              "width": 109,
-              "id": "111"
-            }
-          ],
-          "isRecommended": false,
-          "maxColor": "Full color",
-          "daysRequire": 2,
-          "id" : "t3",
-          "pricing": [
-            {
-              "min_qty": "1",
-              "max_qty": "99",
-              "price_fixed_cost": "150",
-              "price_per_unit_cost": "0"
-            },
-            {
-              "min_qty": "100",
-              "max_qty": "149",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "3.5"
-            },
-            {
-              "min_qty": "150",
-              "max_qty": "200",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "3"
-            },
-            {
-              "min_qty": "200",
-              "max_qty": "",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "3"
-            }
-          ]
         }
       ]
     },
@@ -109,36 +56,37 @@
       "price": 19.99,
       "sizes": ["S", "M", "L", "XL"],
       "sku": "SKU002",
-      "image": "tshirt_front.jpeg",
-      "childrenImg": [
-        {
-          "path": "tshirt_front.jpeg",
-          "top": "200px",
-          "left": "176px",
-          "height": 154,
-          "width": 154,
-          "id": "111"
-        },
-        {
-          "path": "tshirt_back.jpeg",
-          "top": "90px",
-          "left": "158px",
-          "height": 304,
-          "width": 194,
-          "id": "222"
-        }
-      ],
+      "image": "tshirt_default.jpg",
       "availableTechniques": [
         {
           "techniqueName": "Screen Printing",
           "availableSections": [
             {
-              "path": "tshirt_front.jpeg",
+              "path": "sp_110_110.jpg",
+              "defaultImage": "plain_tshirt_front.jpg",
+              "top": "120px",
+              "left": "240px",
+              "height": 110,
+              "width": 110,
+              "id": "121"
+            },
+            {
+              "path": "sp_front_260_380.jpg",
+              "defaultImage": "plain_tshirt_front.jpg",
               "top": "200px",
               "left": "176px",
-              "height": 154,
-              "width": 154,
-              "id": "111"
+              "height": 380,
+              "width": 260,
+              "id": "121"
+            },
+            {
+              "path": "sp_back_260_380.jpg",
+              "defaultImage": "plain_tshirt_front.jpg",
+              "top": "200px",
+              "left": "176px",
+              "height": 380,
+              "width": 260,
+              "id": "121"
             }
           ],
           "isRecommended": true,
@@ -176,20 +124,13 @@
           "techniqueName": "Heat transfer",
           "availableSections": [
             {
-              "path": "tshirt_front.jpeg",
+              "path": "sp_front_280_230.jpg",
+              "defaultImage": "plain_tshirt_front.jpg",
               "top": "200px",
               "left": "176px",
-              "height": 154,
-              "width": 154,
+              "height": 230,
+              "width": 280,
               "id": "111"
-            },
-            {
-              "path": "tshirt_back.jpeg",
-              "top": "90px",
-              "left": "158px",
-              "height": 304,
-              "width": 194,
-              "id": "222"
             }
           ],
           "isRecommended": false,
@@ -227,124 +168,21 @@
           "techniqueName": "Digital Printing",
           "availableSections": [
             {
-              "path": "tshirt_back.jpeg",
+              "path": "sp_front_280_230.jpg",
+              "defaultImage": "plain_tshirt_front.jpg",
               "top": "90px",
               "left": "158px",
-              "height": 304,
-              "width": 194,
+              "height": 230,
+              "width": 280,
               "id": "222"
-            }
-          ],
-          "isRecommended": false,
-          "maxColor": "Full color",
-          "daysRequire": 2,
-          "id" : "t3",
-          "pricing": [
-            {
-              "min_qty": "1",
-              "max_qty": "99",
-              "price_fixed_cost": "150",
-              "price_per_unit_cost": "0"
             },
             {
-              "min_qty": "100",
-              "max_qty": "149",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "3.5"
-            },
-            {
-              "min_qty": "150",
-              "max_qty": "200",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "3"
-            },
-            {
-              "min_qty": "200",
-              "max_qty": "",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "3"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Cap",
-      "price": 9.99,
-      "size": "One Size",
-      "sku": "SKU003",
-      "image": "cap_front.jpeg",
-      "childrenImg": [
-        {
-          "path": "cap_front.jpeg",
-          "top": "220px",
-          "left": "150px",
-          "height": 54,
-          "width": 204,
-          "id": "111"
-        },
-        {
-          "path": "cap_back.jpeg",
-          "top": "393px",
-          "left": "180px",
-          "height": 44,
-          "width": 124,
-          "id": "222"
-        }
-      ],
-      "availableTechniques": [
-        {
-          "techniqueName": "Screen Printing",
-          "availableSections": [
-            {
-              "path": "cap_front.jpeg",
-              "top": "220px",
-              "left": "150px",
-              "height": 54,
-              "width": 204,
-              "id": "111"
-            }
-          ],
-          "isRecommended": true,
-          "maxColor": 5,
-          "daysRequire": 2,
-          "id" : "t1",
-          "pricing": [
-            {
-              "min_qty": "1",
-              "max_qty": "99",
-              "price_fixed_cost": "125",
-              "price_per_unit_cost": "0"
-            },
-            {
-              "min_qty": "100",
-              "max_qty": "149",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "2.5"
-            },
-            {
-              "min_qty": "150",
-              "max_qty": "200",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "2"
-            },
-            {
-              "min_qty": "200",
-              "max_qty": "",
-              "price_fixed_cost": "0",
-              "price_per_unit_cost": "1.5"
-            }
-          ]
-        },
-        {
-          "techniqueName": "Digital Printing",
-          "availableSections": [
-            {
-              "path": "cap_back.jpeg",
-              "top": "393px",
-              "left": "180px",
-              "height": 44,
-              "width": 124,
+              "path": "sp_front_260_380.jpg",
+              "defaultImage": "plain_tshirt_front.jpg",
+              "top": "90px",
+              "left": "158px",
+              "height": 260,
+              "width": 380,
               "id": "222"
             }
           ],
@@ -385,35 +223,17 @@
       "name": "Bag",
       "price": 29.99,
       "sku": "SKU004",
-      "image": "bag_front.jpeg",
-      "childrenImg": [
-        {
-          "path": "bag_front.jpeg",
-          "top": "316px",
-          "left": "84px",
-          "height": 139,
-          "width": 334,
-          "id": "111"
-        },
-        {
-          "path": "bag_back.jpeg",
-          "top": "145px",
-          "left": "260px",
-          "height": 34,
-          "width": 54,
-          "id": "222"
-        }
-      ],
+      "image": "bag_pack.jpg",
       "availableTechniques": [
         {
           "techniqueName": "Screen Printing",
           "availableSections": [
             {
-              "path": "bag_front.jpeg",
+              "path": "front_180_90.jpg",
               "top": "316px",
               "left": "84px",
-              "height": 139,
-              "width": 334,
+              "height": 90,
+              "width": 180,
               "id": "111"
             }
           ],
@@ -452,20 +272,12 @@
           "techniqueName": "Heat transfer",
           "availableSections": [
             {
-              "path": "bag_front.jpeg",
+              "path": "front_180_90.jpg",
               "top": "316px",
               "left": "84px",
-              "height": 139,
-              "width": 334,
-              "id": "111"
-            },
-            {
-              "path": "bag_back.jpeg",
-              "top": "145px",
-              "left": "260px",
-              "height": 34,
-              "width": 54,
-              "id": "222"
+              "height": 90,
+              "width": 180,
+              "id": "112"
             }
           ],
           "isRecommended": false,
@@ -503,11 +315,11 @@
           "techniqueName": "Digital Printing",
           "availableSections": [
             {
-              "path": "bag_back.jpeg",
+              "path": "front_180_90.jpg",
               "top": "145px",
               "left": "260px",
-              "height": 34,
-              "width": 54,
+              "height": 90,
+              "width": 180,
               "id": "222"
             }
           ],

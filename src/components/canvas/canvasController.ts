@@ -172,21 +172,14 @@ const generateDownloadLink = (canvas, name, type) => {
     productCanvas.setBackgroundImage(
       selectedImgForBG,
       productCanvas.renderAll.bind(productCanvas),
-      {
-        originX: "left",
-        originY: "top",
-        top: 0,
-        left: 0,
-        width: productCanvas.width,
-        height: productCanvas.height,
-        crossOrigin: 'anonymous'
-      }
+
     );
+    productCanvas.center()
   };
 
   //2)set canvas above product canvas for specific positiom
   export const setCustomiseCanvas = (selectedImgForBG) => {
-    if(document.getElementById("productCanvasWrapper")){
+    if(document.getElementById("productCanvasWrapper")) {
       document.getElementById("productCanvasWrapper").style.top =
         selectedImgForBG.top;
       document.getElementById("productCanvasWrapper").style.left =

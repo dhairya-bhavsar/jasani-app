@@ -1,26 +1,31 @@
 // @ts-nocheck
-import bag_back from './bag_back.jpg';
-import bag_front from './bag_front.jpg';
-import bottle_front from './bottle_front.jpg';
-import cap_back from './cap_back.jpg';
-import cap_front from './cap_front.jpg';
-import tshirt_back from './tshirt_back.jpg';
-import tshirt_front from './tshirt_front.jpg';
+
 import left_arrow from './left-arrow.png';
 import Zoom_in from './Zoom_in.png';
 import Zoom_out from './Zoom_out.png';
 import Save from './Save.png';
-
-
+import BackPack from './bag_pack.jpg';
+import SP110110 from './sp_110_110.jpg';
+import SPBack260380 from './sp_back_260_380.jpg';
+import SPFront260380 from './sp_front_260_380.jpg';
+import SPFront280230 from './sp_front_280_230.jpg';
+import TshirtDefault from './tshirt_default.jpg';
+import BagFront18090 from './front_180_90.jpg';
+import BottleFront from './plain_bottle.jpg';
+import Bottle20110 from './bottle_20_110.jpg';
+import PlainTshirtFront from './plain_tshirt_front.jpg';
 
 export const images = {
-    "bag_back.jpeg": bag_back,
-    "bag_front.jpeg": bag_front,
-    "bottle_front.jpeg": bottle_front,
-    "cap_back.jpeg": cap_back,
-    "cap_front.jpeg": cap_front,
-    "tshirt_back.jpeg": tshirt_back,
-    "tshirt_front.jpeg": tshirt_front,
+    "sp_110_110.jpg": SP110110,
+    "sp_back_260_380.jpg": SPBack260380,
+    "sp_front_260_380.jpg": SPFront260380,
+    "sp_front_280_230.jpg": SPFront280230,
+    "tshirt_default.jpg": TshirtDefault,
+    "plain_tshirt_front.jpg": PlainTshirtFront,
+    "bag_pack.jpg": BackPack,
+    "front_180_90.jpg": BagFront18090,
+    "plain_bottle.jpg": BottleFront,
+    "bottle_20_110.jpg": Bottle20110,
     "left_arrow.png": left_arrow,
     "Zoom_in.png": Zoom_in,
     "Zoom_out.png": Zoom_out,

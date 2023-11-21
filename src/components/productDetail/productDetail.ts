@@ -15,7 +15,7 @@ const { products } = productData;
 export const ProductDetail = ({ id }) => {
   // @ts-ignore
   const productDetail = products.find((product) => id === product.sku);
-  const selectedImgForBG = productDetail.childrenImg[0];
+  const selectedImgForBG = productDetail.availableTechniques[0].availableSections[0];
   let selectedTechnique = productDetail.availableTechniques[0];
 
   /*
@@ -41,7 +41,7 @@ export const ProductDetail = ({ id }) => {
     const { canvas, productCanvas } = initialiseCanvas(selectedImgForBG);
     initialCallHandler(canvas, productCanvas, selectedImgForBG);
     setCustomiseCanvas(selectedImgForBG);
-    setBackgroundImg(productCanvas, images[selectedImgForBG.path]);
+    setBackgroundImg(productCanvas, images[selectedImgForBG.defaultImage]);
     viewChangeHandler(productDetail, productCanvas, canvas);
     selectTechniqueHandler(
       productDetail,
@@ -68,7 +68,7 @@ export const ProductDetail = ({ id }) => {
                     ${CanvasComponent()}
 
                     <div class="canvas-actions">
-                         <button id="downloadFullImage" class="inputLabel"><img src="${images['Save.png']}" class="Save_img"/>save logo for future use</button>
+                        <button id="downloadFullImage" class="inputLabel"><img src="${images['Save.png']}" class="Save_img"/>save logo for future use</button>
                         <button id="deleteButton" class="inputLabel">Delete</button>
                         <button id="downloadImgButton" class="inputLabel">Get Image</button>
                         <button id="getJson" class="inputLabel">Get JSON</button>
