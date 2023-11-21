@@ -1,10 +1,11 @@
 {
   "name": "jasani-app",
   "version": "1.0.0",
-  "description": "Logo maker brainvire",
+  "description": "Logo Maker Brainvire",
   "scripts": {
-    "dev": "open-cli http://localhost:1234/ && parcel index.html",
-    "start": "parcel index.html",
+    "dev": "open-cli http://localhost:3336 && parcel index.html -p 3336",
+    "demo:dev": "open-cli https://jasani.demo.brainvire.dev/ && parcel index.html -p 3336",
+    "start": "parcel index.html -p 3336",
     "build": "parcel build index.html"
   },
   "dependencies": {
