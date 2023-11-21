@@ -10,6 +10,8 @@ import left_arrow from './left-arrow.png';
 import Zoom_in from './Zoom_in.png';
 import Zoom_out from './Zoom_out.png';
 import Save from './Save.png';
+import Recycle_bin from './recycle_bin.png';
+import react from './react.jpg';
 
 
 
@@ -24,6 +26,9 @@ export const images = {
     "left_arrow.png": left_arrow,
     "Zoom_in.png": Zoom_in,
     "Zoom_out.png": Zoom_out,
-    "Save.png": Save
+    "Save.png": Save,
+    "recycle_bin.png": Recycle_bin,
+    "react.jpg": react
 
-};
+
+};  

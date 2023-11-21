@@ -33,7 +33,7 @@ h1, p {
 
 #content {
   overflow: hidden;
-  display: flex;
+  display: block;
   justify-content: center;
   height: calc(100vh - 135px);
   width: 90rem;
@@ -65,6 +65,7 @@ li {
     gap: 1.2rem;
     flex-direction: row;
     margin: 1.5rem 0;
+    justify-content: center;
 }
 
 .single-product {
@@ -117,7 +118,7 @@ li {
 .canvas-actions {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.6rem;
 }
 
 /* canvas section css end */
@@ -349,9 +350,12 @@ Product Title Component*/
 
 .image-views .section-img-container img {
   padding: 1rem;
-  width: 100px;
+  /* width: 100px; */
+
   height: 95.798px;
   flex-shrink: 0;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 #imageInput {
@@ -364,6 +368,7 @@ Product Title Component*/
   height: 4rem;
   align-items: center;
   border-top: 3px solid #E4E5E5;
+  margin-right: 0.75rem;
 }
 /*steepr css end */
 
@@ -390,15 +395,14 @@ Product Title Component*/
   padding: 1rem;
   background-color: aliceblue;
   width: 100%;
+  padding: 1rem 0.5rem;
 }
 
 .technique-option-body{
   margin: 1rem;
 }
 
-.active{
-  /* box-shadow: 0 0 10 black; */
-}
+
 /*image selection in step 2 css start*/
 
 .uploadLogo {
@@ -518,6 +522,7 @@ input.input_area {
   width: 62px;
   height: 30px;
   margin-left: 0.625rem;
+  padding-left: 0.625rem;
 }
 .text_qty {
   vertical-align: middle;
@@ -558,6 +563,10 @@ button#zoomIn {
   background: transparent;
   justify-content: center;
   align-items: center;
+  color: #000;
+  margin:0;
+  padding: 0;
+  height: 1rem;
 }
 button#Undo{
   display: flex;
@@ -584,6 +593,7 @@ button#downloadFullImage
   justify-content: center;
   align-items: center;
   color: #000;
+  height: 3rem;
 }
 .upload_file_center {
   display: flex;
@@ -592,4 +602,124 @@ button#downloadFullImage
 }
 input#addedText {
   margin-left: 1.2rem;
+}
+button#zoomOut {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  margin:0;
+  padding: 0;
+}
+button#deleteButton {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+}
+.recycle_bin_img
+{
+  width: 36px;
+  height: 36px;
+  margin-bottom: 0.3rem;
+}
+button#deleteButton {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+section.product-show {
+  overflow-y: scroll;
+}
+
+section.product-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* overflow-y:scroll; */
+}
+.stepper-actions {
+  padding-bottom: 2rem;
+}
+div#available-sections {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+img.product-image.main_product_img {
+  max-width: 100%;
+  margin: 0 auto;
+}
+/*media screen*/
+@media only screen and  (max-width: 768px) {
+
+  #content {
+
+    width: auto;
+    
+  }
+  section.product-show {
+    overflow: scroll;
+  }
+
+}
+@media only screen and  (max-width: 1200px) {
+
+  #content {
+
+    width: auto;
+    
+}
+section.product-show {
+  overflow: scroll;
+}
+section.product-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+.stepper-actions {
+  padding-bottom: 2rem;
+}
+p.font-bold.text_left {
+  width: auto;
+}
+label.text_label {
+ 
+  margin-left: 1rem;
+}
+}
+@media only screen and  (max-width: 1366px) {
+
+  #content {
+
+    width: auto;
+    
+}
+p.font-bold.text_left {
+  width: auto;
+}
+label.text_label {
+ 
+  margin-left: 1rem;
+}
+section.product-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+}
+.stepper-actions {
+  padding-bottom: 2rem;
+}
 }
