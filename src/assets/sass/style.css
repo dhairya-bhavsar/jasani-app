@@ -632,6 +632,7 @@ input#addedText {
   font-weight: bolder;
   opacity: 0.5;
   cursor: pointer;
+  height: 2rem;
 }
 
 
@@ -653,7 +654,7 @@ input#addedText {
 }
 
 #textColor, #fontSize, #fontType, #fontUnderline,  #textAlign {
-  height: 2.2rem;
+  height: 2rem;
 }
 
 #fontSize{

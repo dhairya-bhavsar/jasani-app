@@ -1,23 +1,24 @@
 import { fabric } from "fabric";
+import { clearInputBoxHandler, getElement } from "../../helpers/helper";
 
 export function addTextToCanvasHandler(canvas) {
-  const addTextButton = document.getElementById("applyText");
+  const addTextButton = getElement("applyText");
 
   addTextButton?.addEventListener("click", () => {
-    let addedText = (document.getElementById("addedText") as HTMLInputElement)
-      .value;
+    let addedText = (getElement("addedText") as HTMLInputElement).value;
     if (addedText) {
       const text = new fabric.Textbox(addedText, {
         top: 20,
+        editable: false,
       });
-      (document.getElementById("addedText") as HTMLInputElement).value = "";
+      clearInputBoxHandler("addedText");
       canvas.add(text);
     }
   });
 }
 
 export const changeFontFamilyHandler = (canvas) => {
-  const fontType = document.getElementById("fontType") as HTMLSelectElement;
+  const fontType = getElement("fontType") as HTMLSelectElement;
 
   const updateDropdpwnValue = (e) => {
     fontType.value = e.selected[0].fontFamily;
@@ -43,7 +44,7 @@ export const changeFontFamilyHandler = (canvas) => {
 };
 
 export const changeFontSizeHandler = (canvas) => {
-  const fontSize = document.getElementById("fontSize") as HTMLInputElement;
+  const fontSize = getElement("fontSize") as HTMLInputElement;
 
   const updateInpuBoxValue = (e) => {
     fontSize.value = e.selected[0].fontSize;
@@ -55,31 +56,31 @@ export const changeFontSizeHandler = (canvas) => {
 
   canvasSelectEventHandler(canvas, updateInpuBoxValue, onDeselectHandler);
 
-  ["keyup", "change"].forEach((eventName) => {
-    fontSize.addEventListener(eventName, (event) => {
-      const activeObject = canvas.getActiveObject();
-      if (activeObject instanceof fabric.Text) {
-        activeObject.set("fontSize", +(event.target as HTMLInputElement).value);
-        selectedTextBoxStyleHelper("fontSize", activeObject);
-      }
-      canvas.renderAll();
-    });
+  fontSize.addEventListener("input", (event) => {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject instanceof fabric.Text) {
+      activeObject.set("fontSize", +(event.target as HTMLInputElement).value);
+      selectedTextBoxStyleHelper("fontSize", activeObject);
+    }
+    canvas.renderAll();
   });
 };
 
 export const fontBoldUnderlineAndItalicHandler = (canvas) => {
   const styleHelperArray = ["fontStyle", "fontWeight", "textDecoration"];
-  const boldCheckbox = document.getElementById("fontBold") as HTMLInputElement;
-  const italicCheckbox = document.getElementById(
-    "fontItalic"
-  ) as HTMLInputElement;
-  const underlineCheckbox = document.getElementById(
-    "fontUnderline"
-  ) as HTMLInputElement;
+  const boldCheckbox = getElement("fontBold") as HTMLInputElement;
+  const italicCheckbox = getElement("fontItalic") as HTMLInputElement;
+  const underlineCheckbox = getElement("fontUnderline") as HTMLInputElement;
 
-  const boldLabel = document.getElementById("boldFontLabel");
-  const italicLabel = document.getElementById("italicFontLabel");
-  const underlineLabel = document.getElementById("underlineFontLabel");
+  const boldLabel = getElement("boldFontLabel");
+  const italicLabel = getElement("italicFontLabel");
+  const underlineLabel = getElement("underlineFontLabel");
+
+  const checkBoxesAndLabels = [
+    { checkBox: boldCheckbox, label: boldLabel },
+    { checkBox: italicCheckbox, label: italicLabel },
+    { checkBox: underlineCheckbox, label: underlineLabel },
+  ];
 
   const updateFontStyles = () => {
     const activeObject = canvas.getActiveObject();
@@ -98,9 +99,9 @@ export const fontBoldUnderlineAndItalicHandler = (canvas) => {
         selectedTextBoxStyleHelper(style, activeObject);
       });
 
-      boldLabel.classList.toggle("active", isBold);
-      italicLabel.classList.toggle("active", isItalic);
-      underlineLabel.classList.toggle("active", isUnderline);
+      checkBoxesAndLabels.forEach(({ checkBox, label }) => {
+        label.classList.toggle("active", checkBox.checked);
+      });
     }
 
     canvas.renderAll();
@@ -119,25 +120,21 @@ export const fontBoldUnderlineAndItalicHandler = (canvas) => {
   };
 
   const onDeselectHandler = () => {
-    boldCheckbox.checked = false;
-    italicCheckbox.checked = false;
-    underlineCheckbox.checked = false;
-    boldLabel.classList.remove("active");
-    italicLabel.classList.remove("active");
-    underlineLabel.classList.remove("active");
+    checkBoxesAndLabels.forEach(({ checkBox, label }) => {
+      checkBox.checked = false;
+      label.classList.remove("active");
+    });
   };
 
   canvasSelectEventHandler(canvas, updateCheckboxes, onDeselectHandler);
 
-  [boldCheckbox, italicCheckbox, underlineCheckbox].forEach((checkbox) => {
-    checkbox.addEventListener("change", updateFontStyles);
+  checkBoxesAndLabels.forEach(({ checkBox }) => {
+    checkBox.addEventListener("change", updateFontStyles);
   });
 };
 
 export const changeTextColor = (canvas) => {
-  const textColorInputbox = document.getElementById(
-    "textColor"
-  ) as HTMLInputElement;
+  const textColorInputbox = getElement("textColor") as HTMLInputElement;
 
   const updateInpuBoxValue = (e) => {
     textColorInputbox.value = e.selected[0].fill;
@@ -150,26 +147,20 @@ export const changeTextColor = (canvas) => {
   canvasSelectEventHandler(canvas, updateInpuBoxValue, onDeselectHandler);
 
   textColorInputbox?.addEventListener("input", () => {
-    const selectedObjects = canvas.getActiveObjects();
+    const activeObject = canvas.getActiveObject();
 
-    const newColor = (document.getElementById("textColor") as HTMLInputElement)
-      .value;
+    const newColor = (getElement("textColor") as HTMLInputElement).value;
 
-    if (newColor) {
-      selectedObjects.forEach((object) => {
-        if (object.type === "textbox") {
-          object.set("fill", newColor);
-          selectedTextBoxStyleHelper("color", object);
-        }
-      });
-
+    if (newColor && activeObject instanceof fabric.Text) {
+      activeObject.set("fill", newColor);
+      selectedTextBoxStyleHelper("color", activeObject);
       canvas.renderAll();
     }
   });
 };
 
 export const changeTextAlignHandler = (canvas) => {
-  const textAlign = document.getElementById("textAlign") as HTMLSelectElement;
+  const textAlign = getElement("textAlign") as HTMLSelectElement;
   const updateDropdpwnValue = (e) => {
     textAlign.value = e.selected[0].textAlign;
   };
@@ -193,39 +184,33 @@ export const changeTextAlignHandler = (canvas) => {
 };
 
 /*
- * style : the name of css property you need to update
+ * style : the name of the CSS property you need to update
  * activeObject : selected textBox
  */
 const selectedTextBoxStyleHelper = (style, activeObject) => {
-  const selectedTextBox = document.getElementById(
-    "selectedText"
-  ) as HTMLInputElement;
-  switch (style) {
-    case "textAlign":
-      selectedTextBox.style.textAlign = activeObject.textAlign;
-      break;
-    case "fontFamily":
-      selectedTextBox.style.fontFamily = activeObject.fontFamily;
-      break;
-    case "fontSize":
-      selectedTextBox.style.fontSize = `${activeObject.fontSize}px`;
-      break;
-    case "color":
-      selectedTextBox.style.color = activeObject.fill;
-      break;
-    case "fontStyle":
-      selectedTextBox.style.fontStyle = activeObject.fontStyle;
-      break;
-    case "fontWeight":
-      selectedTextBox.style.fontWeight = activeObject.fontWeight;
-      break;
-    case "textDecoration":
-      selectedTextBox.style.textDecoration = activeObject.underline
-        ? "underline"
-        : "none";
-      break;
-    default:
-      return;
+  const selectedTextBox = getElement("selectedText") as HTMLInputElement;
+  const styleMap = {
+    textAlign: "textAlign",
+    fontFamily: "fontFamily",
+    fontSize: (value) => `${value}px`,
+    color: "fill",
+    fontStyle: "fontStyle",
+    fontWeight: "fontWeight",
+    textDecoration: (value) => (value ? "underline" : "none"),
+  };
+
+  const property = styleMap[style];
+  if (property) {
+    let value;
+
+    if (typeof property === "function") {
+      value = property(
+        activeObject[style === "textDecoration" ? "underline" : style]
+      );
+    } else {
+      value = activeObject[property];
+    }
+    selectedTextBox.style[style] = value;
   }
 };
 
@@ -239,9 +224,7 @@ export const editTextHandler = (canvas) => {
     "fontWeight",
     "textDecoration",
   ];
-  const selectedTextBox = document.getElementById(
-    "selectedText"
-  ) as HTMLInputElement;
+  const selectedTextBox = getElement("selectedText") as HTMLInputElement;
 
   const addTextToSelectedTextBox = () => {
     const activeObject = canvas.getActiveObject();
@@ -255,52 +238,38 @@ export const editTextHandler = (canvas) => {
 
   const onDeselectHandler = () => {
     selectedTextBox.style.display = "none";
-    selectedTextBox.value = "";
+    clearInputBoxHandler("selectedText");
   };
 
   canvasSelectEventHandler(canvas, addTextToSelectedTextBox, onDeselectHandler);
 
-  ["keyup", "change"].forEach((eventName) => {
-    selectedTextBox.addEventListener(eventName, (event) => {
-      const activeObject = canvas.getActiveObject();
-      if (activeObject instanceof fabric.Text) {
-        activeObject.set("text", (event.target as HTMLInputElement).value);
-      }
+  selectedTextBox.addEventListener("input", (event) => {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject instanceof fabric.Text) {
+      activeObject.set("text", (event.target as HTMLInputElement).value);
       canvas.renderAll();
-    });
+    }
   });
 };
 
 /*
  * canvas : selection area canvas
- * updateFunction : the function you need to call when the textbox selection change
+ * updateFunction : the function you need to call when the textbox selection changes
  */
 export const canvasSelectEventHandler = (
   canvas,
   updateFunction,
-  clearFunction: () => void
+  clearFunction
 ) => {
-  const selectedTextBox = document.getElementById("selectedText");
+  const selectedTextBox = getElement("selectedText");
 
-  canvas.on("selection:updated", (e) => {
-    if (e.selected[0].text) {
-      selectedTextBox.style.display = "block";
-      updateFunction(e);
-    } else {
-      clearFunction();
-    }
-  });
+  const handleSelection = (e) => {
+    const hasSelectedText = e.selected[0]?.text;
+    selectedTextBox.style.display = hasSelectedText ? "block" : "none";
+    hasSelectedText ? updateFunction(e) : clearFunction();
+  };
 
-  canvas.on("selection:created", (e) => {
-    if (e.selected[0].text) {
-      selectedTextBox.style.display = "block";
-      updateFunction(e);
-    } else {
-      clearFunction();
-    }
-  });
-
-  canvas.on("selection:cleared", () => {
-    clearFunction();
-  });
+  canvas.on("selection:updated", handleSelection);
+  canvas.on("selection:created", handleSelection);
+  canvas.on("selection:cleared", clearFunction);
 };

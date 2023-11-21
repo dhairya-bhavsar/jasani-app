@@ -1,5 +1,5 @@
 import { images } from "../../assets/images";
-import { replaceInnerChildElements } from "../../helpers/helper";
+import { getElement, replaceInnerChildElements } from "../../helpers/helper";
 import {
   setBackgroundImg,
   setCustomiseCanvas,
@@ -44,7 +44,7 @@ export const selectTechniqueHandler = (
 
   availableOptions.forEach((element) => {
     element.addEventListener("click", () => {
-      const currentQty = document.getElementById("qtySelector")?.value;
+      const currentQty = getElement("qtySelector")?.value;
 
       const newTechnique = productDetail.availableTechniques.find(
         (option) => option.id === element.id
@@ -112,7 +112,7 @@ export function viewChangeHandler(newTechnique, productCanvas, canvas) {
  * pricing : pricing object related to selected printing technique.
  */
 export const priceCalculator = (qty, pricing) => {
-  const priceParentNode = document.getElementById("unitCharge");
+  const priceParentNode = getElement("unitCharge");
   if (+qty <= 0) {
     return;
   }
@@ -156,11 +156,7 @@ export const priceCalculator = (qty, pricing) => {
  *pricing : pricing object related to selected printing technique.
  */
 export const qtyChangeHandler = (pricing) => {
-  ["keyup", "change"].forEach((eventName) => {
-    document
-      .getElementById("qtySelector")
-      .addEventListener(eventName, (event) => {
-        priceCalculator(event.target.value, pricing);
-      });
+  getElement("qtySelector").addEventListener("input", (event) => {
+    priceCalculator(event.target.value, pricing);
   });
 };
