@@ -31,10 +31,13 @@ export const ProductDetail = ({ id }) => {
     const newChild = `
         <div class="image-views">
              ${newTechnique.availableSections
-               .map(({ path, id }) => {
-                 return `<div class="section-img-container" id=${id}>
-                            <img src=${images[path]}/>
-                          </div>`;
+               .map((item) => {
+                 return `<div class="section-img-container" id=${item.id}>
+                           <img src=${images[item.path]} alt=${images[item.path]} />
+                            <div>
+                                <span>w: ${item.detail_width} - h: ${item.detail_height}</span>
+                            </div>
+                         </div>`;
                })
                .join(" ")}
         </div>
@@ -47,7 +50,7 @@ export const ProductDetail = ({ id }) => {
     initialCallHandler(canvas, productCanvas, selectedImgForBG);
     setCustomiseCanvas(selectedImgForBG);
     setBackgroundImg(productCanvas, images[selectedImgForBG.defaultImage]);
-    viewChangeHandler(productDetail, productCanvas, canvas);
+    viewChangeHandler(selectedTechnique, productCanvas, canvas);
     selectTechniqueHandler(
       productDetail,
       setNewImageSections,
@@ -97,6 +100,7 @@ export const ProductDetail = ({ id }) => {
                         </div>
                     </div>
                     <div id="unitCharge">
+                        <div class="unit-charge"></div>
                     </div>
                 </div>
 
@@ -142,9 +146,12 @@ export const ProductDetail = ({ id }) => {
                         <div id="available-sections">
                            <div class="image-views">
                                 ${selectedTechnique.availableSections
-                                  .map(({ path, id }) => {
-                                    return `<div class="section-img-container" id=${id}>
-                                               <img src=${images[path]}/>
+                                  .map((item) => {
+                                    return `<div class="section-img-container" id=${item.id}>
+                                               <img src=${images[item.path]} alt=${images[item.path]} />
+                                                <div>
+                                                    <span>w: ${item.detail_width} - h: ${item.detail_height}</span>
+                                                </div>
                                              </div>`;
                                   })
                                   .join(" ")}

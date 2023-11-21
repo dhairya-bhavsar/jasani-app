@@ -15,13 +15,15 @@ export const ProductList = () => {
         <div class="product-listing" id="product-list">
           ${products.map(({ name, sku, image, price }) => {
             return `
-            
             <div class="single-product" id=${sku}>
-          
-              <img class="product-image main_product_img" alt="${image}" src="${images[image]}"/>
-              <p  class="product-name title_center" id="name">${name}</p>
-              <p class="product-sku title_center" id="sku" class="sku">${sku}</p>
-              <p class="product-price title_center">AED ${price}</p>
+                <div class="product-thumb">
+                    <img alt="${image}" src="${images[image]}"/>
+                </div>
+                <div class="product-details">
+                  <span  class="product-name title_center" id="name">${name}</span>
+                  <span class="product-sku title_center" id="sku" class="sku">${sku}</span>
+                  <span class="product-price title_center">AED ${price}</span>
+                </div>
             </div>
           `;
         }).join(' ')}

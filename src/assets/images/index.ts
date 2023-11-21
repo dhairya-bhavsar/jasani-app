@@ -15,7 +15,9 @@ import BottleFront from './plain_bottle.jpg';
 import Bottle20110 from './bottle_20_110.jpg';
 import PlainTshirtFront from './plain_tshirt_front.jpg';
 import Recycle_bin from './recycle_bin.png';
-import react from './react.jpg';
+import SpBackDefault from './sp_back_default.jpg';
+import BottleDefault from './bottle_default.jpg';
+import FrontBagDefault from './front_bag_default.jpg';
 
 
 
@@ -35,7 +37,7 @@ export const images = {
     "Zoom_out.png": Zoom_out,
     "Save.png": Save,
     "recycle_bin.png": Recycle_bin,
-    "react.jpg": react
-
-
+    "sp_back_default.jpg": SpBackDefault,
+    "bottle_default.jpg": BottleDefault,
+    "front_bag_default.jpg": FrontBagDefault,
 };

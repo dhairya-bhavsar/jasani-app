@@ -10,6 +10,7 @@ body {
   width: 100%;
   margin: 0 auto;
   background-color: lightgrey;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
 }
 
@@ -28,7 +29,7 @@ ul {
 }
 
 h1, p {
-    text-align: center;
+  text-align: center;
 }
 
 #content {
@@ -41,7 +42,7 @@ h1, p {
 }
 
 #nav, #feature, #footer {
-    margin: 1% 0;
+  margin: 1% 0;
 }
 
 li {
@@ -50,47 +51,62 @@ li {
 }
 
 #nav, #footer {
-    position: fixed;
-    width: 90%;
-    bottom: 0;
-    background-color: #efefef;
-    padding: 0.5em 0;
+  position: fixed;
+  width: 90%;
+  bottom: 0;
+  background-color: #efefef;
+  padding: 0.5em 0;
 }
 
 /* Product List style start */
 
 .product-listing {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.2rem;
-    flex-direction: row;
-    margin: 1.5rem 0;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  flex-direction: row;
+  margin: 1.5rem 0;
+  justify-content: center;
 }
 
 .single-product {
-    cursor: pointer;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    text-align: center;
-    width: 14rem;
-    height: 24rem;
-    font-size: 1rem;
-    transition: all 0.5s;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #ddd;
+  width: 18.75rem;
+  /* height: 24rem; */
+  padding: 1rem;
+  transition: all .5s;
+  box-shadow: 0 2px 7px #dfdfdf;
+  background: #fafafa;
 }
 
 .single-product:hover {
   background: #0000000a;
-  /*  border: 2px solid black;  */
   border: 1px solid #057AC7;
   margin: 0;
   padding: 0;
 
 }
-.product-image {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 0.8rem;
+
+.product-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  padding: 50px;
+  background: #ffffff;
+}
+
+.product-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.product-details {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-sku {
@@ -106,9 +122,7 @@ li {
 /* Product List style end */
 
 /* Product Detail style start */
-
 /* canvas section css start */
-
 .canvas-section {
   display: flex;
   align-items: center;
@@ -141,43 +155,42 @@ li {
 }
 /* Product List style end */
 .product-info {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    padding: 0 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  padding: 0 0 1rem;
 }
 
 .product-info h2, p {
   margin: 0;
-    padding: 0;
-    text-align: left;
+  padding: 0;
+  text-align: left;
 }
 
 /*
 Product Title Component*/
 .title {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    /* background-color: azure; */
-    background-color: #efefef;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #efefef;
 }
 
 .title > .btn {
-    position: absolute;
-    left: 0.2rem;
-    top: 16%;
+  position: absolute;
+  left: 0.2rem;
+  top: 16%;
 }
 
 .btn {
-    background-color: #4141e3b0;
-    padding: 0.5rem;
-    color: white;
-    border-radius: 20%;
-    cursor: pointer;
+  background-color: #4141e3b0;
+  padding: 0.5rem;
+  color: white;
+  border-radius: 20%;
+  cursor: pointer;
 }
 
 .product-left-div {
@@ -188,8 +201,6 @@ Product Title Component*/
   margin: 0;
   padding: 0;
   color: #000;
-  font-family: Raleway;
-  font-size: 18px;
   font-style: normal;
   font-weight: 600;
 }
@@ -208,9 +219,6 @@ Product Title Component*/
   display: flex;
   align-items: center;
   color: #000;
-
-  font-family: Raleway;
-  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 32px; /* 177.778% */
@@ -262,7 +270,7 @@ Product Title Component*/
   width: 6rem;
   height: 2rem;
   background-color: #057ac7;
-    padding: 1.2rem;
+  padding: 1.2rem;
 }
 
 .bg-blue {
@@ -307,7 +315,7 @@ Product Title Component*/
   cursor: pointer;
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: 600;
   width: 25%;
@@ -316,8 +324,8 @@ Product Title Component*/
 }
 
 .step-button.active {
-    /* box-shadow: 0 0 10px #0625ed; */
-    border-bottom: 4px solid #057AC7;
+  /* box-shadow: 0 0 10px #0625ed; */
+  border-bottom: 4px solid #057AC7;
 }
 
 .second-step {
@@ -334,14 +342,15 @@ Product Title Component*/
 
 .section-img-container {
   width: 120px;
-  height: 114px;
+  height: auto;
+  padding: 0.2rem;
+  flex-direction: column;
   flex-shrink: 0;
   border: 1px solid;
   border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
   cursor: pointer;
 }
 
@@ -350,9 +359,6 @@ Product Title Component*/
 }
 
 .image-views .section-img-container img {
-  padding: 1rem;
-  /* width: 100px; */
-
   height: 95.798px;
   flex-shrink: 0;
   margin: 0 auto;
@@ -393,7 +399,6 @@ Product Title Component*/
 }
 
 .technique-option-header{
-  padding: 1rem;
   background-color: aliceblue;
   width: 100%;
   padding: 1rem 0.5rem;
@@ -435,17 +440,6 @@ Product Title Component*/
 /* canvas style start */
 
 .product-canvas {
-  /* width: 500px;
-  height: 500px;
-  flex-shrink: 0; */
-  /* background-image: url("./util/images/frontView.jpg"); */
-  /* background-color: #cccccc;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 2px solid black;
-  background-image: url("../images/cap/front.jpeg"); */
-
   position: relative;
 }
 
@@ -460,9 +454,7 @@ Product Title Component*/
 
 .productCanvasWrapper {
   position: absolute;
-  border: 2px dashed green;
-  /* top: 200px;
-  left: 176px; */
+  border: 2px dashed #930b0b;
 }
 
 /* canvas style end */
@@ -488,7 +480,6 @@ div#footer {
   background: transparent;
 }
 button#back-btn {
-  color: #fff;
   background: transparent;
   border: none;
   font-size: 1.125rem;
@@ -534,8 +525,6 @@ input.input_area {
 }
 label.text_label {
   color: #000;
-  font-family: Raleway;
-  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -637,7 +626,7 @@ button#deleteButton {
   color: #000;
 }
 section.product-show {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 section.product-detail {
@@ -654,10 +643,7 @@ div#available-sections {
   gap: 1rem;
   flex-wrap: wrap;
 }
-img.product-image.main_product_img {
-  max-width: 100%;
-  margin: 0 auto;
-}
+
 /*media screen*/
 @media only screen and  (max-width: 768px) {
 
@@ -672,31 +658,28 @@ img.product-image.main_product_img {
 
 }
 @media only screen and  (max-width: 1200px) {
-
   #content {
-
     width: auto;
+  }
+  section.product-show {
+    overflow: scroll;
+  }
+  section.product-detail {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .stepper-actions {
+    padding-bottom: 2rem;
+  }
+  p.font-bold.text_left {
+    width: auto;
+  }
+  label.text_label {
 
-}
-section.product-show {
-  overflow: scroll;
-}
-section.product-detail {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: auto;
-}
-.stepper-actions {
-  padding-bottom: 2rem;
-}
-p.font-bold.text_left {
-  width: auto;
-}
-label.text_label {
-
-  margin-left: 1rem;
-}
+    margin-left: 1rem;
+  }
 }
 @media only screen and  (max-width: 1366px) {
 
@@ -704,26 +687,23 @@ label.text_label {
 
     width: auto;
 
-}
-p.font-bold.text_left {
-  width: auto;
-}
-label.text_label {
+  }
+  p.font-bold.text_left {
+    width: auto;
+  }
+  label.text_label {
 
-  margin-left: 1rem;
-}
-section.product-detail {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: auto;
-}
-.stepper-actions {
-  padding-bottom: 2rem;
-}
-}
-input#addedText {
-  margin-left: 1.2rem;
+    margin-left: 1rem;
+  }
+  section.product-detail {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+  }
+  .stepper-actions {
+    padding-bottom: 2rem;
+  }
 }
 
 .text-customisation-main{
@@ -795,6 +775,26 @@ input#addedText {
   display: none;
   height: auto;
 }
-/*input#addedText {*/
-/*  margin-left: 1.2rem;*/
-/*}*/
+
+.productContentBorder {
+  border: 1px solid transparent;
+  border-bottom-color: #000000;
+  padding: 20px;
+  /*position: relative;*/
+  border-left-color: #000000;
+}
+
+.w {
+  position: absolute;
+  bottom: 2px;
+  margin-left: -12px;
+  left: 50%;
+}
+
+.h {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: rotate(90deg);
+  margin-left: -10px;
+}

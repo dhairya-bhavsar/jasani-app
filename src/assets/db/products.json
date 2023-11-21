@@ -11,11 +11,14 @@
           "availableSections": [
             {
               "path": "bottle_20_110.jpg",
-              "top": "280px",
-              "left": "191px",
-              "height": 110,
-              "width": 20,
-              "id": "110"
+              "defaultImage": "bottle_default.jpg",
+              "top": "180px",
+              "left": "230px",
+              "detail_height": 110,
+              "detail_width": 20,
+              "height": 194,
+              "width": 30,
+              "id": "111"
             }
           ],
           "isRecommended": true,
@@ -66,27 +69,33 @@
               "defaultImage": "plain_tshirt_front.jpg",
               "top": "120px",
               "left": "240px",
+              "detail_height": 110,
+              "detail_width": 110,
               "height": 110,
               "width": 110,
-              "id": "121"
+              "id": "111"
             },
             {
               "path": "sp_front_260_380.jpg",
               "defaultImage": "plain_tshirt_front.jpg",
-              "top": "200px",
+              "top": "140px",
               "left": "176px",
-              "height": 380,
-              "width": 260,
-              "id": "121"
+              "detail_height": 380,
+              "detail_width": 260,
+              "height": 280,
+              "width": 160,
+              "id": "112"
             },
             {
               "path": "sp_back_260_380.jpg",
-              "defaultImage": "plain_tshirt_front.jpg",
-              "top": "200px",
+              "defaultImage": "sp_back_default.jpg",
+              "top": "140px",
               "left": "176px",
-              "height": 380,
-              "width": 260,
-              "id": "121"
+              "detail_height": 380,
+              "detail_width": 260,
+              "height": 280,
+              "width": 160,
+              "id": "113"
             }
           ],
           "isRecommended": true,
@@ -126,11 +135,13 @@
             {
               "path": "sp_front_280_230.jpg",
               "defaultImage": "plain_tshirt_front.jpg",
-              "top": "200px",
+              "top": "120px",
               "left": "176px",
-              "height": 230,
-              "width": 280,
-              "id": "111"
+              "detail_height": 230,
+              "detail_width": 280,
+              "height": 140,
+              "width": 160,
+              "id": "114"
             }
           ],
           "isRecommended": false,
@@ -170,20 +181,24 @@
             {
               "path": "sp_front_280_230.jpg",
               "defaultImage": "plain_tshirt_front.jpg",
-              "top": "90px",
-              "left": "158px",
-              "height": 230,
-              "width": 280,
-              "id": "222"
+              "top": "120px",
+              "left": "176px",
+              "detail_height": 230,
+              "detail_width": 280,
+              "height": 140,
+              "width": 160,
+              "id": "115"
             },
             {
               "path": "sp_front_260_380.jpg",
               "defaultImage": "plain_tshirt_front.jpg",
-              "top": "90px",
-              "left": "158px",
-              "height": 260,
-              "width": 380,
-              "id": "222"
+              "top": "140px",
+              "left": "176px",
+              "detail_height": 380,
+              "detail_width": 260,
+              "height": 280,
+              "width": 160,
+              "id": "116"
             }
           ],
           "isRecommended": false,
@@ -230,11 +245,14 @@
           "availableSections": [
             {
               "path": "front_180_90.jpg",
-              "top": "316px",
-              "left": "84px",
+              "defaultImage": "front_bag_default.jpg",
+              "top": "370px",
+              "left": "155px",
+              "detail_height": 90,
+              "detail_width": 180,
               "height": 90,
               "width": 180,
-              "id": "111"
+              "id": "117"
             }
           ],
           "isRecommended": true,
@@ -273,11 +291,14 @@
           "availableSections": [
             {
               "path": "front_180_90.jpg",
-              "top": "316px",
-              "left": "84px",
+              "defaultImage": "front_bag_default.jpg",
+              "top": "370px",
+              "left": "155px",
+              "detail_height": 90,
+              "detail_width": 180,
               "height": 90,
               "width": 180,
-              "id": "112"
+              "id": "117"
             }
           ],
           "isRecommended": false,
@@ -316,11 +337,14 @@
           "availableSections": [
             {
               "path": "front_180_90.jpg",
-              "top": "145px",
-              "left": "260px",
+              "defaultImage": "front_bag_default.jpg",
+              "top": "370px",
+              "left": "155px",
+              "detail_height": 90,
+              "detail_width": 180,
               "height": 90,
               "width": 180,
-              "id": "222"
+              "id": "117"
             }
           ],
           "isRecommended": false,

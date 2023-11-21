@@ -53,7 +53,7 @@ export const selectTechniqueHandler = (
       toggleClassForTechnique(newTechnique.id, availableOptions);
       setBackgroundImg(
         productCanvas,
-        images[newTechnique.availableSections[0].path]
+        images[newTechnique.availableSections[0].defaultImage]
       );
       viewChangeHandler(newTechnique, productCanvas, canvas);
       canvas.setDimensions({
@@ -91,18 +91,17 @@ const toggleClassForSection = (selectedId) => {
 export function viewChangeHandler(newTechnique, productCanvas, canvas) {
   document.querySelectorAll(".section-img-container").forEach((el) => {
     el.addEventListener("click", () => {
-      const newBGImage = newTechnique.availableSections.find(
+      const selectedProduct = newTechnique.availableSections.find(
         ({ id }) => id === el.id
       );
-
       toggleClassForSection(el.id);
-      setBackgroundImg(productCanvas, images[newBGImage.path]);
-      setCustomiseCanvas(newBGImage);
+      setBackgroundImg(productCanvas, images[selectedProduct.defaultImage]);
+      setCustomiseCanvas(selectedProduct);
       canvas.setDimensions({
-        width: newBGImage.width,
-        height: newBGImage.height,
+        width: selectedProduct.width,
+        height: selectedProduct.height,
       });
-      downloadFullImage(canvas, productCanvas, newBGImage);
+      downloadFullImage(canvas, productCanvas, selectedProduct);
     });
   });
 }
@@ -148,7 +147,6 @@ export const priceCalculator = (qty, pricing) => {
         </div>
     </div>
   `;
-
   replaceInnerChildElements(priceParentNode, newPriceHTML);
 };
 

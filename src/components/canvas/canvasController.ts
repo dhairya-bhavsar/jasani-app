@@ -141,21 +141,27 @@ const generateDownloadLink = (canvas, name, type) => {
       productCanvas.renderAll.bind(productCanvas),
 
     );
-    productCanvas.center()
+    // productCanvas.center()
   };
 
   //2)set canvas above product canvas for specific positiom
   export const setCustomiseCanvas = (selectedImgForBG) => {
-    if(document.getElementById("productCanvasWrapper")) {
-      document.getElementById("productCanvasWrapper").style.top =
-        selectedImgForBG.top;
-      document.getElementById("productCanvasWrapper").style.left =
-      selectedImgForBG.left;
-    document.getElementById("productCanvasWrapper").style.width =
-      `${selectedImgForBG.width}px`;
-    document.getElementById("productCanvasWrapper").style.height =
-    `${selectedImgForBG.height}px`;
-  }
+    const element = document.getElementById("productCanvasWrapper");
+    const outerElement = document.getElementById("productContentBorder");
+    if(element) {
+      element.style.cssText = `
+        top: ${selectedImgForBG.top};
+        left: ${selectedImgForBG.left};
+        width: ${selectedImgForBG.width +4}px;
+        height: ${selectedImgForBG.height + 4}px;
+      `
+    }
+    if (outerElement) {
+      outerElement.style.cssText = `
+        width: ${selectedImgForBG.width + 19}px;
+        height: ${selectedImgForBG.height + 19}px;
+      `
+    }
 };
 
 //Tab set handling
