@@ -10,6 +10,10 @@ export function addTextToCanvasHandler(canvas) {
       const text = new fabric.Textbox(addedText, {
         top: 20,
         editable: false,
+        borderColor: "#3882c5",
+        transparentCorners : false,
+        borderScaleFactor: 2,
+        padding : 6,
       });
       clearInputBoxHandler("addedText");
       canvas.add(text);

@@ -74,13 +74,16 @@ export function addImageToCancasHandler(canvas) {
           fabric.Image.fromURL(imgData, function (img: fabric.Image) {
             if (canvas) {
               canvas.add(img);
-
               img.set({
-                left: 0,
-                top: 0,
-                scaleX: 0.1,
-                scaleY: 0.1,
+                scaleX: canvas.width/img.width - 0.05,
+                scaleY: canvas.height/img.height - 0.05,
+                borderColor: "#3882c5",
+                transparentCorners : false,
+                borderScaleFactor: 2,
+                padding : 6,
               });
+
+              img.center();
 
               canvas.renderAll();
             }
