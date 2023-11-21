@@ -14,6 +14,10 @@ import BagFront18090 from './front_180_90.jpg';
 import BottleFront from './plain_bottle.jpg';
 import Bottle20110 from './bottle_20_110.jpg';
 import PlainTshirtFront from './plain_tshirt_front.jpg';
+import Recycle_bin from './recycle_bin.png';
+import react from './react.jpg';
+
+
 
 export const images = {
     "sp_110_110.jpg": SP110110,
@@ -29,6 +33,9 @@ export const images = {
     "left_arrow.png": left_arrow,
     "Zoom_in.png": Zoom_in,
     "Zoom_out.png": Zoom_out,
-    "Save.png": Save
+    "Save.png": Save,
+    "recycle_bin.png": Recycle_bin,
+    "react.jpg": react
+
 
 };
