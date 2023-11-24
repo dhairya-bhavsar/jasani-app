@@ -111,7 +111,6 @@ export const ProductDetail = ({ id }) => {
                     </div>
 
                     <div id="1" class="tabView tabShow">
-
                         <div class="technique-selector">
                             <p class="font-bold">Choose technique:</p>
                             <div class="techniques">
@@ -138,9 +137,7 @@ export const ProductDetail = ({ id }) => {
                                   .join(" ")}
                             </div>
                         </div>
-
                         <p class="font-bold">Choose Branding Area</p>
-                        
                         <div id="available-sections">
                            <div class="image-views">
                                 ${selectedTechnique.availableSections

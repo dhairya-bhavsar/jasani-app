@@ -215,7 +215,7 @@ Product Title Component*/
   justify-content: space-between;
 }
 
-.charge-section span {
+.charge-section  span {
   display: flex;
   align-items: center;
   color: #000;
@@ -245,7 +245,7 @@ Product Title Component*/
 
 .stepper-actions button,
 .inputLabel,
-.textInput button, #nextStepButton {
+.textInput button, #nextStepButton, #saveButton {
   display: flex;
   width: 168px;
   height: 50px;
@@ -265,7 +265,7 @@ Product Title Component*/
 }
 
 .inputLabel,
-.textInput button,#nextStepButton {
+.textInput button,#nextStepButton, #saveButton {
   color: #fff;
   width: 6rem;
   height: 2rem;
@@ -557,11 +557,8 @@ button#zoomIn {
   margin:0;
   padding: 0;
   height: 1rem;
-  cursor: not-allowed;
 }
-button#zoomOut {
-  cursor: not-allowed;
-}
+
 button#downloadFullImage
 {
   display: flex;
@@ -786,4 +783,8 @@ div#available-sections {
   top: 50%;
   transform: rotate(90deg);
   margin-left: -10px;
+}
+
+.hidden {
+  display: none !important;
 }

@@ -13,3 +13,18 @@ export function AddEventBackButton() {
         replaceCurrentElementWithNewId('content', routes[previousNode].component,'', routes[previousNode].callbackFunction)
     });
 }
+
+// @ts-ignore
+export let qtyProxy = new Proxy({}, {
+    set (obj, key, value) {
+        // Update the property
+        obj[key] = value;
+        // Find the matching fields in the DOM
+        let fields = document.querySelectorAll(`[name="${key}"]`);
+        // @ts-ignore
+        for (let field of fields) {
+            field.value = value;
+        }
+        return true;
+    }
+})

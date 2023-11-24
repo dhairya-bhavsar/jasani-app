@@ -13,7 +13,7 @@ export const appendElementWithId = (id?: string, content?: any, callbackFn?: () 
 export const replaceCurrentElementWithNewId = (id?: string, content?: any, route?: any, callbackFn?: () => void) => {
     if (!content || !id) return alert("Something went wrong please contact admin!");
     const mainContent = document.getElementById(id);
-    localStorage.setItem('previousNode', route);
+    if (route) localStorage.setItem('previousNode', route);
     if (typeof content === "object") {
         mainContent.replaceChild(content, mainContent.firstChild)
         if (callbackFn) callbackFn()

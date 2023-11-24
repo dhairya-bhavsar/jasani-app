@@ -1,25 +1,32 @@
+// @ts-nocheck
 import { fabric } from "fabric";
 import { clearInputBoxHandler, getElement } from "../../helpers/helper";
+import {clipByName} from "../productConfiguration/components/canvasController";
+import _ from "lodash";
 
-export function addTextToCanvasHandler(canvas) {
-  const addTextButton = getElement("applyText");
-
-  addTextButton?.addEventListener("click", () => {
-    let addedText = (getElement("addedText") as HTMLInputElement).value;
-    if (addedText) {
-      const text = new fabric.Textbox(addedText, {
-        top: 20,
-        editable: false,
-        borderColor: "#3882c5",
-        transparentCorners : false,
-        borderScaleFactor: 2,
-        padding : 6,
-      });
-      clearInputBoxHandler("addedText");
-      canvas.add(text);
-    }
-  });
-}
+// export function addTextToCanvasHandler(canvas) {
+//   const addTextButton = getElement("applyText");
+//
+//   addTextButton?.addEventListener("click", () => {
+//     let addedText = (getElement("addedText") as HTMLInputElement).value;
+//     if (addedText) {
+//       const text = new fabric.Textbox(addedText, {
+//         editable: false,
+//         borderColor: "#3882c5",
+//         transparentCorners : false,
+//         borderScaleFactor: 2,
+//         padding : 6,
+//         clipName: "editor",
+//         clipTo: function (ctx) {
+//           return _.bind(clipByName, text)(ctx);
+//         },
+//       });
+//       clearInputBoxHandler("addedText");
+//       text.center();
+//       canvas.add(text);
+//     }
+//   });
+// }
 
 export const changeFontFamilyHandler = (canvas) => {
   const fontType = getElement("fontType") as HTMLSelectElement;
