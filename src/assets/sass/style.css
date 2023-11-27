@@ -365,7 +365,7 @@ Product Title Component*/
   max-width: 100%;
 }
 
-#imageInput {
+#uploadLogo {
   display: none;
 }
 
@@ -708,12 +708,12 @@ div#available-sections {
   width: 100%;
   text-align: center;
   height: 2rem;
+  margin-bottom: 5px;
 }
 
 .text-customisation{
   display: flex;
   justify-content: space-between;
-  padding-top: 1rem;
 }
 
 .customisation-option{
@@ -787,4 +787,12 @@ div#available-sections {
 
 .hidden {
   display: none !important;
+}
+
+.uploadLogo  p {
+  margin-left: 0  ;
+}
+
+.noteSummary {
+  opacity: 0.5;
 }

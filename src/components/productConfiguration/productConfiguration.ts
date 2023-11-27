@@ -7,6 +7,8 @@ import {qtyChangeHandel, tabController} from "./util";
 import {techniqueController} from "./util/techniqueController";
 import {addTextHTMLHandler} from "../productDetail/textCustomisationBox";
 import {textEditorInitial} from "./productConfigurationController";
+import {clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components/canvasController";
+import {initUploadLogoButton} from "./util/uploadLogoController";
 
 const { products } = productData;
 
@@ -20,6 +22,10 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
         tabController();
         techniqueController(defaultSelectedTechnique, product);
         textEditorInitial();
+        deleteSelectedObjects();
+        saveImage();
+        clearCanvasHandler();
+        initUploadLogoButton();
     }, 100)
 
     return `
@@ -96,10 +102,11 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                           </div>
                         </div>
                         <div id="2" class="tabView tabHide">
+                          <small class="noteSummary">We accept: .eps, .pdf or .ai Maximum 10mb file size.</small>
                           <div class="uploadLogo">
                             <p class="font-bold upload_file_center">Upload file (optional)</p>
-                            <label for="imageInput" class="inputLabel">Upload</label>
-                            <input id="imageInput" type="file" />
+                            <label for="uploadLogo" class="inputLabel">Upload</label>
+                            <input id="uploadLogo" type="file" />
                           </div>
                         </div>
                         <div id="3" class="tabView tabHide">
@@ -119,6 +126,11 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                           <button id="nextStepButton">Next</button>
                           <button id="saveButton" class="hidden">Save</button>
                         </div>
+                    </div>
+                    <div class="stepper-actions">
+                        <button id="clearCanvas">Discard</button>
+                        <button>Preview</button>
+                        <button>Finish</button>
                     </div>
                 </div>
             </section>

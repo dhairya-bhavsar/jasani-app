@@ -1,12 +1,13 @@
 // @ts-nocheck
 import {fabric} from "fabric";
 import {images} from "../../../assets/images";
-import _ from "lodash";
 import {qtyProxy} from "../../../../index";
 import {IAvailableSections} from "../type";
-import {clearInputBoxHandler, getElement} from "../../../helpers/helper";
+import {downloadImageType} from "../../../assets/config";
+import {DownloadImage} from "../util/downloadCanvas.ts";
+import {getElement} from "../../../helpers/helper.ts";
 
-let canvas, drawableArea;
+let canvas, drawableArea, editor;
 
 export function mouseZoom() {
     document.getElementById("zoomIn").addEventListener("click", (opt) => {
@@ -21,7 +22,7 @@ export function mouseZoom() {
         let zoom = canvas.getZoom();
         zoom *= 0.999 ** 20;
         if (zoom > 20) zoom = 20;
-        if (zoom < 0.01) zoom = 0.01;
+        if (zoom < 1) zoom = 1;
         canvas.zoomToPoint({ x: canvas.width / 2, y: canvas.height / 2 }, zoom);
     });
 
@@ -62,16 +63,28 @@ export function mouseZoom() {
 export function initCanvas(defaultSelectedTechnique) {
     const initImage = images[defaultSelectedTechnique.availableSections[0].defaultImage];
     canvas = new fabric.Canvas("productCanvas", {
-        selection: false
+        selection: false,
+        controlsAboveOverlay: true
     });
     qtyProxy['canvas'] = canvas;
-    canvas.setBackgroundImage(initImage, canvas.renderAll.bind(canvas));
+    canvas.setOverlayImage(initImage, canvas.renderAll.bind(canvas), {
+        selectable: false,
+        globalCompositeOperation: 'destination-atop',
+    });
     fabric.Object.prototype.transparentCorners = false;
 
     // Created the drawable area.
+    editor = new fabric.Rect({
+        top: defaultSelectedTechnique.availableSections[0].top,
+        left: defaultSelectedTechnique.availableSections[0].left,
+        width: defaultSelectedTechnique.availableSections[0].width,
+        height: defaultSelectedTechnique.availableSections[0].height,
+    });
+
     drawableArea = new fabric.Rect({
-        top: 120,
-        left: 230,
+        id: 'drawableArea',
+        top: defaultSelectedTechnique.availableSections[0].top,
+        left: defaultSelectedTechnique.availableSections[0].left,
         width: defaultSelectedTechnique.availableSections[0].width,
         height: defaultSelectedTechnique.availableSections[0].height,
         fill: "transparent",
@@ -79,95 +92,70 @@ export function initCanvas(defaultSelectedTechnique) {
         strokeWidth: 1,
         strokeDashArray: [10],
         selectable: false,
-        clipFor: "editor",
     });
 
-    function findByClipName(name) {
-        return _(canvas.getObjects())
-            .where({
-                clipFor: name,
-            })
-            .first();
-    }
-
-    let clipByName = function (ctx) {
-        console.log("ctx", ctx)
-        // this.setCoords();
-        let clipRect = findByClipName(this.clipName);
-        let scaleXTo1 = 1 / this.scaleX;
-        let scaleYTo1 = 1 / this.scaleY;
-        ctx.save();
-
-        let ctxLeft = -(this.width / 2);
-        let ctxTop = -(this.height / 2);
-
-        ctx.translate(ctxLeft, ctxTop);
-        ctx.rotate((this.angle * -1 * Math.PI) / 180);
-        ctx.scale(scaleXTo1, scaleYTo1);
-
-        let x = this.canvas.viewportTransform;
-
-        ctx.scale(1 / x[0], 1 / x[3]);
-        ctx.translate(x[4], x[5]);
-
-        ctx.beginPath();
-
-        ctx.rect(
-            x[0] * clipRect.left - this.oCoords.tl.x,
-            x[3] * clipRect.top - this.oCoords.tl.y,
-            x[0] * clipRect.width,
-            x[3] * clipRect.height
-        );
-        ctx.closePath();
-        ctx.restore();
-    };
-
-    const text = new fabric.Textbox("dhairya", {
-        editable: false,
-        borderScaleFactor: 2,
-        clipName: "editor",
-        clipTo: function (ctx) {
-            return _.bind(clipByName, text)(ctx);
-        },
-    });
-    // clearInputBoxHandler("addedText");
     qtyProxy['drawableArea'] = drawableArea;
+    qtyProxy['canvasEditor'] = editor;
+    canvas.clipPath = editor;
     canvas.add(drawableArea);
-    canvas.add(text);
-    text.center();
     mouseZoom();
 }
 
-
 export function canvasConfigurationChangeHandler(brand: IAvailableSections) {
     // const canvas = qtyProxy.canvas;
-    canvas.setBackgroundImage(images[brand.defaultImage], canvas.renderAll.bind(canvas));
-    drawableArea.set({
+    canvas.overlayImage.setSrc(images[brand.defaultImage], canvas.renderAll.bind(canvas));
+    const newCoords =  {
         top: brand.top,
         left: brand.left,
         width: brand.width,
         height: brand.height
-    });
+    }
+    editor.set(newCoords);
+    drawableArea.set(newCoords);
+    qtyProxy['drawableArea'] = drawableArea;
+    qtyProxy['canvasEditor'] = editor;
 }
 
+// Function to delete selected objects
+export const deleteSelectedObjects = () => {
+    document.getElementById("deleteButton")?.addEventListener("click", () => {
+        const selectedObjects: fabric.Object[] = canvas.getActiveObjects();
+        selectedObjects?.forEach((object: fabric.Object) => {
+            if (canvas) canvas.remove(object);
+        });
 
-export function addTextToCanvasHandler(canvas) {
-    const addTextButton = getElement("applyText");
-
-    addTextButton?.addEventListener("click", () => {
-        let addedText = (getElement("addedText") as HTMLInputElement).value;
-        if (addedText) {
-            const text = new fabric.Textbox(addedText, {
-                editable: false,
-                borderScaleFactor: 2,
-                clipName: "editor",
-                clipTo: function (ctx) {
-                    return _.bind(clipByName, text)(ctx);
-                },
-            });
-            clearInputBoxHandler("addedText");
-            text.center();
-            canvas.add(text);
+        if (canvas) {
+            canvas.discardActiveObject();
+            canvas.renderAll();
         }
     });
-}
+};
+
+export const saveImage = (name = "", type = "image") => {
+    name = Date.now();
+    const saveButton = document.getElementById('downloadFullImage');
+    if (!saveButton) return;
+
+    saveButton.addEventListener('click', () => {
+        drawableArea.set("stroke", "transparent");
+        const previousValue = [...canvas.viewportTransform];
+        canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+        DownloadImage(name);
+        canvas.setViewportTransform(previousValue);
+        drawableArea.set("stroke", "red");
+        canvas.renderAll();
+    });
+};
+
+export const clearCanvasHandler = () => {
+    getElement("clearCanvas").addEventListener("click", () => {
+        if (confirm('Are you sure want to clear canvas?')) {
+            console.log("ca", canvas.getObjects());
+            [...canvas.getObjects()].forEach((element) => {
+                if (element.id !== "drawableArea") {
+                    canvas.remove(element);
+                }
+            });
+        }
+    });
+};
