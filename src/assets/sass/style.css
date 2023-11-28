@@ -15,8 +15,8 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+  font: inherit;
+	font-size: 100%;	
 	vertical-align: baseline;
 }
 
@@ -271,9 +271,6 @@ p {
 }
 .stepper-actions {
   margin-bottom: 25px;
-}
-
-.stepper-actions {
   display: flex;
   justify-content:space-between;
   padding: 16px;
@@ -512,6 +509,11 @@ p.font-bold.text_left {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  vertical-align: middle;
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 p.font-bold.text_left {
   display: flex;
@@ -530,11 +532,7 @@ input.input_area {
   padding-left: 10px;
 }
 .text_qty {
-  vertical-align: middle;
-  flex-wrap: wrap;
-  justify-content: center;
-  display: flex;
-  align-items: center;
+  
 }
 label.text_label {
   color: #000;
@@ -604,21 +602,14 @@ button#deleteButton {
   background: transparent;
   justify-content: center;
   align-items: center;
+  color: #000;
 }
 .recycle_bin_img {
   width: 36px;
   height: 36px;
   margin-bottom: 4.8px;
 }
-button#deleteButton {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  background: transparent;
-  justify-content: center;
-  align-items: center;
-  color: #000;
-}
+
 section.product-show {
   overflow-y: auto;
 }
