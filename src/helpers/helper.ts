@@ -70,3 +70,8 @@ export const clearInputBoxHandler = (id : string) =>{
 * id : id of any element you want
 */
 export const getElement = (id) => document.getElementById(id);
+
+export const setLoader = (isLoading : boolean) => {
+    const loader = document.getElementById("loadingSceen");
+    loader.style.display = isLoading ? "block" : "none";
+};

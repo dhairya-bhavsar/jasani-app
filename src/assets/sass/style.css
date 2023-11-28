@@ -760,6 +760,7 @@ div#available-sections {
 #selectedText{
   display: none;
   height: auto;
+  font-size: 40px;
 }
 
 .productContentBorder {
@@ -795,4 +796,26 @@ div#available-sections {
 
 .noteSummary {
   opacity: 0.5;
+}
+
+
+.loading {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(192, 192, 192, 0.5);
+}
+
+.loading-gif{
+  text-align: center;
+  background-image: url(https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  scale: 0.15;
 }

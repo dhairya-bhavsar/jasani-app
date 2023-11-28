@@ -72,7 +72,6 @@ export const changeFontSizeHandler = (canvas) => {
     const activeObject = canvas.getActiveObject();
     if (activeObject instanceof fabric.Text) {
       activeObject.set("fontSize", +(event.target as HTMLInputElement).value);
-      selectedTextBoxStyleHelper("fontSize", activeObject);
     }
     canvas.renderAll();
   });
@@ -204,7 +203,6 @@ const selectedTextBoxStyleHelper = (style, activeObject) => {
   const styleMap = {
     textAlign: "textAlign",
     fontFamily: "fontFamily",
-    fontSize: (value) => `${value}px`,
     color: "fill",
     fontStyle: "fontStyle",
     fontWeight: "fontWeight",
@@ -230,7 +228,6 @@ export const editTextHandler = (canvas) => {
   const styleHelperArray = [
     "textAlign",
     "fontFamily",
-    "fontSize",
     "color",
     "fontStyle",
     "fontWeight",
