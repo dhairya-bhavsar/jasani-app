@@ -1,7 +1,8 @@
-import { qtyProxy } from "../../../..";
-import { apiUrls, fileTypeSupport, maxFileSize } from "../../../assets/config";
-import { fabric } from "fabric";
-import { replaceInnerChildElements, setLoader } from "../../../helpers/helper";
+//@ts-nocheck
+import {qtyProxy} from "../../../..";
+import {apiUrls, fileTypeSupport, maxFileSize} from "../../../assets/config";
+import {fabric} from "fabric";
+import {replaceCurrentElementWithNewId, replaceInnerChildElements, setLoader} from "../../../helpers/helper";
 
 export function uploadLogo(event) {
   const files = event.target.files;
@@ -44,12 +45,11 @@ function validateImage(file) {
       if (size > maxFileSize) {
         alert("File may not be greater than 10 MB");
         return false;
-      } else {
-        return true;
       }
+      return true;
     }
     alert("Please upload only this file type: pdf, eps, ai format");
-    return true;
+    return false;
   }
   return false;
 }
@@ -60,17 +60,12 @@ const addApiImageToCanvas = (url, id) => {
   fabric.Image.fromURL(imgURL, function (img) {
     if (canvas) {
       const image = img.set({
-        borderColor: "#3882c5",
-        transparentCorners: false,
-        borderScaleFactor: 2,
         padding: 6,
         objectCaching: false,
         id: id,
       });
 
-      const editableArea = canvas
-        .getObjects()
-        .find((obj) => obj.id === "drawableArea");
+      const editableArea = qtyProxy?.drawableArea;
 
       // Resize the image to fit within the canvas
       if (img.width > editableArea.width || img.height > editableArea.height) {
@@ -109,8 +104,8 @@ const detectedColorsAndSetHandler = (selectedLogo, activeCanvasLogo) => {
     document
       .querySelectorAll('input[name="color"]')
       .forEach((radioButton, index) => {
-        radioButton.addEventListener("change", function () {
-          const selectedColor = this.value;
+        radioButton.addEventListener("change", function (event) {
+          const selectedColor = event.target.value;
 
           document.querySelectorAll(".replacedByColor").forEach((ele) => {
             if (ele.id === `replacedBy-${index}`) {
@@ -119,16 +114,16 @@ const detectedColorsAndSetHandler = (selectedLogo, activeCanvasLogo) => {
                 document.getElementById(`replacedBy-${index}-color`),
                 selectedColor
               );
-            } else {
-              ele.style.display = "none";
+              return
             }
+            ele.style.display = "none";
           });
         });
       });
   };
 
   const onChangeLogoColor = (element, oldColor) => {
-    element.addEventListener("change", (e) => {
+    element.addEventListener("blur", (e) => {
       const replacedByColorValue = e.target.value;
       const r = parseInt(replacedByColorValue.substr(1, 2), 16);
       const g = parseInt(replacedByColorValue.substr(3, 2), 16);
@@ -210,11 +205,8 @@ const detectedColorsAndSetHandler = (selectedLogo, activeCanvasLogo) => {
                <div>
                   <div style="display: flex;">
                   <label for="color-${index}" style="margin: 5px; cursor: pointer;">
-                    <input type="radio" id="color-${index}" name="color" value="${[
-                 color[0],
-                 color[1],
-                 color[2],
-               ]}" style="display: none;">
+                    <input type="radio" id="color-${index}" name="color" value="${[color[0], color[1], color[2],]}" 
+                    style="display: none;">
                     <div class="replaceWithColor" id="color-div-${index}" style="background-color: ${rgbColor}; width: 50px; height: 50px; border: 2px solid transparent;"></div>
                   </label>
                   </div>
@@ -228,11 +220,7 @@ const detectedColorsAndSetHandler = (selectedLogo, activeCanvasLogo) => {
        </div>
       `;
 
-    replaceInnerChildElements(
-      document.getElementById("logoColorsWrapper"),
-      newColorsHTML
-    );
-
+    replaceCurrentElementWithNewId("logoColorsWrapper", newColorsHTML)
     eventListenerForRadioBtn();
   };
 

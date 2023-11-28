@@ -2,7 +2,6 @@ import {IAvailableTechniques, IProductDetail} from "../type";
 import {images} from "../../../assets/images";
 import {replaceCurrentElementWithNewId} from "../../../helpers/helper";
 import {qtyChangeHandel} from "./pricingCalculation";
-import {qtyProxy} from "../../../../index";
 import {canvasConfigurationChangeHandler} from "../components/canvasController";
 
 export function brandingImageRender(tech: IAvailableTechniques) {

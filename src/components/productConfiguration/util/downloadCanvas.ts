@@ -24,7 +24,6 @@ export function DownloadImage(name = "", type = "image", isDownload = true) {
   }
 
   if (!isDownload) {
-    console.log(url);
     canvas.setViewportTransform(previousValue);
     drawableArea.set("stroke", "red");
     canvas.renderAll()

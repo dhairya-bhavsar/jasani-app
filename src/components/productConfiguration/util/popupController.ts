@@ -21,15 +21,14 @@ function addPreviewEvents() {
 
   [openPreviewBtn, closePreviewBtn].forEach((btn) => {
     btn.addEventListener("click", () => {
-      console.log(btn, "btnnn ??");
       btn.id === "openPreviewBtn" ? dialog.showModal() : dialog.close();
       addPreviewImage();
     });
   });
 
   document.getElementById("downloadImgPreview").addEventListener('click', () => {
-    const Imagename = Date.now();
-    DownloadImage(Imagename);
+    const imageName = Date.now();
+    DownloadImage(imageName);
 });
 }
 

@@ -44,6 +44,7 @@ export const selectTechniqueHandler = (
 
   availableOptions.forEach((element) => {
     element.addEventListener("click", () => {
+      // @ts-ignore
       const currentQty = getElement("qtySelector")?.value;
 
       const newTechnique = productDetail.availableTechniques.find(
@@ -155,6 +156,7 @@ export const priceCalculator = (qty, pricing) => {
  */
 export const qtyChangeHandler = (pricing) => {
   getElement("qtySelector").addEventListener("input", (event) => {
+    // @ts-ignore
     priceCalculator(event.target.value, pricing);
   });
 };
