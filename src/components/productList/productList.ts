@@ -20,9 +20,9 @@ export const ProductList = () => {
                     <img alt="${image}" src="${images[image]}"/>
                 </div>
                 <div class="product-details">
-                  <span  class="product-name title_center" id="name">${name}</span>
-                  <span class="product-sku title_center" id="sku" class="sku">${sku}</span>
-                  <span class="product-price title_center">AED ${price}</span>
+                  <span  class="product-name product-title" id="name">${name}</span>
+                  <span class="product-sku" id="sku" class="sku">${sku}</span>
+                  <span class="product-price">AED ${price}</span>
                 </div>
             </div>
           `;

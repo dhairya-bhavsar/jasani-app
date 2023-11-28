@@ -1,6 +1,6 @@
 import {appendElementWithId} from "../../helpers/helper";
 export const  HeaderComponent = () => {
     return `
-        <h1 class="text_margin">JASANI APP</h1>`
+        <h1 class="header-text">JASANI APP</h1>`
 }
 appendElementWithId('header', HeaderComponent())

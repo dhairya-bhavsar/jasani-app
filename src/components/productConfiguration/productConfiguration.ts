@@ -26,7 +26,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
         <section class="product-detail">
             ${TitleComponent({ title: "Product Listing Page", backNode: true })}
             <section class="product-show">
-                <div class="product-right-div">
+                <div class="right-side">
                     <div class="product-info">
                         <h2 class="product-name">${product.name}</h2>
                         <p class="product-sku">${product.sku}</p>
@@ -53,10 +53,10 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                         </div>
                     </div>
                 </div>
-                <div class="product-left-div">
+                <div class="left-side">
                     <div class="charge-section">
                         <div class="main_section qty-selection">
-                            <p class="font-bold text_left">Branding charge estimator</p>
+                            <p class="font-bold branding-text">Branding charge estimator</p>
                             <div class="text_qty">
                              <label class="text_label">quantity:</label>
                              <input type="number" name="quantity" id="qtySelector" value="1" min="1" class="input_area">
