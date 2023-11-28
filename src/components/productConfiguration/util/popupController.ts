@@ -12,25 +12,30 @@ function addPreviewImage() {
    <img src=${url} alt="final-image"/>
    `;
 
-   replaceInnerChildElements(imageConatiner,dialogHtml);
+  replaceInnerChildElements(imageConatiner, dialogHtml);
 }
 
 function addPreviewEvents() {
   const openPreviewBtn = document.getElementById("openPreviewBtn");
   const closePreviewBtn = document.getElementById("closePreviewBtn");
 
-  [openPreviewBtn, closePreviewBtn].forEach((btn) => {
+  [openPreviewBtn, closePreviewBtn]?.forEach((btn) => {
     btn.addEventListener("click", () => {
-      console.log(btn, "btnnn ??");
-      btn.id === "openPreviewBtn" ? dialog.showModal() : dialog.close();
-      addPreviewImage();
+      if (btn.id === "openPreviewBtn") {
+        dialog.showModal();
+        addPreviewImage();
+      } else {
+        dialog.close();
+      }
     });
   });
 
-  document.getElementById("downloadImgPreview").addEventListener('click', () => {
-    const Imagename = Date.now();
-    DownloadImage(Imagename);
-});
+  document
+    .getElementById("downloadImgPreview")
+    .addEventListener("click", () => {
+      const Imagename = Date.now();
+      DownloadImage(Imagename);
+    });
 }
 
 export const initialisePopupFunctions = () => {

@@ -3,7 +3,6 @@ import {fabric} from "fabric";
 import {images} from "../../../assets/images";
 import {qtyProxy} from "../../../../index";
 import {IAvailableSections} from "../type";
-import {downloadImageType} from "../../../assets/config";
 import {DownloadImage} from "../util/downloadCanvas.ts";
 import {getElement} from "../../../helpers/helper.ts";
 
@@ -145,12 +144,14 @@ export const saveImage = (name = "", type = "image") => {
 export const clearCanvasHandler = () => {
     getElement("clearCanvas").addEventListener("click", () => {
         if (confirm('Are you sure want to clear canvas?')) {
-            console.log("ca", canvas.getObjects());
             [...canvas.getObjects()].forEach((element) => {
                 if (element.id !== "drawableArea") {
                     canvas.remove(element);
                 }
             });
+            document.getElementById(qtyProxy?.selectedProduct?.availableTechniques[0]?.id).click();
+            document.querySelectorAll(".step-button")[0].click();
+            canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
         }
     });
 };
