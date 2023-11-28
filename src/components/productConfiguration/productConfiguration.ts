@@ -10,6 +10,7 @@ import {textEditorInitial} from "./productConfigurationController";
 import {clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components/canvasController";
 import {initUploadLogoButton} from "./util/uploadLogoController";
 import { initialisePopupFunctions } from "./util/popupController";
+import { qtyProxy } from "../../..";
 
 const { products } = productData;
 
@@ -17,6 +18,8 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
     // @ts-ignore
     const product: IProductDetail = products.find((product) => product.sku === props.id);
     const defaultSelectedTechnique: IAvailableTechniques = product.availableTechniques[0];
+    qtyProxy["selectedProduct"] = product;
+
 
     setTimeout(() => {
         qtyChangeHandel(defaultSelectedTechnique);
