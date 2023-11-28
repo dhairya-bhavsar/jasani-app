@@ -75,6 +75,8 @@ h1 {
   flex-shrink: 0;
   padding: 15px;
   text-align: center;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 li {
@@ -209,6 +211,9 @@ p {
   padding: 16px;
   border-radius: 8px;
   background-color: #efefef;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .title > .btn {
@@ -263,6 +268,9 @@ p {
   justify-content: space-between;
   margin-top: 25.008px;
 
+}
+.stepper-actions {
+  margin-bottom: 25px;
 }
 
 .stepper-actions {
