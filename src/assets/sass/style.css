@@ -4,13 +4,13 @@
 html {
   margin: 0;
   padding: 0;
-  background: #057AC7;
+  background: #057ac7;
 }
 body {
   width: 100%;
   margin: 0 auto;
   background-color: lightgrey;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 16px;
 }
 
@@ -28,7 +28,8 @@ ul {
   text-align: center;
 }
 
-h1, p {
+h1,
+p {
   text-align: center;
 }
 
@@ -41,7 +42,9 @@ h1, p {
   margin: 0 auto;
 }
 
-#nav, #feature, #footer {
+#nav,
+#feature,
+#footer {
   margin: 1% 0;
 }
 
@@ -50,7 +53,8 @@ li {
   padding: 0.5em;
 }
 
-#nav, #footer {
+#nav,
+#footer {
   position: fixed;
   width: 90%;
   bottom: 0;
@@ -76,17 +80,16 @@ li {
   width: 18.75rem;
   /* height: 24rem; */
   padding: 1rem;
-  transition: all .5s;
+  transition: all 0.5s;
   box-shadow: 0 2px 7px #dfdfdf;
   background: #fafafa;
 }
 
 .single-product:hover {
   background: #0000000a;
-  border: 1px solid #057AC7;
+  border: 1px solid #057ac7;
   margin: 0;
   padding: 0;
-
 }
 
 .product-thumb {
@@ -162,7 +165,8 @@ li {
   padding: 0 0 1rem;
 }
 
-.product-info h2, p {
+.product-info h2,
+p {
   margin: 0;
   padding: 0;
   text-align: left;
@@ -215,7 +219,7 @@ Product Title Component*/
   justify-content: space-between;
 }
 
-.charge-section  span {
+.charge-section span {
   display: flex;
   align-items: center;
   color: #000;
@@ -234,18 +238,20 @@ Product Title Component*/
   flex-direction: column;
   justify-content: space-between;
   margin-top: 1.563rem;
-
 }
 
 .stepper-actions {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   margin: 1rem 0;
 }
 
 .stepper-actions button,
 .inputLabel,
-.textInput button, #nextStepButton, #saveButton {
+.textInput button,
+#nextStepButton,
+#saveButton,
+.preview-buttons > button {
   display: flex;
   width: 168px;
   height: 50px;
@@ -259,13 +265,16 @@ Product Title Component*/
   border-radius: 0.5rem;
   background: transparent;
 }
-.stepper-actions button:hover{
-  background:#057ac7;
+.stepper-actions button:hover,
+.preview-buttons > button:hover {
+  background: #057ac7;
   color: #fff;
 }
 
 .inputLabel,
-.textInput button,#nextStepButton, #saveButton {
+.textInput button,
+#nextStepButton,
+#saveButton {
   color: #fff;
   width: 6rem;
   height: 2rem;
@@ -301,15 +310,16 @@ Product Title Component*/
 
 .tabButtons {
   border-radius: 0;
-  justify-content:space-between;
+  justify-content: space-between;
   margin-bottom: 0.5rem;
 
   display: flex;
-  background: #FFF;
+  background: #fff;
 }
 
-.technique-option.active, .section-img-container.active {
-  border: 2px solid #057AC7;
+.technique-option.active,
+.section-img-container.active {
+  border: 2px solid #057ac7;
 }
 .step-button {
   cursor: pointer;
@@ -325,7 +335,7 @@ Product Title Component*/
 
 .step-button.active {
   /* box-shadow: 0 0 10px #0625ed; */
-  border-bottom: 4px solid #057AC7;
+  border-bottom: 4px solid #057ac7;
 }
 
 .second-step {
@@ -369,12 +379,12 @@ Product Title Component*/
   display: none;
 }
 
-.nextStep{
+.nextStep {
   display: flex;
   justify-content: right;
   height: 4rem;
   align-items: center;
-  border-top: 3px solid #E4E5E5;
+  border-top: 3px solid #e4e5e5;
   margin-right: 0.75rem;
 }
 /*steepr css end */
@@ -388,7 +398,7 @@ Product Title Component*/
   margin: 1rem 0;
 }
 
-.technique-option{
+.technique-option {
   width: 30%;
   border: 1px solid #000;
   cursor: pointer;
@@ -398,16 +408,15 @@ Product Title Component*/
   margin: 0;
 }
 
-.technique-option-header{
+.technique-option-header {
   background-color: aliceblue;
   width: 100%;
   padding: 1rem 0.5rem;
 }
 
-.technique-option-body{
+.technique-option-body {
   margin: 1rem;
 }
-
 
 /*image selection in step 2 css start*/
 
@@ -459,12 +468,10 @@ Product Title Component*/
 
 /* canvas style end */
 
-
 /*new css by Vimal Vyas*/
-h1.text_margin
-{
+h1.text_margin {
   margin: 0;
-  background: #057AC7;
+  background: #057ac7;
   color: #fff;
 }
 .title_center {
@@ -486,7 +493,7 @@ button#back-btn {
   font-style: normal;
   font-weight: 500;
   line-height: 1.5rem;
-  color: #057AC7;
+  color: #057ac7;
 }
 img.arrow_img {
   vertical-align: middle;
@@ -554,13 +561,12 @@ button#zoomIn {
   justify-content: center;
   align-items: center;
   color: #000;
-  margin:0;
+  margin: 0;
   padding: 0;
   height: 1rem;
 }
 
-button#downloadFullImage
-{
+button#downloadFullImage {
   display: flex;
   flex-direction: column;
   border: none;
@@ -584,7 +590,7 @@ button#zoomOut {
   justify-content: center;
   align-items: center;
   color: #000;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 button#deleteButton {
@@ -595,8 +601,7 @@ button#deleteButton {
   justify-content: center;
   align-items: center;
 }
-.recycle_bin_img
-{
+.recycle_bin_img {
   width: 36px;
   height: 36px;
   margin-bottom: 0.3rem;
@@ -630,19 +635,15 @@ div#available-sections {
 }
 
 /*media screen*/
-@media only screen and  (max-width: 768px) {
-
+@media only screen and (max-width: 768px) {
   #content {
-
     width: auto;
-
   }
   section.product-show {
     overflow: scroll;
   }
-
 }
-@media only screen and  (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
   #content {
     width: auto;
   }
@@ -662,22 +663,17 @@ div#available-sections {
     width: auto;
   }
   label.text_label {
-
     margin-left: 1rem;
   }
 }
-@media only screen and  (max-width: 1366px) {
-
+@media only screen and (max-width: 1366px) {
   #content {
-
     width: auto;
-
   }
   p.font-bold.text_left {
     width: auto;
   }
   label.text_label {
-
     margin-left: 1rem;
   }
   section.product-detail {
@@ -691,7 +687,7 @@ div#available-sections {
   }
 }
 
-.text-customisation-main{
+.text-customisation-main {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -699,11 +695,11 @@ div#available-sections {
   padding: 1rem;
 }
 
-.show-selected-text{
+.show-selected-text {
   text-align: center;
 }
 
-.show-selected-text input{
+.show-selected-text input {
   border-radius: 0.3rem;
   width: 100%;
   text-align: center;
@@ -711,19 +707,21 @@ div#available-sections {
   margin-bottom: 5px;
 }
 
-.text-customisation{
+.text-customisation {
   display: flex;
   justify-content: space-between;
 }
 
-.customisation-option{
+.customisation-option {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
 }
 
-.bold-font, .italic-font, .underline-font{
+.bold-font,
+.italic-font,
+.underline-font {
   font-size: 2rem;
   font-weight: bolder;
   opacity: 0.5;
@@ -731,33 +729,40 @@ div#available-sections {
   height: 2rem;
 }
 
-
-#fontBold, #fontItalic, #fontUnderline{
+#fontBold,
+#fontItalic,
+#fontUnderline {
   display: none;
 }
 
-.italic-font{
+.italic-font {
   font-style: italic;
 }
 
-.underline-font{
+.underline-font {
   text-decoration: underline;
 }
 
-.bold-font.active, .italic-font.active, .underline-font.active{
+.bold-font.active,
+.italic-font.active,
+.underline-font.active {
   opacity: 1;
   font-weight: bolder;
 }
 
-#textColor, #fontSize, #fontType, #fontUnderline,  #textAlign {
+#textColor,
+#fontSize,
+#fontType,
+#fontUnderline,
+#textAlign {
   height: 2rem;
 }
 
-#fontSize{
+#fontSize {
   width: 3rem;
 }
 
-#selectedText{
+#selectedText {
   display: none;
   height: auto;
   font-size: 40px;
@@ -790,14 +795,13 @@ div#available-sections {
   display: none !important;
 }
 
-.uploadLogo  p {
-  margin-left: 0  ;
+.uploadLogo p {
+  margin-left: 0;
 }
 
 .noteSummary {
   opacity: 0.5;
 }
-
 
 .loading {
   display: none;
@@ -810,7 +814,7 @@ div#available-sections {
   background-color: rgba(192, 192, 192, 0.5);
 }
 
-.loading-gif{
+.loading-gif {
   text-align: center;
   background-image: url(https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif);
   background-position: center;
@@ -818,4 +822,34 @@ div#available-sections {
   width: 100%;
   height: 100%;
   scale: 0.15;
+}
+
+.preview-dialog {
+  border: 2px solid #000;
+  border-radius: 1.5rem;
+  padding: 3rem;
+}
+
+.dialog-container {
+  max-width: 80vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1.5rem;
+}
+
+.preview-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

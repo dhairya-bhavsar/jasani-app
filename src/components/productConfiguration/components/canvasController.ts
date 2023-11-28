@@ -137,12 +137,7 @@ export const saveImage = (name = "", type = "image") => {
     if (!saveButton) return;
 
     saveButton.addEventListener('click', () => {
-        drawableArea.set("stroke", "transparent");
-        const previousValue = [...canvas.viewportTransform];
-        canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
         DownloadImage(name);
-        canvas.setViewportTransform(previousValue);
-        drawableArea.set("stroke", "red");
         canvas.renderAll();
     });
 };

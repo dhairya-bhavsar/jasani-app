@@ -9,6 +9,7 @@ import {addTextHTMLHandler} from "../productDetail/textCustomisationBox";
 import {textEditorInitial} from "./productConfigurationController";
 import {clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components/canvasController";
 import {initUploadLogoButton} from "./util/uploadLogoController";
+import { initialisePopupFunctions } from "./util/popupController";
 
 const { products } = productData;
 
@@ -26,6 +27,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
         saveImage();
         clearCanvasHandler();
         initUploadLogoButton();
+        initialisePopupFunctions();
     }, 100)
 
     return `
@@ -136,7 +138,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                     </div>
                     <div class="stepper-actions">
                         <button id="clearCanvas">Discard</button>
-                        <button>Preview</button>
+                        <button id="openPreviewBtn">Preview</button>
                         <button>Finish</button>
                     </div>
                 </div>
