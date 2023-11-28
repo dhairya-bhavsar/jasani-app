@@ -15,26 +15,31 @@ export function uploadLogo(event) {
   const requestObj = new FormData();
   requestObj.append("file", files[0]);
   setLoader(true);
-  fetch(apiUrls.imageConvert, {
-    method: "POST",
-    body: requestObj,
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const id = "id" + Math.random().toString(16).slice(2);
-
-      addApiImageToCanvas(data.data.image, id);
-      const preLogoList = qtyProxy?.logoList ?? [];
-      qtyProxy["logoList"] = [
-        ...preLogoList,
-        { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
-      ];
+  try {
+    fetch(apiUrls.imageConvert, {
+      method: "POST",
+      body: requestObj,
     })
-    .catch((error) => {
-      // Handle errors here
-      console.error("Error:", error);
-      setLoader(false);
-    });
+        .then((response) => response.json())
+        .then((data) => {
+          const id = "id" + Math.random().toString(16).slice(2);
+
+          addApiImageToCanvas(data.data.image, id);
+          const preLogoList = qtyProxy?.logoList ?? [];
+          qtyProxy["logoList"] = [
+            ...preLogoList,
+            { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
+          ];
+        })
+        .catch((error) => {
+          // Handle errors here
+          console.error("Error:", error);
+          setLoader(false);
+        });
+  } catch {
+    alert('Something went wrong!!')
+  }
+
 }
 
 function validateImage(file) {
