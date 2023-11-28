@@ -116,7 +116,6 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                           <div id="mainImageContainer">
                             <div id="colorSection">
                                 <div id="logoColorsWrapper">
-
                                 </div>
                             </div>
                           </div>

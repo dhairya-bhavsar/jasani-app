@@ -4,7 +4,7 @@ import {apiUrls, fileTypeSupport, maxFileSize} from "../../../assets/config";
 import {fabric} from "fabric";
 import {replaceCurrentElementWithNewId, replaceInnerChildElements, setLoader} from "../../../helpers/helper";
 
-export function uploadLogo(event) {
+export async function uploadLogo(event) {
   const files = event.target.files;
   if (!files || files.length === 0) alert("Please upload file");
   if (!validateImage(files[0])) {
@@ -16,30 +16,30 @@ export function uploadLogo(event) {
   requestObj.append("file", files[0]);
   setLoader(true);
   try {
-    fetch(apiUrls.imageConvert, {
+    const response = await fetch(apiUrls.imageConvert, {
       method: "POST",
       body: requestObj,
-    })
-        .then((response) => response.json())
-        .then((data) => {
-          const id = "id" + Math.random().toString(16).slice(2);
+    });
+    setLoader(false);
+    const data = await response.json();
+    const id = "id" + Math.random().toString(16).slice(2);
+    if (!data.data.image) {
+      alert('Please upload proper logo file!!');
+      return
+    }
 
-          addApiImageToCanvas(data.data.image, id);
-          const preLogoList = qtyProxy?.logoList ?? [];
-          qtyProxy["logoList"] = [
-            ...preLogoList,
-            { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
-          ];
-        })
-        .catch((error) => {
-          // Handle errors here
-          console.error("Error:", error);
-          setLoader(false);
-        });
-  } catch {
-    alert('Something went wrong!!')
+    addApiImageToCanvas(data.data.image, id);
+    const preLogoList = qtyProxy?.logoList ?? [];
+    qtyProxy["logoList"] = [
+      ...preLogoList,
+      { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
+    ];
+
+  } catch (error) {
+    console.log("Convert API issue");
+    alert('Something went wrong please contact admin');
+    setLoader(false);
   }
-
 }
 
 function validateImage(file) {
@@ -237,14 +237,14 @@ const logoSelectionEventHandler = () => {
 
   const onLogoChangeEvent = () => {
     const logoList = qtyProxy?.logoList;
-    const activeCanvasObj = canvas?.getActiveObjects();
+    const activeCanvasObj = canvas?.getActiveObjects()[0];
 
-    if (activeCanvasObj.length > 0 && activeCanvasObj[0].type === 'image') {
+    if (activeCanvasObj.type === 'image') {
       document.getElementById("mainImageContainer").style.display = "block";
       const selectedLogo = logoList.find(
-        (logo) => logo.id === activeCanvasObj[0].id
+        (logo) => logo.id === activeCanvasObj.id
       );
-      detectedColorsAndSetHandler(selectedLogo, activeCanvasObj[0]);
+      detectedColorsAndSetHandler(selectedLogo, activeCanvasObj);
     } else {
       document.getElementById("mainImageContainer").style.display = "none";
     }

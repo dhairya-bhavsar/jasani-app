@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "open-cli http://localhost:3336 && parcel index.html -p 3336",
     "demo:dev": "open-cli https://jasani.demo.brainvire.dev/ && parcel index.html -p 3336",
+    "cleanup": "rm -rf .parcel-cache dist",
     "start": "parcel index.html -p 3336",
     "build": "parcel build index.html"
   },
   "dependencies": {
     "@types/fabric": "^5.3.5",
     "fabric": "^5.3.0",
-    "lodash": "^4.17.21",
     "node-sass": "^9.0.0"
   },
   "devDependencies": {
