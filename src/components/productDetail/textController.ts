@@ -1,32 +1,33 @@
 // @ts-nocheck
 import { fabric } from "fabric";
 import { clearInputBoxHandler, getElement } from "../../helpers/helper";
-import {clipByName} from "../productConfiguration/components/canvasController";
-import _ from "lodash";
+import {qtyProxy} from "../../../index.ts";
 
-// export function addTextToCanvasHandler(canvas) {
-//   const addTextButton = getElement("applyText");
-//
-//   addTextButton?.addEventListener("click", () => {
-//     let addedText = (getElement("addedText") as HTMLInputElement).value;
-//     if (addedText) {
-//       const text = new fabric.Textbox(addedText, {
-//         editable: false,
-//         borderColor: "#3882c5",
-//         transparentCorners : false,
-//         borderScaleFactor: 2,
-//         padding : 6,
-//         clipName: "editor",
-//         clipTo: function (ctx) {
-//           return _.bind(clipByName, text)(ctx);
-//         },
-//       });
-//       clearInputBoxHandler("addedText");
-//       text.center();
-//       canvas.add(text);
-//     }
-//   });
-// }
+export function addTextToCanvasHandler(canvas) {
+  const addTextButton = getElement("applyText");
+
+  addTextButton?.addEventListener("click", () => {
+    let addedText = (getElement("addedText") as HTMLInputElement).value;
+    if (addedText) {
+      const text = new fabric.Textbox(addedText, {
+        editable: false,
+        transparentCorners : false,
+        borderScaleFactor: 2,
+      });
+      const editor = qtyProxy.canvasEditor;
+      const top = editor.top + (editor.height - text.height) / 2;
+      const left = editor.left + (editor.width - text.width) / 2;
+
+      text.set({
+        top: top,
+        left: left
+      })
+      clearInputBoxHandler("addedText");
+      text.center();
+      canvas.add(text);
+    }
+  });
+}
 
 export const changeFontFamilyHandler = (canvas) => {
   const fontType = getElement("fontType") as HTMLSelectElement;
@@ -71,7 +72,6 @@ export const changeFontSizeHandler = (canvas) => {
     const activeObject = canvas.getActiveObject();
     if (activeObject instanceof fabric.Text) {
       activeObject.set("fontSize", +(event.target as HTMLInputElement).value);
-      selectedTextBoxStyleHelper("fontSize", activeObject);
     }
     canvas.renderAll();
   });
@@ -203,7 +203,6 @@ const selectedTextBoxStyleHelper = (style, activeObject) => {
   const styleMap = {
     textAlign: "textAlign",
     fontFamily: "fontFamily",
-    fontSize: (value) => `${value}px`,
     color: "fill",
     fontStyle: "fontStyle",
     fontWeight: "fontWeight",
@@ -229,7 +228,6 @@ export const editTextHandler = (canvas) => {
   const styleHelperArray = [
     "textAlign",
     "fontFamily",
-    "fontSize",
     "color",
     "fontStyle",
     "fontWeight",

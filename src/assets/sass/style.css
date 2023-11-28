@@ -82,7 +82,8 @@ li {
   padding: 0.5em;
 }
 
-#nav, #footer {
+#nav,
+#footer {
   position: fixed;
   width: 90%;
   bottom: 0;
@@ -115,10 +116,9 @@ li {
 
 .single-product:hover {
   background: #0000000a;
-  border: 1px solid #057AC7;
+  border: 1px solid #057ac7;
   margin: 0;
   padding: 0;
-
 }
 
 .product-thumb {
@@ -195,7 +195,8 @@ li {
   padding: 0 0 16px;
 }
 
-.product-info h2, p {
+.product-info h2,
+p {
   margin: 0;
   padding: 0;
   text-align: left;
@@ -242,7 +243,7 @@ li {
   justify-content: space-between;
 }
 
-.charge-section  span {
+.charge-section span {
   display: flex;
   align-items: center;
   color: #000;
@@ -272,7 +273,10 @@ li {
 
 .stepper-actions button,
 .inputLabel,
-.textInput button, #nextStepButton, #saveButton {
+.textInput button,
+#nextStepButton,
+#saveButton,
+.preview-buttons > button {
   display: flex;
   width: 168px;
   height: 50px;
@@ -286,13 +290,16 @@ li {
   border-radius: 8px;
   background: transparent;
 }
-.stepper-actions button:hover{
-  background:#057ac7;
+.stepper-actions button:hover,
+.preview-buttons > button:hover {
+  background: #057ac7;
   color: #fff;
 }
 
 .inputLabel,
-.textInput button,#nextStepButton, #saveButton {
+.textInput button,
+#nextStepButton,
+#saveButton {
   color: #fff;
   width: 96px;
   height: 32px;
@@ -330,11 +337,12 @@ li {
   margin-bottom: 8px;
 
   display: flex;
-  background: #FFF;
+  background: #fff;
 }
 
-.technique-option.active, .section-img-container.active {
-  border: 2px solid #057AC7;
+.technique-option.active,
+.section-img-container.active {
+  border: 2px solid #057ac7;
 }
 .step-button {
   cursor: pointer;
@@ -390,11 +398,11 @@ li {
   max-width: 100%;
 }
 
-#imageInput {
+#uploadLogo {
   display: none;
 }
 
-.nextStep{
+.nextStep {
   display: flex;
   justify-content: right;
   align-items: center;
@@ -410,7 +418,7 @@ li {
   margin: 16px 0;
 }
 
-.technique-option{
+.technique-option {
   width: 30%;
   border: 1px solid #000;
   cursor: pointer;
@@ -420,7 +428,7 @@ li {
   margin: 0;
 }
 
-.technique-option-header{
+.technique-option-header {
   background-color: aliceblue;
   width: 100%;
   padding: 16px 8px;
@@ -549,13 +557,12 @@ button#zoomIn {
   justify-content: center;
   align-items: center;
   color: #000;
-  margin:0;
+  margin: 0;
   padding: 0;
   height: 16px;
 }
 
-button#downloadFullImage
-{
+button#downloadFullImage {
   display: flex;
   flex-direction: column;
   border: none;
@@ -579,7 +586,7 @@ button#zoomOut {
   justify-content: center;
   align-items: center;
   color: #000;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 button#deleteButton {
@@ -590,8 +597,7 @@ button#deleteButton {
   justify-content: center;
   align-items: center;
 }
-.recycle_bin_img
-{
+.recycle_bin_img {
   width: 36px;
   height: 36px;
   margin-bottom: 4.8px;
@@ -630,7 +636,7 @@ div#available-sections {
   padding: 16px;
 }
 
-.show-selected-text{
+.show-selected-text {
   text-align: center;
 }
 
@@ -641,13 +647,13 @@ div#available-sections {
   height: 32px;
 }
 
-.text-customisation{
+.text-customisation {
   display: flex;
   justify-content: space-between;
   padding-top: 16px;
 }
 
-.customisation-option{
+.customisation-option {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -662,20 +668,23 @@ div#available-sections {
   height:32px;
 }
 
-
-#fontBold, #fontItalic, #fontUnderline{
+#fontBold,
+#fontItalic,
+#fontUnderline {
   display: none;
 }
 
-.italic-font{
+.italic-font {
   font-style: italic;
 }
 
-.underline-font{
+.underline-font {
   text-decoration: underline;
 }
 
-.bold-font.active, .italic-font.active, .underline-font.active{
+.bold-font.active,
+.italic-font.active,
+.underline-font.active {
   opacity: 1;
   font-weight: bolder;
 }
@@ -688,9 +697,10 @@ div#available-sections {
   width: 48px;
 }
 
-#selectedText{
+#selectedText {
   display: none;
   height: auto;
+  font-size: 40px;
 }
 
 .productContentBorder {
@@ -779,6 +789,64 @@ div#available-sections {
   
     margin-bottom: 40px;
     padding: 10px 12px;
+  }
 }
 
+.uploadLogo p {
+  margin-left: 0;
+}
+
+.noteSummary {
+  opacity: 0.5;
+}
+
+.loading {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(192, 192, 192, 0.5);
+}
+
+.loading-gif {
+  text-align: center;
+  background-image: url(https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  scale: 0.15;
+}
+
+.preview-dialog {
+  border: 2px solid #000;
+  border-radius: 1.5rem;
+  padding: 3rem;
+}
+
+.dialog-container {
+  max-width: 80vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1.5rem;
+}
+
+.preview-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

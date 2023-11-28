@@ -1,10 +1,10 @@
 import {qtyProxy} from "../../../index";
 import {
+    addTextToCanvasHandler,
     changeFontFamilyHandler,
     changeFontSizeHandler, changeTextAlignHandler,
     changeTextColor, editTextHandler, fontBoldUnderlineAndItalicHandler
 } from "../productDetail/textController";
-import {addTextToCanvasHandler} from "./components/canvasController";
 
 export function textEditorInitial() {
     const canvas = qtyProxy.canvas;
