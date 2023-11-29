@@ -9,6 +9,10 @@ import {
   setLoader, uniqBy
 } from "../../../helpers/helper";
 
+function clearUploadInputValue() {
+  document.getElementById('uploadLogo').value = "";
+}
+
 export async function uploadLogo(event) {
   const files = event.target.files;
   if (!files || files.length === 0) alert("Please upload file");
@@ -39,7 +43,7 @@ export async function uploadLogo(event) {
       ...preLogoList,
       { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
     ];
-    document.getElementById('uploadLogo').value = "";
+    clearUploadInputValue();
   } catch (error) {
     console.log("Convert API issue");
     alert('Something went wrong please contact admin');
@@ -53,12 +57,14 @@ function validateImage(file) {
     if (fileTypeSupport.includes(file.type)) {
       const size = file.size / 10024 / 10024;
       if (size > maxFileSize) {
+        clearUploadInputValue();
         alert("File may not be greater than 10 MB");
         return false;
       }
       return true;
     }
-    alert("Please upload only this file type: pdf, eps, ai format");
+    clearUploadInputValue();
+    alert("Please upload only this file type: jpg, jpeg, png, pdf, eps, ai format");
     return false;
   }
   return false;
@@ -189,7 +195,26 @@ function onChangeLogoColor(index) {
   });
 }
 
+export function logoDimensionHandler() {
+  const canvas = qtyProxy?.canvas;
+  const activeCanvasObj = canvas?.getActiveObjects()[0];
+  const width = document.getElementById('logoWidth');
+  const height = document.getElementById('logoHeight');
+  width.addEventListener('change', (event) => {
+    const value = +event.target.value;
+    activeCanvasObj.scaleToWidth(value);
+    canvas.renderAll();
+  });
+  height.addEventListener('change', (event) => {
+    const value = +event.target.value;
+    activeCanvasObj.scaleToHeight(value);
+    canvas.renderAll();
+  });
+}
+
 export function colorContainerHtmlRender(activeCanvasObj) {
+  const width = (activeCanvasObj?.getScaledWidth()).toFixed(0)
+  const height = (activeCanvasObj?.getScaledHeight()).toFixed(0);
   const logoList = JSON.parse(JSON.stringify(qtyProxy?.logoList));
   const selectedLogo = logoList.find(
       (logo) => logo.id === activeCanvasObj.id
@@ -197,7 +222,9 @@ export function colorContainerHtmlRender(activeCanvasObj) {
   qtyProxy['selectedLogo'] = selectedLogo;
 
   const colorListHtml = `
-       <div class="color-container">
+    <div class="logo-configuration">
+      <div class="color-container">
+          <p class="font-bold">Logo Colors</p>
            ${selectedLogo?.logoColors.map((color, index) => {
             const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
             return `
@@ -207,32 +234,53 @@ export function colorContainerHtmlRender(activeCanvasObj) {
                   <div class="replacedByColor hidden" id="replacedBy-${index}">
                    <input type="color" id="replacedBy-color-${index}"/>
                   </div>
-              </div>
-          `;
-      })
-      .join(" ")}
-       </div>
+              </div>` ;
+            }).join(" ")}   
+      </div>
+      <div class="logo-dimensions">
+          <div class="input-group">
+              <label for="logoWidth">Logo width: </label>
+              <input type="number" id="logoWidth" value="${width}" />
+          </div>
+          <div class="input-group">
+              <label for="logoHeight">Logo height: </label>
+              <input type="number" id="logoHeight" value="${height}" placeholder="" />
+          </div>
+          <div class="input-group">
+            <input type="checkbox" id="removeWhiteBg" placeholder="" />
+            <label for="removeWhiteBg">Remove White Background</label>
+          </div> 
+      </div>
+    </div>
       `;
   replaceCurrentElementWithNewId('colorContainer', colorListHtml);
   colorSelectionHandle();
+  logoDimensionHandler();
 }
+
+const onLogoChangeEvent = () => {
+  const canvas = qtyProxy?.canvas;
+  const activeCanvasObj = canvas?.getActiveObjects()[0];
+  const container = document.getElementById("colorContainer");
+  if (activeCanvasObj && activeCanvasObj.type === 'image') {
+    container.classList.remove('hidden');
+    colorContainerHtmlRender(activeCanvasObj);
+  } else {
+    container.classList.add('hidden');
+  }
+};
+
+// const onLogoAddedEvent = (event) => {
+//   console.log("event", (event.target.width * event.target.scaleX), (event.target.height * event.target.scaleY));
+// }
 
 const logoSelectionEventHandler = () => {
   const canvas = qtyProxy?.canvas;
-  const onLogoChangeEvent = () => {
-    const activeCanvasObj = canvas?.getActiveObjects()[0];
-    const container = document.getElementById("colorContainer");
-    if (activeCanvasObj && activeCanvasObj.type === 'image') {
-      container.classList.remove('hidden');
-      colorContainerHtmlRender(activeCanvasObj)
-    } else {
-      container.classList.add('hidden');
-    }
-  };
-
   canvas.on("selection:updated", onLogoChangeEvent);
   canvas.on("selection:created", onLogoChangeEvent);
   canvas.on("selection:cleared", onLogoChangeEvent);
+  // canvas.on('object:added', onLogoAddedEvent);
+  canvas.on('object:modified', onLogoChangeEvent);
 };
 
 export function initUploadLogoButton() {
