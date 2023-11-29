@@ -12,13 +12,15 @@ import SPFront280230 from './sp_front_280_230.jpg';
 import TshirtDefault from './tshirt_default.jpg';
 import BagFront18090 from './front_180_90.jpg';
 import BottleFront from './plain_bottle.jpg';
-import Bottle20110 from './bottle_20_110.jpg';
 import PlainTshirtFront from './plain_tshirt_front.jpg';
 import Recycle_bin from './recycle_bin.png';
 import SpBackDefault from './sp_back_default.jpg';
 import BottleDefault from './bottle_default.jpg';
 import FrontBagDefault from './front_bag_default.jpg';
-
+import BagFront230_100  from "./bag_front_230_100.png";
+import BagFront230_30 from "./bag_front_230_30.png";
+import Bottle_150_40 from "./bottle_150_40.png"
+import Bottle_90_60 from "./bottle_90_60.png"
 
 
 export const images = {
@@ -31,7 +33,6 @@ export const images = {
     "bag_pack.jpg": BackPack,
     "front_180_90.jpg": BagFront18090,
     "plain_bottle.jpg": BottleFront,
-    "bottle_20_110.jpg": Bottle20110,
     "left_arrow.png": left_arrow,
     "Zoom_in.png": Zoom_in,
     "Zoom_out.png": Zoom_out,
@@ -40,4 +41,8 @@ export const images = {
     "sp_back_default.jpg": SpBackDefault,
     "bottle_default.jpg": BottleDefault,
     "front_bag_default.jpg": FrontBagDefault,
+    "bag_front_230_100.png": BagFront230_100,
+    "bag_front_230_30.png": BagFront230_30,
+    "bottle_150_40.png": Bottle_150_40,
+    "bottle_90_60.png": Bottle_90_60
 };
