@@ -1,9 +1,8 @@
 //@ts-nocheck
-import { replaceInnerChildElements } from "../../../helpers/helper";
+import {replaceCurrentElementWithNewId} from "../../../helpers/helper";
 import { DownloadImage } from "./downloadCanvas";
 
 const dialog = document.getElementById("previewDialog");
-const imageConatiner = document.getElementById("imageConatiner");
 
 function addPreviewImage() {
   const url = DownloadImage(" ", "image", false);
@@ -12,7 +11,7 @@ function addPreviewImage() {
    <img src=${url} alt="final-image"/>
    `;
 
-  replaceInnerChildElements(imageConatiner, dialogHtml);
+  replaceCurrentElementWithNewId("imageConatiner", dialogHtml);
 }
 
 function addPreviewEvents() {

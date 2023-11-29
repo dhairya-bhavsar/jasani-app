@@ -2,7 +2,12 @@
 import {qtyProxy} from "../../../..";
 import {apiUrls, fileTypeSupport, maxFileSize} from "../../../assets/config";
 import {fabric} from "fabric";
-import {replaceCurrentElementWithNewId, replaceInnerChildElements, setLoader} from "../../../helpers/helper";
+import {
+  compareArr,
+  hexToRgb,
+  replaceCurrentElementWithNewId,
+  setLoader, uniqBy
+} from "../../../helpers/helper";
 
 export async function uploadLogo(event) {
   const files = event.target.files;
@@ -34,7 +39,7 @@ export async function uploadLogo(event) {
       ...preLogoList,
       { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
     ];
-
+    document.getElementById('uploadLogo').value = "";
   } catch (error) {
     console.log("Convert API issue");
     alert('Something went wrong please contact admin');
@@ -100,153 +105,128 @@ const addApiImageToCanvas = (url, id) => {
   });
 };
 
-const detectedColorsAndSetHandler = (selectedLogo, activeCanvasLogo) => {
-  const { logoColors, imgUrl } = selectedLogo;
-  const canvas = qtyProxy?.canvas;
-
-  // Add an event listener for the change event on the radio buttons
-  const eventListenerForRadioBtn = () => {
-    document
-      .querySelectorAll('input[name="color"]')
-      .forEach((radioButton, index) => {
-        radioButton.addEventListener("change", function (event) {
-          const selectedColor = event.target.value;
-
-          document.querySelectorAll(".replacedByColor").forEach((ele) => {
-            if (ele.id === `replacedBy-${index}`) {
-              ele.style.display = "block";
-              onChangeLogoColor(
-                document.getElementById(`replacedBy-${index}-color`),
-                selectedColor
-              );
-              return
-            }
-            ele.style.display = "none";
-          });
-        });
-      });
-  };
-
-  const onChangeLogoColor = (element, oldColor) => {
-    element.addEventListener("blur", (e) => {
-      const replacedByColorValue = e.target.value;
-      const r = parseInt(replacedByColorValue.substr(1, 2), 16);
-      const g = parseInt(replacedByColorValue.substr(3, 2), 16);
-      const b = parseInt(replacedByColorValue.substr(5, 2), 16);
-
-      const objToSend = {
-        fileName: imgUrl,
-        initialColor: oldColor,
-        finalColor: `${r},${g},${b}`,
-        transparency: false,
-        fillType: "multi",
-      };
-
-      const jsonString = JSON.stringify(objToSend);
-
-      const headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      // logo color change api calling...
-      setLoader(true);
-      fetch(apiUrls.imageColorReplace, {
-        method: "POST",
-        headers: headers,
-        body: jsonString,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          let oldColorArray = oldColor.split(",").map(Number);
-
-          const updatedLogoColors = logoColors.map((clr) =>
-            oldColorArray.every((val, index) => val === clr[index])
-              ? [r, g, b]
-              : clr
-          );
-
-          const uniqueLogoColors = [
-            //@ts-ignore
-            ...new Set(updatedLogoColors.map(JSON.stringify)),
-            //@ts-ignore
-          ].map(JSON.parse);
-
-          const colorList = qtyProxy?.logoList;
-          const newLogoList = colorList.map((logo) => {
-            if (logo.id === selectedLogo.id) {
-              return {
-                id: logo.id,
-                logoColors: uniqueLogoColors,
-                imgUrl: data.data,
-              };
-            } else {
-              return logo;
-            }
-          });
-
-          qtyProxy["logoList"] = newLogoList;
-
-          addNewColorsList(uniqueLogoColors);
-
-          const imgURL = apiUrls.convertedImage.concat(data.data);
-
-          activeCanvasLogo.setSrc(imgURL, function () {
-            canvas.renderAll();
-            setLoader(false);
-          });
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          setLoader(false);
-        });
+export function colorSelectionHandle() {
+  const colorElement = document.querySelectorAll('.logo-color');
+  if (!colorElement) return;
+  colorElement.forEach((el, index) => {
+    el.addEventListener('click', () => {
+      const previousSelection = document.querySelector('.replacedByColor.show');
+      if (previousSelection) {
+        previousSelection.classList.add('hidden');
+        previousSelection.classList.remove('show');
+      }
+      const changeInput = document.getElementById(`replacedBy-${index}`);
+      if (!changeInput) return;
+      changeInput.classList.remove('hidden');
+      changeInput.classList.add('show');
+      qtyProxy['oldColor'] = el.value;
+      onChangeLogoColor(index);
     });
-  };
+  })
+}
 
-  const addNewColorsList = (logoColors) => {
-    const newColorsHTML = `
-       <div id="logoColors" style="display: flex; ">
-           ${logoColors
-             .map((color, index) => {
-               const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-               return `
-               <div>
-                  <div style="display: flex;">
-                  <label for="color-${index}" style="margin: 5px; cursor: pointer;">
-                    <input type="radio" id="color-${index}" name="color" value="${[color[0], color[1], color[2],]}" 
-                    style="display: none;">
-                    <div class="replaceWithColor" id="color-div-${index}" style="background-color: ${rgbColor}; width: 50px; height: 50px; border: 2px solid transparent;"></div>
-                  </label>
+function updateListOfColors() {
+  const newSelectedLogo = {...qtyProxy?.selectedLogo};
+  const oldColor = qtyProxy?.oldColor.split(",");
+  newSelectedLogo?.logoColors.forEach((el, index) => {
+    if (compareArr(el, oldColor)) {
+      newSelectedLogo.logoColors[index] = [...qtyProxy?.newColor];
+    }
+  });
+  newSelectedLogo.logoColors = uniqBy(newSelectedLogo.logoColors, JSON.stringify)
+  qtyProxy['selectedLogo'] = newSelectedLogo;
+  const logoList = JSON.parse(JSON.stringify(qtyProxy?.logoList));
+  const index = logoList?.findIndex((el) => el.id === newSelectedLogo.id);
+  logoList[index] = newSelectedLogo;
+  qtyProxy['logoList'] = logoList;
+  colorContainerHtmlRender(qtyProxy?.canvas?.getActiveObjects()[0]);
+}
+
+async function convertLogoColor(requestObject) {
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  setLoader(true);
+  try {
+    const response = await fetch(apiUrls.imageColorReplace, {
+      method: "POST",
+      headers: headers,
+      body: requestObject,
+    });
+    const data = await response.json();
+    const imgURL = apiUrls.convertedImage.concat(data.data);
+    const logoUrl = qtyProxy?.selectedLogo;
+    logoUrl['imgUrl'] = data.data;
+    const activeCanvasObj = qtyProxy?.canvas?.getActiveObjects()[0];
+    activeCanvasObj.setSrc(imgURL, function () {
+      qtyProxy?.canvas.renderAll();
+      setLoader(false);
+      updateListOfColors();
+    });
+  } catch (error) {
+    console.log("color change api error!!!");
+    alert('Something went wrong please contact admin');
+    setLoader(false);
+  }
+}
+
+function onChangeLogoColor(index) {
+  const colorInput = document.getElementById(`replacedBy-${index}`);
+  if (!colorInput) return;
+  colorInput.addEventListener('change', (e) => {
+    const replacedByColorValue = e.target.value;
+    qtyProxy['newColor'] = hexToRgb(replacedByColorValue);
+
+    const objToSend = {
+      fileName: qtyProxy?.selectedLogo?.imgUrl,
+      initialColor: qtyProxy?.oldColor,
+      finalColor: `${qtyProxy.newColor[0]},${qtyProxy.newColor[1]},${qtyProxy.newColor[2]}`,
+      transparency: false,
+      fillType: "multi",
+    };
+
+    const jsonString = JSON.stringify(objToSend);
+    convertLogoColor(jsonString);
+  });
+}
+
+export function colorContainerHtmlRender(activeCanvasObj) {
+  const logoList = JSON.parse(JSON.stringify(qtyProxy?.logoList));
+  const selectedLogo = logoList.find(
+      (logo) => logo.id === activeCanvasObj.id
+  );
+  qtyProxy['selectedLogo'] = selectedLogo;
+
+  const colorListHtml = `
+       <div class="color-container">
+           ${selectedLogo?.logoColors.map((color, index) => {
+            const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+            return `
+               <div class="color-selector">
+                  <input type="radio" id="color-${index}" class="logo-color" name="color-group" value="${[color[0], color[1], color[2]]}">
+                  <label for="color-${index}" style="background-color: ${rgbColor}"></label>
+                  <div class="replacedByColor hidden" id="replacedBy-${index}">
+                   <input type="color" id="replacedBy-color-${index}"/>
                   </div>
-                  <div class="replacedByColor" id="replacedBy-${index}" style="display: none;">
-                     <input type="color" id="replacedBy-${index}-color"/>
-                  </div>
-               </div>
-               `;
-             })
-             .join(" ")}
+              </div>
+          `;
+      })
+      .join(" ")}
        </div>
       `;
-
-    replaceCurrentElementWithNewId("logoColorsWrapper", newColorsHTML)
-    eventListenerForRadioBtn();
-  };
-
-  addNewColorsList(logoColors);
-};
+  replaceCurrentElementWithNewId('colorContainer', colorListHtml);
+  colorSelectionHandle();
+}
 
 const logoSelectionEventHandler = () => {
   const canvas = qtyProxy?.canvas;
-
   const onLogoChangeEvent = () => {
-    const logoList = qtyProxy?.logoList;
     const activeCanvasObj = canvas?.getActiveObjects()[0];
-
-    if (activeCanvasObj.type === 'image') {
-      document.getElementById("mainImageContainer").style.display = "block";
-      const selectedLogo = logoList.find(
-        (logo) => logo.id === activeCanvasObj.id
-      );
-      detectedColorsAndSetHandler(selectedLogo, activeCanvasObj);
+    const container = document.getElementById("colorContainer");
+    if (activeCanvasObj && activeCanvasObj.type === 'image') {
+      container.classList.remove('hidden');
+      colorContainerHtmlRender(activeCanvasObj)
     } else {
-      document.getElementById("mainImageContainer").style.display = "none";
+      container.classList.add('hidden');
     }
   };
 

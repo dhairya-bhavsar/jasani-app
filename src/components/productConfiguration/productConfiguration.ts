@@ -121,11 +121,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                             <label for="uploadLogo" class="inputLabel">Upload</label>
                             <input id="uploadLogo" type="file" />
                           </div>
-                          <div id="mainImageContainer">
-                            <div id="colorSection">
-                                <div id="logoColorsWrapper">
-                                </div>
-                            </div>
+                          <div id="colorContainer" class="hidden">
                           </div>
                         </div>
                         <div id="3" class="tabView tabHide">
