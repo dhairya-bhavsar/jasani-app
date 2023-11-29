@@ -53,6 +53,14 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                                 <img src="${images['Zoom_out.png']}" alt="${images['Zoom_out.png']}" class="Zoom_img"/>
                                 Zoom out
                              </button>
+                             <button id="undo" class="inputLabel">
+                                <img src="${images['Undo.png']}" alt="${images['Undo.png']}" class="Undo_img"/>
+                                undo
+                             </button>
+                             <button id="redo" class="inputLabel">
+                                <img src="${images['Redo.png']}" alt="${images['Redo.png']}" class="Redo_img"/>
+                                redo
+                             </button>
                              <button id="downloadFullImage" class="inputLabel">
                                 <img src="${images["Save.png"]}" alt="${images["Save.png"]}" class="Save_img"/>
                                 save logo for future use

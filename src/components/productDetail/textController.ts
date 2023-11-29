@@ -159,7 +159,6 @@ export const changeTextColor = (canvas) => {
 
   textColorInputbox?.addEventListener("input", () => {
     const activeObject = canvas.getActiveObject();
-
     const newColor = (getElement("textColor") as HTMLInputElement).value;
 
     if (newColor && activeObject instanceof fabric.Text) {
@@ -168,6 +167,10 @@ export const changeTextColor = (canvas) => {
       canvas.renderAll();
     }
   });
+
+  textColorInputbox?.addEventListener("change",()=>{
+    canvas.fire('object:modified');
+  })
 };
 
 export const changeTextAlignHandler = (canvas) => {

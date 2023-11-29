@@ -18,7 +18,7 @@ export const addTextHTMLHandler = () => {
 
               <div class="customisation-option">
                   <input type="number" id="fontSize" value="40" />
-                  <label for="textColor">Font Size</label>
+                  <label for="fontSize">Font Size</label>
               </div>
 
               <div class="customisation-option">
