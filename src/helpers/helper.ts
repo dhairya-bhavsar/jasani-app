@@ -75,3 +75,26 @@ export const setLoader = (isLoading : boolean) => {
     const loader = document.getElementById("loadingSceen");
     loader.style.display = isLoading ? "block" : "none";
 };
+
+export function hexToRgb(hex) {
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+    ] : null;
+}
+
+export const compareArr = (arr1, arr2) => {
+    if(arr1.length !== arr2.length){ return false;}
+    return arr1.every((item, index) => item == arr2[index]);
+};
+
+export function uniqBy(a, key) {
+    // @ts-ignore
+    let seen = new Set();
+    return a.filter(item => {
+        let k = key(item);
+        return seen.has(k) ? false : seen.add(k);
+    });
+}

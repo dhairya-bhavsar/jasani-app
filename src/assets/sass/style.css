@@ -8,19 +8,19 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
   font: inherit;
-	font-size: 100%;	
+	font-size: 100%;
 	vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -178,7 +178,7 @@ li {
   padding: 16px;
   justify-content: space-between;
 }
-.branding-text 
+.branding-text
 {
   margin: 0 !important;
 }
@@ -362,7 +362,7 @@ p {
 }
 
 .step-button.active {
- 
+
   border-bottom: 4px solid #057AC7;
 }
 
@@ -532,7 +532,7 @@ input.input_area {
   padding-left: 10px;
 }
 .text_qty {
-  
+
 }
 label.text_label {
   color: #000;
@@ -620,7 +620,7 @@ section.product-detail {
   height: 100%;
 }
 .stepper-actions {
-  padding-bottom: 32px; 
+  padding-bottom: 32px;
 }
 div#available-sections {
   display: flex;
@@ -746,7 +746,7 @@ div#available-sections {
   .stepper-actions {
     padding-bottom: 32px;
   }
-  
+
   label.text_label {
 
     margin-left: 16px;
@@ -785,7 +785,7 @@ div#available-sections {
     overflow: auto;
   }
   .nextStep {
-  
+
     margin-bottom: 40px;
     padding: 10px 12px;
   }
@@ -848,4 +848,47 @@ div#available-sections {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.color-container {
+  display: flex;
+  justify-content: start;
+  gap: 16px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.color-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-selector input[type="radio"] {
+  display: none;
+  height: 100%;
+  width: 100%;
+}
+
+.color-selector label {
+  cursor: pointer;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 0 5px rgb(0,0,0,0.5);
+}
+
+.color-selector input[type="radio"]:checked+label:before {
+  content:'';
+  border: 1px solid;
+  position: absolute;
+  inset: 0;
+}
+
+.color-selector input[type="radio"]:checked+label:after {
+  content:'';
+  inset: 1px;
+  position: absolute;
+  border: 4px solid #ffffff;
 }
