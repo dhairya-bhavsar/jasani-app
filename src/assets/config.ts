@@ -14,7 +14,7 @@ export const apiUrls = {
 
 
 export const errorMessages = {
-    SERVER_ERROR : "something went wrong contact server team!!",
+    SERVER_ERROR : "Something went wrong contact server team!!",
     PROJECT_SAVED : "Project Save!!!",
     UNDO_FINISH : "Do not do anything anymore, you are going far to the past, before creation, there was nothing",
     REDO_FINISH : "Do not do anything anymore, you do not know what is after the present, do not mess with the future",
