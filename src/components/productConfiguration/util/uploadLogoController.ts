@@ -109,7 +109,7 @@ const addApiImageToCanvas = (url, id) => {
       setLoader(false);
       canvas.renderAll();
     }
-  });
+  }, {crossOrigin: "Anonymous"});
 };
 
 export function colorSelectionHandle() {
@@ -137,7 +137,8 @@ function updateListOfColors() {
   const oldColor = qtyProxy?.oldColor.split(",");
   newSelectedLogo?.logoColors.forEach((el, index) => {
     if (compareArr(el, oldColor)) {
-      newSelectedLogo.logoColors[index] = [...qtyProxy?.newColor];
+      if (qtyProxy?.newColor) newSelectedLogo.logoColors[index] = [...qtyProxy?.newColor];
+      if (!qtyProxy?.newColor) delete newSelectedLogo.logoColors[index];
     }
   });
   newSelectedLogo.logoColors = uniqBy(newSelectedLogo.logoColors, JSON.stringify)
@@ -146,7 +147,21 @@ function updateListOfColors() {
   const index = logoList?.findIndex((el) => el.id === newSelectedLogo.id);
   logoList[index] = newSelectedLogo;
   qtyProxy['logoList'] = logoList;
+  delete qtyProxy.newColor;
   colorContainerHtmlRender();
+}
+
+function setUpdatedImage(imageName, colorChange = true) {
+  const imgURL = apiUrls.convertedImage.concat(imageName);
+  const logoUrl = qtyProxy?.selectedLogo;
+  logoUrl['imgUrl'] = imageName;
+  const activeCanvasObj = qtyProxy?.canvas?.getActiveObjects()[0];
+  activeCanvasObj.setSrc(imgURL, function () {
+    qtyProxy?.canvas.renderAll();
+    setLoader(false);
+    updateListOfColors();
+    if (colorChange) qtyProxy?.canvas?.fire('object:modified');
+  }, {crossOrigin: "Anonymous"});
 }
 
 async function convertLogoColor(requestObject) {
@@ -160,16 +175,7 @@ async function convertLogoColor(requestObject) {
       body: requestObject,
     });
     const data = await response.json();
-    const imgURL = apiUrls.convertedImage.concat(data.data);
-    const logoUrl = qtyProxy?.selectedLogo;
-    logoUrl['imgUrl'] = data.data;
-    const activeCanvasObj = qtyProxy?.canvas?.getActiveObjects()[0];
-    activeCanvasObj.setSrc(imgURL, function () {
-      qtyProxy?.canvas.renderAll();
-      setLoader(false);
-      updateListOfColors();
-      qtyProxy?.canvas?.fire('object:modified');
-    });
+    setUpdatedImage(data.data);
   } catch (error) {
     console.log("color change api error!!!");
     alert('Something went wrong please contact admin');
@@ -214,6 +220,46 @@ export function logoDimensionHandler() {
   });
 }
 
+async function removeButtonHandle(event) {
+  qtyProxy['backgroundColorChecked'] = event.target.checked;
+  const reqObject = {
+    fileName: qtyProxy?.selectedLogo?.imgUrl,
+    action: event.target.checked ? 'remove' : 'add',
+    bgRGB: event.target.checked ? '' : qtyProxy?.backgroundColor?.toString()
+  }
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  setLoader(true);
+  try {
+    const response = await fetch(apiUrls.backgroundRemove, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(reqObject),
+    });
+    const data = await response.json();
+    qtyProxy['backgroundColor'] = data?.data?.bgRGB;
+    if (event.target.checked) {
+      qtyProxy['oldColor'] = data?.data?.bgRGB?.toString();
+    } else {
+      const logoUrl = qtyProxy?.selectedLogo;
+      logoUrl['logoColors']?.unshift([...qtyProxy['oldColor'].split(',')]);
+      qtyProxy['newColor'] = [...qtyProxy['oldColor'].split(',')];
+    }
+    setUpdatedImage(data.data.image, false);
+  } catch (error) {
+    console.log('Background color API calling!!');
+    setLoader(false);
+  }
+  // removeBackgroundAPI()
+}
+export function removeBackgroundHandler() {
+  const removeButton = document.getElementById('removeWhiteBg');
+  if (!removeButton) return;
+
+  removeButton.checked = qtyProxy?.backgroundColorChecked || false;
+  removeButton.addEventListener('change', removeButtonHandle);
+}
+
 export function colorContainerHtmlRender() {
   const canvas = qtyProxy?.canvas;
   const activeCanvasObj = canvas?.getActiveObjects()[0];
@@ -252,7 +298,7 @@ export function colorContainerHtmlRender() {
           </div>
           <div class="input-group">
             <input type="checkbox" id="removeWhiteBg" placeholder="" />
-            <label for="removeWhiteBg">Remove White Background</label>
+            <label for="removeWhiteBg">Remove Background</label>
           </div> 
       </div>
     </div>
@@ -260,6 +306,7 @@ export function colorContainerHtmlRender() {
   replaceCurrentElementWithNewId('colorContainer', colorListHtml);
   colorSelectionHandle();
   logoDimensionHandler();
+  removeBackgroundHandler();
 }
 
 const onLogoChangeEvent = () => {

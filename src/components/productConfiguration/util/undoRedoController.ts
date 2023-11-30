@@ -1,4 +1,4 @@
-import { qtyProxy } from "../../../..";
+import {qtyProxy} from "../../../../index";
 
 function updateHistory() {
   let canvas = qtyProxy?.canvas;
@@ -32,14 +32,12 @@ function updateHistory() {
 
     canvasHistory.currentStateIndex = canvasHistory.state.length - 1;
     qtyProxy["updatedHistory"] = canvasHistory;
-    console.log(canvasHistory, "history update ??");
   }
 }
 
 function undo() {
   let canvas = qtyProxy?.canvas;
   let canvasHistory = JSON.parse(JSON.stringify(qtyProxy?.updatedHistory));
-  console.log(canvasHistory.undoFinishedStatus, canvasHistory, "undo");
   if (canvasHistory.currentStateIndex - 1 <= 0) {
     alert(
       "do not do anything anymore, you are going far to the past, before creation, there was nothing"

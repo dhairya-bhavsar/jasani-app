@@ -8,5 +8,6 @@ export const APIVersion = '/api/';
 export const apiUrls = {
     imageConvert: APIEndPoint + APIVersion + 'convert/',
     convertedImage: APIEndPoint + '/media/',
-    imageColorReplace : APIEndPoint + APIVersion + 'fill-color/'
+    imageColorReplace : APIEndPoint + APIVersion + 'fill-color/',
+    backgroundRemove : APIEndPoint + APIVersion + 'background/'
 }
