@@ -1,5 +1,6 @@
-import {qtyProxy} from "../../../../index";
+
 import { errorMessages } from "../../../assets/config";
+import {qtyProxy} from "../../../../index";
 
 function updateHistory() {
   let canvas = qtyProxy?.canvas;
