@@ -569,7 +569,7 @@ button#downloadFullImage {
   align-items: center;
 }
 
-button#zoomOut {
+button#zoomOut, #undo, #redo {
   display: flex;
   flex-direction: column;
   border: none;
