@@ -14,17 +14,17 @@ export function tabHideShow() {
     }
 }
 export function tabController() {
-    document.querySelectorAll(".step-button").forEach((ele) => {
-        ele.addEventListener("click", () => {
-            const active = document.querySelector(".step-button.active");
-            if (active) active.classList.remove("active");
-            ele.classList.add("active");
-            // @ts-ignore
-            qtyProxy['activeTab'] = +ele.name;
-            tabHideShow();
-            saveButtonAction();
-        });
-    });
+    // document.querySelectorAll(".step-button").forEach((ele) => {
+    //     ele.addEventListener("click", () => {
+    //         const active = document.querySelector(".step-button.active");
+    //         if (active) active.classList.remove("active");
+    //         ele.classList.add("active");
+    //         // @ts-ignore
+    //         qtyProxy['activeTab'] = +ele.name;
+    //         tabHideShow();
+    //         saveButtonAction();
+    //     });
+    // });
 
     document.getElementById('nextStepButton').addEventListener("click", () => {
         let id = qtyProxy?.activeTab || 1;
@@ -36,6 +36,7 @@ export function tabController() {
         if (id < 5) qtyProxy["activeTab"] = id;
         tabHideShow();
         saveButtonAction();
+        qtyProxy?.canvas?.discardActiveObject().renderAll();
     });
 }
 
@@ -56,4 +57,22 @@ export function saveButtonAction() {
         alert('Project Save!!!');
     }
     saveButton.addEventListener('click', saveButtonAction);
+}
+
+
+const manualStepClickEventHandler = (event) => {
+    const active = document.querySelector(".step-button.active");
+    if (active) active.classList.remove("active");
+    event.target.classList.add("active");
+    qtyProxy['activeTab'] = +event.target.name;
+    tabHideShow();
+    saveButtonAction();
+    event.target.removeEventListener("click",manualStepClickEventHandler);
+};
+
+export const clickStepBtnHandler = (btnIndex) =>{
+    const step1Btn = document.querySelectorAll(".step-button")[btnIndex];
+    step1Btn.addEventListener("click",manualStepClickEventHandler);
+    //@ts-ignore
+    step1Btn.click();
 }

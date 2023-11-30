@@ -2,6 +2,7 @@
 import { fabric } from "fabric";
 import { clearInputBoxHandler, getElement } from "../../helpers/helper";
 import {qtyProxy} from "../../../index.ts";
+import { clickStepBtnHandler } from "../productConfiguration/util";
 
 export function addTextToCanvasHandler(canvas) {
   const addTextButton = getElement("applyText");
@@ -49,6 +50,7 @@ export const changeFontFamilyHandler = (canvas) => {
       if (activeObject instanceof fabric.Text) {
         activeObject.set("fontFamily", fontType.value);
         selectedTextBoxStyleHelper("fontFamily", activeObject);
+        canvas.fire('object:modified');
       }
       canvas.renderAll();
     });
@@ -72,6 +74,7 @@ export const changeFontSizeHandler = (canvas) => {
     const activeObject = canvas.getActiveObject();
     if (activeObject instanceof fabric.Text) {
       activeObject.set("fontSize", +(event.target as HTMLInputElement).value);
+      canvas.fire('object:modified');
     }
     canvas.renderAll();
   });
@@ -113,6 +116,7 @@ export const fontBoldUnderlineAndItalicHandler = (canvas) => {
       checkBoxesAndLabels.forEach(({ checkBox, label }) => {
         label.classList.toggle("active", checkBox.checked);
       });
+      canvas.fire('object:modified');
     }
 
     canvas.renderAll();
@@ -191,6 +195,7 @@ export const changeTextAlignHandler = (canvas) => {
       if (activeObject instanceof fabric.Text) {
         activeObject.set("textAlign", textAlign.value);
         selectedTextBoxStyleHelper("textAlign", activeObject);
+        canvas.fire('object:modified');
       }
       canvas.renderAll();
     });
@@ -279,6 +284,7 @@ export const canvasSelectEventHandler = (
     const hasSelectedText = e.selected[0]?.text;
     selectedTextBox.style.display = hasSelectedText ? "block" : "none";
     hasSelectedText ? updateFunction(e) : clearFunction();
+    clickStepBtnHandler(2);
   };
 
   canvas.on("selection:updated", handleSelection);

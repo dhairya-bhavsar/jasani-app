@@ -8,6 +8,7 @@ import {
   replaceCurrentElementWithNewId,
   setLoader, uniqBy
 } from "../../../helpers/helper";
+import { clickStepBtnHandler } from ".";
 
 function clearUploadInputValue() {
   document.getElementById('uploadLogo').value = "";
@@ -167,6 +168,7 @@ async function convertLogoColor(requestObject) {
       qtyProxy?.canvas.renderAll();
       setLoader(false);
       updateListOfColors();
+      qtyProxy?.canvas?.fire('object:modified');
     });
   } catch (error) {
     console.log("color change api error!!!");
@@ -265,21 +267,17 @@ const onLogoChangeEvent = () => {
   if (activeCanvasObj && activeCanvasObj.type === 'image') {
     container.classList.remove('hidden');
     colorContainerHtmlRender(activeCanvasObj);
+    clickStepBtnHandler(1);
   } else {
     container.classList.add('hidden');
   }
 };
-
-// const onLogoAddedEvent = (event) => {
-//   console.log("event", (event.target.width * event.target.scaleX), (event.target.height * event.target.scaleY));
-// }
 
 const logoSelectionEventHandler = () => {
   const canvas = qtyProxy?.canvas;
   canvas.on("selection:updated", onLogoChangeEvent);
   canvas.on("selection:created", onLogoChangeEvent);
   canvas.on("selection:cleared", onLogoChangeEvent);
-  // canvas.on('object:added', onLogoAddedEvent);
   canvas.on('object:modified', onLogoChangeEvent);
 };
 
