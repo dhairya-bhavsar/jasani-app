@@ -145,7 +145,7 @@ function updateListOfColors() {
   const index = logoList?.findIndex((el) => el.id === newSelectedLogo.id);
   logoList[index] = newSelectedLogo;
   qtyProxy['logoList'] = logoList;
-  colorContainerHtmlRender(qtyProxy?.canvas?.getActiveObjects()[0]);
+  colorContainerHtmlRender();
 }
 
 async function convertLogoColor(requestObject) {
@@ -212,7 +212,9 @@ export function logoDimensionHandler() {
   });
 }
 
-export function colorContainerHtmlRender(activeCanvasObj) {
+export function colorContainerHtmlRender() {
+  const canvas = qtyProxy?.canvas;
+  const activeCanvasObj = canvas?.getActiveObjects()[0];
   const width = (activeCanvasObj?.getScaledWidth()).toFixed(0)
   const height = (activeCanvasObj?.getScaledHeight()).toFixed(0);
   const logoList = JSON.parse(JSON.stringify(qtyProxy?.logoList));
@@ -264,7 +266,7 @@ const onLogoChangeEvent = () => {
   const container = document.getElementById("colorContainer");
   if (activeCanvasObj && activeCanvasObj.type === 'image') {
     container.classList.remove('hidden');
-    colorContainerHtmlRender(activeCanvasObj);
+    colorContainerHtmlRender();
   } else {
     container.classList.add('hidden');
   }
