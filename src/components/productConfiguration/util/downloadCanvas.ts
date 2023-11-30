@@ -17,11 +17,16 @@ export function DownloadImage(name = "", type = "image", isDownload = true) {
     url = URL.createObjectURL(canvasBlob);
   }
 
-  if (type === "image") {
-    url = canvas.toDataURL({
-      format: downloadImageType,
-    });
+  try {
+    if (type === "image") {
+      url = canvas.toDataURL({
+        format: downloadImageType,
+      });
+    }
+  } catch (error) {
+    alert("something went wrong contact server team!!");
   }
+
 
   if (!isDownload) {
     canvas.setViewportTransform(previousValue);
