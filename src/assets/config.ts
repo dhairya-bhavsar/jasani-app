@@ -11,3 +11,16 @@ export const apiUrls = {
     imageColorReplace : APIEndPoint + APIVersion + 'fill-color/',
     backgroundRemove : APIEndPoint + APIVersion + 'background/'
 }
+
+
+export const errorMessages = {
+    SERVER_ERROR : "something went wrong contact server team!!",
+    PROJECT_SAVED : "Project Save!!!",
+    UNDO_FINISH : "do not do anything anymore, you are going far to the past, before creation, there was nothing",
+    REDO_FINISH : "do not do anything anymore, you do not know what is after the present, do not mess with the future",
+    UPLOAD_FILE : "Please upload file",
+    LOGO_NOT_PROPER: 'Please upload proper logo file!!',
+    LOGO_FILE_GREATER: "File may not be greater than 10 MB",
+    LOGO_FORMATE_ISSUE: "Please upload only this file type: jpg, jpeg, png, pdf, eps, ai format",
+    
+}

@@ -1,4 +1,5 @@
 import {qtyProxy} from "../../../../index";
+import { errorMessages } from "../../../assets/config";
 
 export function tabHideShow() {
     const currentActiveTab = document.querySelector(".tabView.tabShow");
@@ -54,7 +55,7 @@ export function saveButtonAction() {
     saveButton.classList.remove('hidden');
     // TODO: need to check multiple time binding click event.
     saveButtonAction = function save() {
-        alert('Project Save!!!');
+        alert(errorMessages.PROJECT_SAVED);
     }
     saveButton.addEventListener('click', saveButtonAction);
 }

@@ -1,14 +1,14 @@
 // @ts-nocheck
 import { fabric } from "fabric";
-import { clearInputBoxHandler, getElement } from "../../helpers/helper";
 import {qtyProxy} from "../../../index.ts";
 import { clickStepBtnHandler } from "../productConfiguration/util";
+import { clearInputBoxHandler } from "../../helpers/helper.js";
 
 export function addTextToCanvasHandler(canvas) {
-  const addTextButton = getElement("applyText");
+  const addTextButton = document.getElementById("applyText");
 
   addTextButton?.addEventListener("click", () => {
-    let addedText = (getElement("addedText") as HTMLInputElement).value;
+    let addedText = (document.getElementById("addedText") as HTMLInputElement).value;
     if (addedText) {
       const text = new fabric.Textbox(addedText, {
         editable: false,
@@ -31,7 +31,7 @@ export function addTextToCanvasHandler(canvas) {
 }
 
 export const changeFontFamilyHandler = (canvas) => {
-  const fontType = getElement("fontType") as HTMLSelectElement;
+  const fontType = document.getElementById("fontType") as HTMLSelectElement;
 
   const updateDropdpwnValue = (e) => {
     fontType.value = e.selected[0].fontFamily;
@@ -58,7 +58,7 @@ export const changeFontFamilyHandler = (canvas) => {
 };
 
 export const changeFontSizeHandler = (canvas) => {
-  const fontSize = getElement("fontSize") as HTMLInputElement;
+  const fontSize = document.getElementById("fontSize") as HTMLInputElement;
 
   const updateInpuBoxValue = (e) => {
     fontSize.value = e.selected[0].fontSize;
@@ -82,13 +82,13 @@ export const changeFontSizeHandler = (canvas) => {
 
 export const fontBoldUnderlineAndItalicHandler = (canvas) => {
   const styleHelperArray = ["fontStyle", "fontWeight", "textDecoration"];
-  const boldCheckbox = getElement("fontBold") as HTMLInputElement;
-  const italicCheckbox = getElement("fontItalic") as HTMLInputElement;
-  const underlineCheckbox = getElement("fontUnderline") as HTMLInputElement;
+  const boldCheckbox = document.getElementById("fontBold") as HTMLInputElement;
+  const italicCheckbox = document.getElementById("fontItalic") as HTMLInputElement;
+  const underlineCheckbox = document.getElementById("fontUnderline") as HTMLInputElement;
 
-  const boldLabel = getElement("boldFontLabel");
-  const italicLabel = getElement("italicFontLabel");
-  const underlineLabel = getElement("underlineFontLabel");
+  const boldLabel = document.getElementById("boldFontLabel");
+  const italicLabel = document.getElementById("italicFontLabel");
+  const underlineLabel = document.getElementById("underlineFontLabel");
 
   const checkBoxesAndLabels = [
     { checkBox: boldCheckbox, label: boldLabel },
@@ -149,7 +149,7 @@ export const fontBoldUnderlineAndItalicHandler = (canvas) => {
 };
 
 export const changeTextColor = (canvas) => {
-  const textColorInputbox = getElement("textColor") as HTMLInputElement;
+  const textColorInputbox = document.getElementById("textColor") as HTMLInputElement;
 
   const updateInpuBoxValue = (e) => {
     textColorInputbox.value = e.selected[0].fill;
@@ -163,7 +163,7 @@ export const changeTextColor = (canvas) => {
 
   textColorInputbox?.addEventListener("input", () => {
     const activeObject = canvas.getActiveObject();
-    const newColor = (getElement("textColor") as HTMLInputElement).value;
+    const newColor = (document.getElementById("textColor") as HTMLInputElement).value;
 
     if (newColor && activeObject instanceof fabric.Text) {
       activeObject.set("fill", newColor);
@@ -178,7 +178,7 @@ export const changeTextColor = (canvas) => {
 };
 
 export const changeTextAlignHandler = (canvas) => {
-  const textAlign = getElement("textAlign") as HTMLSelectElement;
+  const textAlign = document.getElementById("textAlign") as HTMLSelectElement;
   const updateDropdpwnValue = (e) => {
     textAlign.value = e.selected[0].textAlign;
   };
@@ -207,7 +207,7 @@ export const changeTextAlignHandler = (canvas) => {
  * activeObject : selected textBox
  */
 const selectedTextBoxStyleHelper = (style, activeObject) => {
-  const selectedTextBox = getElement("selectedText") as HTMLInputElement;
+  const selectedTextBox = document.getElementById("selectedText") as HTMLInputElement;
   const styleMap = {
     textAlign: "textAlign",
     fontFamily: "fontFamily",
@@ -241,7 +241,7 @@ export const editTextHandler = (canvas) => {
     "fontWeight",
     "textDecoration",
   ];
-  const selectedTextBox = getElement("selectedText") as HTMLInputElement;
+  const selectedTextBox = document.getElementById("selectedText") as HTMLInputElement;
 
   const addTextToSelectedTextBox = () => {
     const activeObject = canvas.getActiveObject();
@@ -278,7 +278,7 @@ export const canvasSelectEventHandler = (
   updateFunction,
   clearFunction
 ) => {
-  const selectedTextBox = getElement("selectedText");
+  const selectedTextBox = document.getElementById("selectedText");
 
   const handleSelection = (e) => {
     const hasSelectedText = e.selected[0]?.text;

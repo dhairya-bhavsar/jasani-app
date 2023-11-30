@@ -1,10 +1,9 @@
-// @ts-nocheck
+//@ts-nocheck
 import { fabric } from "fabric";
 import { images } from "../../../assets/images";
 import { qtyProxy } from "../../../../index";
 import { IAvailableSections } from "../type";
 import { DownloadImage } from "../util/downloadCanvas.ts";
-import { getElement } from "../../../helpers/helper.ts";
 import { clickStepBtnHandler } from "../util";
 import { initUndoRedoEventHandler } from "../util/undoRedoController";
 
@@ -163,7 +162,7 @@ export const saveImage = (name = "", type = "image") => {
 };
 
 export const clearCanvasHandler = () => {
-  getElement("clearCanvas").addEventListener("click", () => {
+  document.getElementById("clearCanvas").addEventListener("click", () => {
     if (confirm("Are you sure want to clear canvas?")) {
       [...canvas.getObjects()].forEach((element) => {
         if (element.id !== "drawableArea") {
