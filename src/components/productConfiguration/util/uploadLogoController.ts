@@ -1,6 +1,6 @@
 //@ts-nocheck
 import {qtyProxy} from "../../../..";
-import {apiUrls, fileTypeSupport, maxFileSize} from "../../../assets/config";
+import {apiUrls, errorMessages, fileTypeSupport, maxFileSize} from "../../../assets/config";
 import {fabric} from "fabric";
 import {
   compareArr,
@@ -16,7 +16,7 @@ function clearUploadInputValue() {
 
 export async function uploadLogo(event) {
   const files = event.target.files;
-  if (!files || files.length === 0) alert("Please upload file");
+  if (!files || files.length === 0) alert(errorMessages.UPLOAD_FILE);
   if (!validateImage(files[0])) {
     console.log("file unsupported format!!");
     return;
@@ -34,7 +34,7 @@ export async function uploadLogo(event) {
     const data = await response.json();
     const id = "id" + Math.random().toString(16).slice(2);
     if (!data.data.image) {
-      alert('Please upload proper logo file!!');
+      alert(errorMessages.LOGO_NOT_PROPER);
       return
     }
 
@@ -47,7 +47,7 @@ export async function uploadLogo(event) {
     clearUploadInputValue();
   } catch (error) {
     console.log("Convert API issue");
-    alert('Something went wrong please contact admin');
+    alert(errorMessages.SERVER_ERROR);
     setLoader(false);
   }
 }
@@ -59,13 +59,13 @@ function validateImage(file) {
       const size = file.size / 10024 / 10024;
       if (size > maxFileSize) {
         clearUploadInputValue();
-        alert("File may not be greater than 10 MB");
+        alert(errorMessages.LOGO_FILE_GREATER);
         return false;
       }
       return true;
     }
     clearUploadInputValue();
-    alert("Please upload only this file type: jpg, jpeg, png, pdf, eps, ai format");
+    alert(errorMessages.LOGO_FORMATE_ISSUE);
     return false;
   }
   return false;
@@ -172,7 +172,7 @@ async function convertLogoColor(requestObject) {
     });
   } catch (error) {
     console.log("color change api error!!!");
-    alert('Something went wrong please contact admin');
+    alert(errorMessages.SERVER_ERROR);
     setLoader(false);
   }
 }

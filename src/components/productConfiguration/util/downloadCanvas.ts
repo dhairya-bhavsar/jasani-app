@@ -1,4 +1,4 @@
-import { downloadImageType } from "../../../assets/config";
+import { downloadImageType, errorMessages } from "../../../assets/config";
 import { qtyProxy } from "../../../../index";
 
 export function DownloadImage(name = "", type = "image", isDownload = true) {
@@ -24,7 +24,7 @@ export function DownloadImage(name = "", type = "image", isDownload = true) {
       });
     }
   } catch (error) {
-    alert("something went wrong contact server team!!");
+    alert(errorMessages.SERVER_ERROR);
   }
 
 

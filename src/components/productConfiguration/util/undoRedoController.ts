@@ -1,4 +1,5 @@
 import { qtyProxy } from "../../../..";
+import { errorMessages } from "../../../assets/config";
 
 function updateHistory() {
   let canvas = qtyProxy?.canvas;
@@ -41,9 +42,7 @@ function undo() {
   let canvasHistory = JSON.parse(JSON.stringify(qtyProxy?.updatedHistory));
   console.log(canvasHistory.undoFinishedStatus, canvasHistory, "undo");
   if (canvasHistory.currentStateIndex - 1 <= 0) {
-    alert(
-      "do not do anything anymore, you are going far to the past, before creation, there was nothing"
-    );
+    alert(errorMessages.UNDO_FINISH);
     return;
   }
   if (canvasHistory.undoFinishedStatus) {
@@ -68,9 +67,7 @@ function redo() {
   let canvas = qtyProxy?.canvas;
   let canvasHistory = JSON.parse(JSON.stringify(qtyProxy?.updatedHistory));
   if (canvasHistory.currentStateIndex + 1 === canvasHistory.state.length) {
-    alert(
-      "do not do anything anymore, you do not know what is after the present, do not mess with the future"
-    );
+    alert(errorMessages.REDO_FINISH);
     return;
   }
 

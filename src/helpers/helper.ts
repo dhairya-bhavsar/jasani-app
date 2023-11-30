@@ -1,5 +1,7 @@
+import { errorMessages } from "../assets/config";
+
 export const appendElementWithId = (id?: string, content?: any, callbackFn?: () => void) => {
-    if (!content || !id) return alert("Something went wrong please contact admin!");
+    if (!content || !id) return alert(errorMessages.SERVER_ERROR);
     const mainContent = document.getElementById(id);
     if (typeof content === "object") {
         mainContent.appendChild(content);
@@ -11,7 +13,7 @@ export const appendElementWithId = (id?: string, content?: any, callbackFn?: () 
 }
 
 export const replaceCurrentElementWithNewId = (id?: string, content?: any, route?: any, callbackFn?: () => void) => {
-    if (!content || !id) return alert("Something went wrong please contact admin!");
+    if (!content || !id) return alert(errorMessages.SERVER_ERROR);
     const mainContent = document.getElementById(id);
     if (route) localStorage.setItem('previousNode', route);
     if (typeof content === "object") {
@@ -66,10 +68,6 @@ export const clearInputBoxHandler = (id : string) =>{
     (document.getElementById(id) as HTMLInputElement).value = "";
 }
 
-/*
-* id : id of any element you want
-*/
-export const getElement = (id) => document.getElementById(id);
 
 export const setLoader = (isLoading : boolean) => {
     const loader = document.getElementById("loadingSceen");
