@@ -19,6 +19,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
     const product: IProductDetail = products.find((product) => product.sku === props.id);
     const defaultSelectedTechnique: IAvailableTechniques = product.availableTechniques[0];
     qtyProxy["selectedProduct"] = product;
+    qtyProxy["selectedTechnique"] = defaultSelectedTechnique;
 
 
     setTimeout(() => {

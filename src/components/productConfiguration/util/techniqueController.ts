@@ -3,6 +3,7 @@ import {images} from "../../../assets/images";
 import {replaceCurrentElementWithNewId} from "../../../helpers/helper";
 import {qtyChangeHandel} from "./pricingCalculation";
 import {canvasConfigurationChangeHandler} from "../components/canvasController";
+import {qtyProxy} from "../../../../index";
 
 export function brandingImageRender(tech: IAvailableTechniques) {
     const _html = `
@@ -55,6 +56,7 @@ export function assignClickHandlerOnTechnique(product: IProductDetail) {
             // @ts-ignore
             const currentSelectionEle = element.target.closest('.technique-option');
             currentSelectionEle.classList.add('active');
+            qtyProxy['selectedTechnique'] = tech;
             brandingImageRender(tech);
             qtyChangeHandel(tech);
         });
