@@ -5,7 +5,7 @@ export function DownloadImage(name = "", type = "image", isDownload = true) {
   const canvas = qtyProxy.canvas;
   let url = "";
 
-  const drawableArea = qtyProxy?.drawableArea;
+  const drawableArea = canvas.getObjects().find((obj) => obj.id === "drawableArea");
 
   drawableArea.set("stroke", "transparent");
   const previousValue = [...canvas.viewportTransform];

@@ -10,7 +10,8 @@ export function AddEventBackButton() {
         if (!previousNode) {
             window.location.reload()
         }
-        replaceCurrentElementWithNewId('content', routes[previousNode].component,'', routes[previousNode].callbackFunction)
+        replaceCurrentElementWithNewId('content', routes[previousNode].component,'', routes[previousNode].callbackFunction);
+        qtyProxy["activeTab"] = 1;
     });
 }
 

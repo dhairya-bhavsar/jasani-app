@@ -610,7 +610,7 @@ div#available-sections {
   flex-wrap: wrap;
 }
 .text-customisation-main{
-  display: flex;
+  display: none;
   flex-direction: column;
   border: 1px solid black;
   border-radius: 6.4px;
@@ -679,7 +679,6 @@ div#available-sections {
 }
 
 #selectedText {
-  display: none;
   height: auto;
   font-size: 40px;
 }

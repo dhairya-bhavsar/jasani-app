@@ -1,7 +1,7 @@
 
 export const addTextHTMLHandler = () => {
   return `
-        <div class="text-customisation-main">
+        <div class="text-customisation-main" id="textEditorBox">
           <div class="show-selected-text">
               <input type="text" id="selectedText"/>
           </div>

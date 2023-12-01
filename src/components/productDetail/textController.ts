@@ -242,6 +242,7 @@ export const editTextHandler = (canvas) => {
     "textDecoration",
   ];
   const selectedTextBox = document.getElementById("selectedText") as HTMLInputElement;
+  const textEditorBox = document.getElementById("textEditorBox");
 
   const addTextToSelectedTextBox = () => {
     const activeObject = canvas.getActiveObject();
@@ -254,7 +255,7 @@ export const editTextHandler = (canvas) => {
   };
 
   const onDeselectHandler = () => {
-    selectedTextBox.style.display = "none";
+    textEditorBox.style.display = "none";
     clearInputBoxHandler("selectedText");
   };
 
@@ -278,11 +279,11 @@ export const canvasSelectEventHandler = (
   updateFunction,
   clearFunction
 ) => {
-  const selectedTextBox = document.getElementById("selectedText");
+  const textEditorBox = document.getElementById("textEditorBox");
 
   const handleSelection = (e) => {
     const hasSelectedText = e.selected[0]?.text;
-    selectedTextBox.style.display = hasSelectedText ? "block" : "none";
+    textEditorBox.style.display = hasSelectedText ? "flex" : "none";
     hasSelectedText ? updateFunction(e) : clearFunction();
     clickStepBtnHandler(2);
   };
