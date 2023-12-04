@@ -133,6 +133,7 @@ export function canvasConfigurationChangeHandler(brand: IAvailableSections) {
   drawableArea.set(newCoords);
   qtyProxy["drawableArea"] = drawableArea;
   qtyProxy["canvasEditor"] = editor;
+  qtyProxy["selectedBrandArea"] = brand;
 }
 
 // Function to delete selected objects
