@@ -1,5 +1,5 @@
-import * as productData from "../../assets/db/products.json";
-import {IAvailableTechniques, IProductDetail, IProductInputProps} from "./type";
+import * as productData from "../../assets/db/brandings.json";
+import {IAvailableTechniques, IBrandingAreas, IProductDetail, IProductInputProps} from "./type";
 import {TitleComponent} from "../title/title";
 import {images} from "../../assets/images";
 import {CanvasEditor} from "./components";
@@ -17,15 +17,17 @@ const { products } = productData;
 export const ProductConfiguration = (props: IProductInputProps): string => {
     // @ts-ignore
     const product: IProductDetail = products.find((product) => product.sku === props.id);
-    const defaultSelectedTechnique: IAvailableTechniques = product.availableTechniques[0];
+    const defaultSelectedBranding: IBrandingAreas = product?.brandingAreas[0];
+    const defaultSelectedTechnique: IAvailableTechniques = product?.brandingAreas[0]?.availableTechniques[0];
     qtyProxy["selectedProduct"] = product;
     qtyProxy["selectedTechnique"] = defaultSelectedTechnique;
+    qtyProxy["selectedBrandingArea"] = defaultSelectedBranding;
 
 
     setTimeout(() => {
         qtyChangeHandel(defaultSelectedTechnique);
         tabController();
-        techniqueController(defaultSelectedTechnique, product);
+        techniqueController(defaultSelectedBranding, product);
         textEditorInitial();
         deleteSelectedObjects();
         saveImage();
@@ -44,7 +46,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                         <p class="product-sku">${product.sku}</p>
                     </div>
                     <div class="canvas-section">
-                        ${CanvasEditor(defaultSelectedTechnique)}
+                        ${CanvasEditor(defaultSelectedBranding)}
                         <div class="canvas-actions">
                              <button id="zoomIn" class="inputLabel label_space">
                                 <img src="${images['Zoom_in.png']}" alt="${images['Zoom_in.png']}"  class="Zoom_img"/>
@@ -94,25 +96,25 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                             <button class="step-button" name="4">Step 4</button>
                         </div>
                         <div id="1" class="tabView tabShow">
-                          <div class="technique-selector">
-                            <p class="font-bold">Choose technique:</p>
-                            <div class="techniques">
-                              ${product?.availableTechniques.map((el) => {
-                                return `
-                                  <div class="technique-option" id=${el.id}>
-                                    <div class="technique-option-header">
-                                      <p class="font-bold"> ${el.techniqueName} </p>
-                                    </div>
-                                    <div class="technique-option-body">
-                                      <p>${typeof el.maxColor === "number" ? `Max. ${el.maxColor} color(s)` : el.maxColor}</p>
-                                      <p>${el.daysRequire} Days</p>
-                                    </div>
-                                  </div>`}).join(" ")
+                          <p class="font-bold">Choose Branding Area :</p>
+                          <div id="available-sections">
+                            <div class="image-views">
+                                ${product.brandingAreas?.map((item) => {
+                                    return `
+                                        <div class="section-img-container" id=${item.id}>
+                                            <img src=${images[item.path]} alt=${images[item.path]} />
+                                            <div>
+                                                <span>w: ${item.detail_width} - h: ${item.detail_height}</span>
+                                            </div>
+                                        </div>`
+                                    }).join(" ")
                                 }
                             </div>
                           </div>
-                          <p class="font-bold">Choose Branding Area</p>
-                          <div id="available-sections">
+                          <div class="technique-selector">
+                            <p class="font-bold">Choose technique:</p>
+                            <div id="techniquesSelection">
+                            </div>
                           </div>
                         </div>
                         <div id="2" class="tabView tabHide">

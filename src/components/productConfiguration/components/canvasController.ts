@@ -1,11 +1,10 @@
-//@ts-nocheck
-import { fabric } from "fabric";
-import { images } from "../../../assets/images";
-import { qtyProxy } from "../../../../index";
-import { IAvailableSections } from "../type";
-import { DownloadImage } from "../util/downloadCanvas.ts";
-import { clickStepBtnHandler } from "../util";
-import { initUndoRedoEventHandler } from "../util/undoRedoController";
+import {fabric} from "fabric";
+import {images} from "../../../assets/images";
+import {qtyProxy} from "../../../../index";
+import {IBrandingAreas} from "../type";
+import {DownloadImage} from "../util/downloadCanvas";
+import {clickStepBtnHandler} from "../util";
+import {initUndoRedoEventHandler} from "../util/undoRedoController";
 
 let canvas, drawableArea, editor;
 
@@ -59,9 +58,9 @@ export function mouseZoom() {
   });
 }
 
-export function initCanvas(defaultSelectedTechnique) {
+export function initCanvas(defaultSelectedBrandingArea: IBrandingAreas) {
   const initImage =
-    images[defaultSelectedTechnique.availableSections[0].defaultImage];
+    images[defaultSelectedBrandingArea.defaultImage];
   canvas = new fabric.Canvas("productCanvas", {
     selection: false,
     controlsAboveOverlay: true,
@@ -75,18 +74,19 @@ export function initCanvas(defaultSelectedTechnique) {
 
   // Created the drawable area.
   editor = new fabric.Rect({
-    top: defaultSelectedTechnique.availableSections[0].top,
-    left: defaultSelectedTechnique.availableSections[0].left,
-    width: defaultSelectedTechnique.availableSections[0].width,
-    height: defaultSelectedTechnique.availableSections[0].height,
+    top: +defaultSelectedBrandingArea.top,
+    left: +defaultSelectedBrandingArea.left,
+    width: defaultSelectedBrandingArea.width,
+    height: defaultSelectedBrandingArea.height,
   });
 
   drawableArea = new fabric.Rect({
+    // @ts-ignore
     id: "drawableArea",
-    top: defaultSelectedTechnique.availableSections[0].top,
-    left: defaultSelectedTechnique.availableSections[0].left,
-    width: defaultSelectedTechnique.availableSections[0].width,
-    height: defaultSelectedTechnique.availableSections[0].height,
+    top: +defaultSelectedBrandingArea.top,
+    left: +defaultSelectedBrandingArea.left,
+    width: defaultSelectedBrandingArea.width,
+    height: defaultSelectedBrandingArea.height,
     fill: "transparent",
     stroke: "red",
     strokeWidth: 1,
@@ -100,7 +100,7 @@ export function initCanvas(defaultSelectedTechnique) {
   canvas.add(drawableArea);
   mouseZoom();
 
-  const canvasHistory = {
+  qtyProxy["initialHistory"] = {
     state: [
       {
         canvasJson: JSON.stringify(canvas.toJSON(["id", "selectable"])),
@@ -113,12 +113,10 @@ export function initCanvas(defaultSelectedTechnique) {
     undoFinishedStatus: true,
     redoFinishedStatus: true,
   };
-
-  qtyProxy["initialHistory"] = canvasHistory;
   initUndoRedoEventHandler();
 }
 
-export function canvasConfigurationChangeHandler(brand: IAvailableSections) {
+export function canvasConfigurationChangeHandler(brand: IBrandingAreas) {
   canvas?.overlayImage?.setSrc(
     images[brand.defaultImage],
     canvas.renderAll.bind(canvas)
@@ -151,7 +149,7 @@ export const deleteSelectedObjects = () => {
 };
 
 export const saveImage = (name = "", type = "image") => {
-  name = Date.now();
+  name = Date.now().toString();
   const saveButton = document.getElementById("downloadFullImage");
   if (!saveButton) return;
 
@@ -172,7 +170,7 @@ export const clearCanvasHandler = () => {
       initUndoRedoEventHandler();
       canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
       document
-        .getElementById(qtyProxy?.selectedProduct?.availableTechniques[0]?.id)
+        .getElementById(qtyProxy?.selectedProduct?.brandingAreas[0]?.id)
         .click();
       clickStepBtnHandler(0);
     }
