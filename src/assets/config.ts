@@ -22,6 +22,7 @@ export const errorMessages = {
     LOGO_NOT_PROPER: 'Please upload proper logo file!!',
     LOGO_FILE_GREATER: "File may not be greater than 10 MB",
     LOGO_FORMATE_ISSUE: "Please upload only this file type: jpg, jpeg, png, pdf, eps, ai format",
+    OBJ_NOT_SELECTED: "Please select image or text you want to align"
 }
 
 export const Techniques = {

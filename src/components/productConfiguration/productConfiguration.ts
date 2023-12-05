@@ -7,7 +7,7 @@ import {qtyChangeHandel, tabController} from "./util";
 import {techniqueController} from "./util/techniqueController";
 import {addTextHTMLHandler} from "../productDetail/textCustomisationBox";
 import {textEditorInitial} from "./productConfigurationController";
-import {clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components/canvasController";
+import {alignObjectHandler, clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components/canvasController";
 import {initUploadLogoButton} from "./util/uploadLogoController";
 import { initialisePopupFunctions } from "./util/popupController";
 import { qtyProxy } from "../../..";
@@ -32,6 +32,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
         clearCanvasHandler();
         initUploadLogoButton();
         initialisePopupFunctions();
+        alignObjectHandler();
     }, 100)
 
     return `
@@ -70,6 +71,16 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                                 <img src="${images['recycle_bin.png']}" alt="${images["Save.png"]}" class="recycle_bin_img"/>
                                 Delete
                              </button>
+                             <div class="objectAlign">
+                                <select id="activeObjAlign">
+                                    <option value="align" selected disabled>Align</option>
+                                    <option value="top">Top</option>
+                                    <option value="bottom">Bottom</option>
+                                    <option value="left">Left</option>
+                                    <option value="right">Right</option>
+                                    <option value="center">Center</option>
+                                </select>
+                             </div>
                         </div>
                     </div>
                 </div>

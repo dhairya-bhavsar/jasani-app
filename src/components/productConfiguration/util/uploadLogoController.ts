@@ -211,11 +211,13 @@ export function logoDimensionHandler() {
   width.addEventListener('change', (event) => {
     const value = +event.target.value;
     activeCanvasObj.scaleToWidth(value);
+    height.value = Math.round(activeCanvasObj.getScaledHeight());
     canvas.renderAll();
   });
   height.addEventListener('change', (event) => {
     const value = +event.target.value;
     activeCanvasObj.scaleToHeight(value);
+    width.value = Math.round(activeCanvasObj.getScaledWidth());
     canvas.renderAll();
   });
 }
