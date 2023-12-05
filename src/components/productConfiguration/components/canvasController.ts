@@ -9,7 +9,7 @@ import {initUndoRedoEventHandler} from "../util/undoRedoController";
 let canvas, drawableArea, editor;
 
 export function mouseZoom() {
-  document.getElementById("zoomIn").addEventListener("click", (opt) => {
+  document.getElementById("zoomIn").addEventListener("click", () => {
     let zoom = canvas.getZoom();
     zoom *= 0.999 ** -20;
     if (zoom > 3) zoom = 3;
@@ -38,14 +38,14 @@ export function mouseZoom() {
 
   let isPanning = false;
 
-  canvas.on("mouse:down", function (event) {
+  canvas.on("mouse:down", function () {
     if (!canvas.getActiveObject()) {
       isPanning = true;
       canvas.defaultCursor = "grabbing"; // Change cursor to indicate panning
     }
   });
 
-  canvas.on("mouse:up", function (event) {
+  canvas.on("mouse:up", function () {
     isPanning = false;
     canvas.defaultCursor = "grab"; // Restore default cursor
   });
@@ -148,7 +148,7 @@ export const deleteSelectedObjects = () => {
   });
 };
 
-export const saveImage = (name = "", type = "image") => {
+export const saveImage = (name = "") => {
   name = Date.now().toString();
   const saveButton = document.getElementById("downloadFullImage");
   if (!saveButton) return;

@@ -1,4 +1,4 @@
-import {IAvailableTechniques, IBrandingAreas} from "../type";
+import {IBrandingAreas} from "../type";
 import {initCanvas} from "./canvasController";
 
 export const CanvasEditor = (defaultSelectedTechnique: IBrandingAreas) => {
