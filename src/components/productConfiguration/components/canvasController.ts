@@ -5,7 +5,7 @@ import {IBrandingAreas} from "../type";
 import {DownloadImage} from "../util/downloadCanvas";
 import {clickStepBtnHandler} from "../util";
 import {initUndoRedoEventHandler} from "../util/undoRedoController";
-import { initAligningGuidelines } from "../util/snappingGuidlines";
+// import { initAligningGuidelines } from "../util/snappingGuidlines";
 import { errorMessages } from "../../../assets/config";
 
 let canvas, drawableArea, editor;
