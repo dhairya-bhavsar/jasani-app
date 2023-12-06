@@ -24,6 +24,9 @@ export async function uploadLogo(event) {
 
   const requestObj = new FormData();
   requestObj.append("file", files[0]);
+  if (qtyProxy?.selectedTechnique?.techniqueName === "Laser Engraving") {
+    requestObj.append("removeBackground", "True")
+  }
   setLoader(true);
   try {
     const response = await fetch(apiUrls.imageConvert, {
@@ -45,6 +48,21 @@ export async function uploadLogo(event) {
       { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
     ];
     clearUploadInputValue();
+    if (qtyProxy?.selectedTechnique?.techniqueName === "Laser Engraving") {
+      qtyProxy['selectedLogo'] = qtyProxy?.logoList[0];
+      qtyProxy["oldColor"] = data.data.colors[0].toString();
+      qtyProxy["newColor"] = [192,192,192];
+      const objToSend = {
+        fileName: data.data.image,
+        initialColor: qtyProxy?.oldColor,
+        finalColor: `${qtyProxy.newColor[0]},${qtyProxy.newColor[1]},${qtyProxy.newColor[2]}`,
+        transparency: false,
+        fillType: "single",
+      };
+
+      const jsonString = JSON.stringify(objToSend);
+      await convertLogoColor(jsonString);
+    }
   } catch (error) {
     console.log("Convert API issue");
     alert(errorMessages.SERVER_ERROR);
@@ -77,7 +95,7 @@ const addApiImageToCanvas = (url, id) => {
   fabric.Image.fromURL(imgURL, function (img) {
     if (canvas) {
       const image = img.set({
-        padding: 6,
+        padding: 2,
         objectCaching: false,
         id: id,
       });
@@ -107,6 +125,7 @@ const addApiImageToCanvas = (url, id) => {
 
       canvas.add(image);
       setLoader(false);
+      canvas.setActiveObject(image);
       canvas.renderAll();
     }
   }, {crossOrigin: "Anonymous"});
@@ -255,7 +274,10 @@ async function removeButtonHandle(event) {
 export function removeBackgroundHandler() {
   const removeButton = document.getElementById('removeWhiteBg');
   if (!removeButton) return;
-
+  if (qtyProxy?.selectedTechnique?.techniqueName === "Laser Engraving") {
+    removeButton.disabled = true;
+    return;
+  }
   removeButton.checked = qtyProxy?.backgroundColorChecked || false;
   removeButton.addEventListener('change', removeButtonHandle);
 }
@@ -282,7 +304,7 @@ export function colorContainerHtmlRender() {
                   <input type="radio" id="color-${index}" class="logo-color" name="color-group" value="${[color[0], color[1], color[2]]}">
                   <label for="color-${index}" style="background-color: ${rgbColor}"></label>
                   <div class="replacedByColor hidden" id="replacedBy-${index}">
-                   <input type="color" id="replacedBy-color-${index}"/>
+                   <input type="color" id="replacedBy-color-${index}" value="#000002"/>
                   </div>
               </div>` ;
             }).join(" ")}   
