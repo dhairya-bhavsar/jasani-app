@@ -812,8 +812,10 @@ div#available-sections {
 }
 
 .color-selector input[type="radio"]:disabled+label {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
+  border: 1px solid;
+  box-shadow: none;
 }
 
 input[type="checkbox"]:disabled {
@@ -849,6 +851,12 @@ input[type="checkbox"]:disabled {
   flex-direction: column;
   gap: 20px;
   justify-content: start;
+}
+
+.bg-warning {
+  background-color: #ffc107;
+  padding: 12px;
+  margin-bottom: 16px;
 }
 
 
@@ -898,14 +906,15 @@ input[type="checkbox"]:disabled {
   }
 }
 
+/*// TODO: display flex for the position alignment*/
 .objectAlign{
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
 }
 
 .objectAlign select{
-  padding: 0.5rem;
-  font-size: 19px;
+  padding: 4px;
+  font-size: 12px;
 }

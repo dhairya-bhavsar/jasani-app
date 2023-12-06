@@ -50,7 +50,41 @@
                   "price_per_unit_cost": "1.5"
                 }
               ]
-            },{
+            },
+            {
+              "techniqueName": "Blind Debossing",
+              "isRecommended": false,
+              "maxColor": "Full",
+              "daysRequire": 5,
+              "id" : "t1100",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            },
+            {
               "techniqueName": "Sublimation Printing",
               "isRecommended": false,
               "maxColor": "Full color",

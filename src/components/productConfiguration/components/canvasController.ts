@@ -116,7 +116,8 @@ export function initCanvas(defaultSelectedBrandingArea: IBrandingAreas) {
     redoFinishedStatus: true,
   };
   initUndoRedoEventHandler();
-  initAligningGuidelines();
+  // TODO: Alignment Code changes for the logo and Text placement
+  // initAligningGuidelines();
 }
 
 export function canvasConfigurationChangeHandler(brand: IBrandingAreas) {

@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["es6", "DOM", "DOM.Iterable", "esnext"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "es2016"],
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": ".",
@@ -12,7 +12,7 @@
     "forceConsistentCasingInFileNames": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -22,7 +22,7 @@
     "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
   },
   "include": ["**/*.ts,**/*.json"],
   "exclude": ["node_modules", "dist"],

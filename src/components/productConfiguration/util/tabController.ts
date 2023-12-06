@@ -16,17 +16,19 @@ export function tabHideShow() {
     }
 }
 export function tabController() {
-    document.querySelectorAll(".step-button").forEach((ele) => {
-        ele.addEventListener("click", () => {
-            const active = document.querySelector(".step-button.active");
-            if (active) active.classList.remove("active");
-            ele.classList.add("active");
-            // @ts-ignore
-            qtyProxy['activeTab'] = +ele.name;
-            tabHideShow();
-            saveButtonAction();
-        });
-    });
+    // TODO: Tab selection step changes.
+
+    // document.querySelectorAll(".step-button").forEach((ele) => {
+    //     ele.addEventListener("click", () => {
+    //         const active = document.querySelector(".step-button.active");
+    //         if (active) active.classList.remove("active");
+    //         ele.classList.add("active");
+    //         // @ts-ignore
+    //         qtyProxy['activeTab'] = +ele.name;
+    //         tabHideShow();
+    //         saveButtonAction();
+    //     });
+    // });
 
     document.getElementById('nextStepButton').addEventListener("click", () => {
         let id = qtyProxy?.activeTab || 1;
@@ -52,7 +54,7 @@ export function saveButtonAction() {
     }
     nextButton.classList.add('hidden');
     saveButton.classList.remove('hidden');
-    
+
     const saveButtonAction = function save() {
         const data = findLogoCordsHelper();
         alert(errorMessages.PROJECT_SAVED);

@@ -9,6 +9,7 @@ import {
   setLoader, uniqBy
 } from "../../../helpers/helper";
 import { clickStepBtnHandler } from ".";
+import {CheckTechniqueSingleColor, TechniqueBaseSingleColor} from "./techniqueBaseOperations";
 
 function clearUploadInputValue() {
   document.getElementById('uploadLogo').value = "";
@@ -24,7 +25,7 @@ export async function uploadLogo(event) {
 
   const requestObj = new FormData();
   requestObj.append("file", files[0]);
-  if (qtyProxy?.selectedTechnique?.techniqueName === "Laser Engraving") {
+  if (CheckTechniqueSingleColor()) {
     requestObj.append("removeBackground", "True")
   }
   setLoader(true);
@@ -45,13 +46,18 @@ export async function uploadLogo(event) {
     const preLogoList = qtyProxy?.logoList ?? [];
     qtyProxy["logoList"] = [
       ...preLogoList,
-      { id: id, logoColors: data.data.colors, imgUrl: data.data.image },
+      { id: id,
+        logoColors: data.data.colors,
+        imgUrl: data.data.image,
+        isBackground: data.data.isBackground,
+        isGradient: data.data.isGradient
+      },
     ];
     clearUploadInputValue();
-    if (qtyProxy?.selectedTechnique?.techniqueName === "Laser Engraving") {
+    if (CheckTechniqueSingleColor()) {
       qtyProxy['selectedLogo'] = qtyProxy?.logoList[0];
       qtyProxy["oldColor"] = data.data.colors[0].toString();
-      qtyProxy["newColor"] = [192,192,192];
+      qtyProxy["newColor"] = TechniqueBaseSingleColor();
       const objToSend = {
         fileName: data.data.image,
         initialColor: qtyProxy?.oldColor,
@@ -108,15 +114,15 @@ const addApiImageToCanvas = (url, id) => {
           Math.min(
             editableArea.width / img.width,
             editableArea.height / img.height
-          ) - 0.05;
+          );
         img.scale(scale);
       }
 
       // Calculate top and left positions to center the image within the drawable area
       const top =
-        editableArea.top + (editableArea.height - img.height * img.scaleY) / 2;
+        editableArea.top + (editableArea.height - img.getScaledHeight()) / 2;
       const left =
-        editableArea.left + (editableArea.width - img.width * img.scaleX) / 2;
+        editableArea.left + (editableArea.width - img.getScaledWidth()) / 2;
 
       image.set({
         top: top,
@@ -135,6 +141,7 @@ export function colorSelectionHandle() {
   const colorElement = document.querySelectorAll('.logo-color');
   if (!colorElement) return;
   colorElement.forEach((el, index) => {
+    el.disabled = CheckTechniqueSingleColor();
     el.addEventListener('click', () => {
       const previousSelection = document.querySelector('.replacedByColor.show');
       if (previousSelection) {
@@ -229,14 +236,20 @@ export function logoDimensionHandler() {
   const height = document.getElementById('logoHeight');
   width.addEventListener('change', (event) => {
     const value = +event.target.value;
+    const previousValue = [...canvas.viewportTransform];
+    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
     activeCanvasObj.scaleToWidth(value);
     height.value = Math.round(activeCanvasObj.getScaledHeight());
+    canvas.setViewportTransform(previousValue);
     canvas.renderAll();
   });
   height.addEventListener('change', (event) => {
     const value = +event.target.value;
+    const previousValue = [...canvas.viewportTransform];
+    canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
     activeCanvasObj.scaleToHeight(value);
     width.value = Math.round(activeCanvasObj.getScaledWidth());
+    canvas.setViewportTransform(previousValue);
     canvas.renderAll();
   });
 }
@@ -276,12 +289,24 @@ async function removeButtonHandle(event) {
 export function removeBackgroundHandler() {
   const removeButton = document.getElementById('removeWhiteBg');
   if (!removeButton) return;
-  if (qtyProxy?.selectedTechnique?.techniqueName === "Laser Engraving") {
+  if (CheckTechniqueSingleColor()) {
     removeButton.disabled = true;
     return;
   }
   removeButton.checked = qtyProxy?.backgroundColorChecked || false;
   removeButton.addEventListener('change', removeButtonHandle);
+}
+
+export function checkAllowedLogo() {
+  const activeObject = qtyProxy?.canvas?.getActiveObject();
+  const totalColor: number = qtyProxy?.logoList?.find((logo) => logo.id === activeObject?.id)?.logoColors?.length || 0;
+  let _html = `<div> </div>`;
+  if(totalColor && totalColor > 4 && qtyProxy?.selectedTechnique?.techniqueName === "Screen Printing") {
+    _html = `<div class="bg-warning">
+            This logo has ${totalColor} colors but only 4 colors is allowed in ${qtyProxy?.selectedTechnique?.techniqueName}.
+        </div>`;
+  }
+  replaceCurrentElementWithNewId('toastMessage', _html);
 }
 
 export function colorContainerHtmlRender() {
@@ -303,7 +328,8 @@ export function colorContainerHtmlRender() {
             const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
             return `
                <div class="color-selector">
-                  <input type="radio" id="color-${index}" class="logo-color" name="color-group" value="${[color[0], color[1], color[2]]}">
+                  <input type="radio" id="color-${index}"                   
+                  class="logo-color" name="color-group" value="${[color[0], color[1], color[2]]}">
                   <label for="color-${index}" style="background-color: ${rgbColor}"></label>
                   <div class="replacedByColor hidden" id="replacedBy-${index}">
                    <input type="color" id="replacedBy-color-${index}" value="#000002"/>
@@ -333,6 +359,18 @@ export function colorContainerHtmlRender() {
   removeBackgroundHandler();
 }
 
+export function checkBackGroundRemove() {
+  const activeObject = qtyProxy?.canvas?.getActiveObject();
+  const hasBackGround = !qtyProxy?.logoList?.find((logo) => logo.id === activeObject?.id)?.isBackground;
+  const removeButton = document.getElementById('removeWhiteBg')
+  if (!removeButton) return;
+  if (CheckTechniqueSingleColor()) {
+    removeButton.disabled = true;
+    return;
+  }
+  removeButton.disabled = hasBackGround
+}
+
 const onLogoChangeEvent = () => {
   const canvas = qtyProxy?.canvas;
   const activeCanvasObj = canvas?.getActiveObjects()[0];
@@ -344,6 +382,8 @@ const onLogoChangeEvent = () => {
   } else {
     container.classList.add('hidden');
   }
+  checkAllowedLogo();
+  checkBackGroundRemove();
 };
 
 const logoSelectionEventHandler = () => {

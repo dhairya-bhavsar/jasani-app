@@ -1,3 +1,4 @@
+// @ts-ignore
 import * as productData from "../../assets/db/brandings.json";
 import {IAvailableTechniques, IBrandingAreas, IProductDetail, IProductInputProps} from "./type";
 import {TitleComponent} from "../title/title";
@@ -74,8 +75,9 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                                 Delete
                              </button>
                              <div class="objectAlign">
+                                <img src="${images['position.png']}" alt="${images["position.png"]}" class="recycle_bin_img"/>
                                 <select id="activeObjAlign">
-                                    <option value="align" selected disabled>Align</option>
+                                    <option value="align" selected disabled>Align Position</option>
                                     <option value="top">Top</option>
                                     <option value="bottom">Bottom</option>
                                     <option value="left">Left</option>
@@ -135,6 +137,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                             <label for="uploadLogo" class="inputLabel">Upload</label>
                             <input id="uploadLogo" type="file" />
                           </div>
+                          <div id="toastMessage"> </div>
                           <div id="colorContainer" class="hidden">
                           </div>
                         </div>

@@ -22,7 +22,8 @@ import BagFront230_30 from "./bag_front_230_30.png";
 import Bottle_150_40 from "./bottle_150_40.png"
 import Bottle_90_60 from "./bottle_90_60.png";
 import Undo from "./Undo.png";
-import Redo from "./Redo.png"
+import Redo from "./Redo.png";
+import Position from "./position.png";
 
 
 export const images = {
@@ -48,5 +49,6 @@ export const images = {
     "bottle_150_40.png": Bottle_150_40,
     "bottle_90_60.png": Bottle_90_60,
     "Undo.png": Undo,
-    "Redo.png": Redo
+    "Redo.png": Redo,
+    "position.png": Position
 };
