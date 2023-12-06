@@ -3,6 +3,7 @@ import { fabric } from "fabric";
 import {qtyProxy} from "../../../index.ts";
 import { clickStepBtnHandler } from "../productConfiguration/util";
 import { clearInputBoxHandler } from "../../helpers/helper.js";
+import { applyGoogleFontHandler } from "../productConfiguration/util/googleFontIntigration.js";
 
 export function addTextToCanvasHandler(canvas) {
   const addTextButton = document.getElementById("applyText");
@@ -22,9 +23,8 @@ export function addTextToCanvasHandler(canvas) {
       text.set({
         top: top,
         left: left
-      })
+      });
       clearInputBoxHandler("addedText");
-      text.center();
       canvas.add(text);
     }
   });
@@ -33,28 +33,24 @@ export function addTextToCanvasHandler(canvas) {
 export const changeFontFamilyHandler = (canvas) => {
   const fontType = document.getElementById("fontType") as HTMLSelectElement;
 
+  if (!fontType) return;
+
   const updateDropdpwnValue = (e) => {
-    fontType.value = e.selected[0].fontFamily;
+    fontType.value = e.selected[0].fontFamily.replaceAll(" ", "-");
   };
 
   const onDeselectHandler = () => {
-    fontType.value = "Times New Roman";
+    fontType.value = "Times-New-Roman";
   };
 
   canvasSelectEventHandler(canvas, updateDropdpwnValue, onDeselectHandler);
 
-  if (fontType) {
-    fontType.addEventListener("change", () => {
-      const activeObject = canvas.getActiveObject();
-
-      if (activeObject instanceof fabric.Text) {
-        activeObject.set("fontFamily", fontType.value);
-        selectedTextBoxStyleHelper("fontFamily", activeObject);
-        canvas.fire('object:modified');
-      }
-      canvas.renderAll();
-    });
-  }
+  fontType.addEventListener("change", () => {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject instanceof fabric.Text) {
+      applyGoogleFontHandler(fontType.value.replaceAll("-", " "),activeObject);
+    }
+  });
 };
 
 export const changeFontSizeHandler = (canvas) => {
@@ -206,7 +202,7 @@ export const changeTextAlignHandler = (canvas) => {
  * style : the name of the CSS property you need to update
  * activeObject : selected textBox
  */
-const selectedTextBoxStyleHelper = (style, activeObject) => {
+export const selectedTextBoxStyleHelper = (style, activeObject) => {
   const selectedTextBox = document.getElementById("selectedText") as HTMLInputElement;
   const styleMap = {
     textAlign: "textAlign",

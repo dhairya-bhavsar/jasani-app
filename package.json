@@ -12,20 +12,30 @@
   "dependencies": {
     "@types/fabric": "^5.3.5",
     "fabric": "^5.3.0",
-    "node-sass": "^9.0.0"
+    "node-sass": "^9.0.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@parcel/transformer-typescript-tsc": "^2.7.0",
     "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
     "eslint": "^8.53.0",
     "eslint-config-semistandard": "^17.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
+    "events": "^3.3.0",
     "open-cli": "^7.0.1",
+    "os-browserify": "^0.3.0",
     "parcel": "^2.9.3",
-    "typescript": "^5.0.2"
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "punycode": "^1.4.1",
+    "stream-browserify": "^3.0.0",
+    "timers-browserify": "^2.0.12",
+    "typescript": "^5.0.2",
+    "util": "^0.12.5"
   },
   "keywords": [
     "vanilla",
