@@ -19,7 +19,7 @@ export interface IPricing {
 
 export interface IAvailableTechniques {
     techniqueName: string;
-    availableSections: IAvailableSections[];
+    availableSections?: IAvailableSections[];
     isRecommended: boolean;
     maxColor: number;
     daysRequire: number;
@@ -27,12 +27,27 @@ export interface IAvailableTechniques {
     pricing: IPricing[]
 }
 
+export interface IBrandingAreas {
+    areaName: string;
+    path: string;
+    defaultImage: string;
+    top: string | number;
+    left: string | number;
+    detail_height: number;
+    detail_width: number;
+    height: number;
+    width: number;
+    id: string;
+    availableTechniques: IAvailableTechniques[]
+}
+
 export interface IProductDetail {
     name: string;
     price: number;
     sku: string;
     image: string;
-    availableTechniques: IAvailableTechniques[]
+    availableTechniques?: IAvailableTechniques[];
+    brandingAreas?: IBrandingAreas[];
 }
 
 export interface IProductProps {

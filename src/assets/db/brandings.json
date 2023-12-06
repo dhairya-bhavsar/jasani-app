@@ -1,0 +1,814 @@
+{
+  "products": [
+    {
+      "name": "Bottle",
+      "price": 12.99,
+      "sku": "SKU001",
+      "image": "bottle_default.jpg",
+      "brandingAreas": [
+        {
+          "areaName": "Bottle Center",
+          "path": "bottle_150_40.png",
+          "defaultImage": "bottle_default.jpg",
+          "top": 260,
+          "left": 225,
+          "detail_height": 300,
+          "detail_width": 80,
+          "height": 150,
+          "width": 40,
+          "id": "221",
+          "availableTechniques": [
+            {
+              "techniqueName": "Laser Engraving",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t1",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            },{
+              "techniqueName": "Sublimation Printing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t3",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "200",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "4"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "areaName": "Bottle Straight",
+          "path": "bottle_90_60.png",
+          "defaultImage": "bottle_default.jpg",
+          "top": 300,
+          "left": 200,
+          "detail_height": 120,
+          "detail_width": 180,
+          "height": 60,
+          "width": 90,
+          "id": "222",
+          "availableTechniques": [
+            {
+              "techniqueName": "Laser Engraving",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t1",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "T-Shirt",
+      "price": 19.99,
+      "sizes": ["S", "M", "L", "XL"],
+      "sku": "SKU002",
+      "image": "tshirt_default.jpg",
+      "brandingAreas": [
+        {
+          "areaName": "Top Right Corner",
+          "path": "sp_110_110.jpg",
+          "defaultImage": "plain_tshirt_front.jpg",
+          "top": 120,
+          "left": 240,
+          "detail_height": 220,
+          "detail_width": 220,
+          "height": 110,
+          "width": 110,
+          "id": "111",
+          "availableTechniques": [
+            {
+              "techniqueName": "Screen Printing",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t1",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Digital Transfer Printing",
+              "isRecommended": false,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t2",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Embroidery",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 7,
+              "id" : "t4",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "500",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "15"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "13"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "10"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "areaName": "Front Full Area",
+          "path": "sp_front_260_380.jpg",
+          "defaultImage": "plain_tshirt_front.jpg",
+          "top": 140,
+          "left": 176,
+          "detail_height": 380,
+          "detail_width": 260,
+          "height": 280,
+          "width": 160,
+          "id": "112",
+          "availableTechniques": [
+            {
+              "techniqueName": "Digital Transfer Printing",
+              "isRecommended": false,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t2",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Digital UV Printing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t3",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "150",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "areaName": "Back Full Area",
+          "path": "sp_back_260_380.jpg",
+          "defaultImage": "sp_back_default.jpg",
+          "top": 140,
+          "left": 176,
+          "detail_height": 380,
+          "detail_width": 260,
+          "height": 280,
+          "width": 160,
+          "id": "113",
+          "availableTechniques": [
+            {
+              "techniqueName": "Screen Printing",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t1",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Digital Transfer Printing",
+              "isRecommended": false,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t2",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "areaName": "Front Half Center",
+          "path": "sp_front_280_230.jpg",
+          "defaultImage": "plain_tshirt_front.jpg",
+          "top": 120,
+          "left": 176,
+          "detail_height": 230,
+          "detail_width": 280,
+          "height": 140,
+          "width": 160,
+          "id": "114",
+          "availableTechniques": [
+            {
+              "techniqueName": "Digital Transfer Printing",
+              "isRecommended": false,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t2",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "125",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Digital UV Printing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t3",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "150",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Embroidery",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 7,
+              "id" : "t4",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "500",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "15"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "13"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "10"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bag",
+      "price": 29.99,
+      "sku": "SKU004",
+      "image": "bag_pack.jpg",
+      "brandingAreas": [
+        {
+          "areaName": "Front Bottom",
+          "path": "front_180_90.jpg",
+          "defaultImage": "front_bag_default.jpg",
+          "top": 370,
+          "left": 155,
+          "detail_height": 180,
+          "detail_width": 360,
+          "height": 90,
+          "width": 180,
+          "id": "117",
+          "availableTechniques": [
+            {
+              "techniqueName": "Doming Sticker Printing",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t1",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "100",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Gold Foil Debossing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t3",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "300",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "4"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Silver Foil Debossing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t4",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "300",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "4"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "areaName": "Front Center",
+          "path": "bag_front_230_30.png",
+          "defaultImage": "front_bag_default.jpg",
+          "top": 315,
+          "left": 120,
+          "detail_height": 60,
+          "detail_width": 460,
+          "height": 30,
+          "width": 230,
+          "id": "118",
+          "availableTechniques": [
+            {
+              "techniqueName": "Gold Foil Debossing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t3",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "300",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "4"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Silver Foil Debossing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t4",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "300",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "4"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "areaName": "Front Top",
+          "path": "bag_front_230_100.png",
+          "defaultImage": "front_bag_default.jpg",
+          "top": 200,
+          "left": 120,
+          "detail_height": 200,
+          "detail_width": 460,
+          "height": 100,
+          "width": 230,
+          "id": "120",
+          "availableTechniques": [
+            {
+              "techniqueName": "Doming Sticker Printing",
+              "isRecommended": true,
+              "maxColor": 5,
+              "daysRequire": 2,
+              "id" : "t1",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "100",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "2"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "1"
+                }
+              ]
+            },
+            {
+              "techniqueName": "Silver Foil Debossing",
+              "isRecommended": false,
+              "maxColor": "Full color",
+              "daysRequire": 2,
+              "id" : "t4",
+              "pricing": [
+                {
+                  "min_qty": "1",
+                  "max_qty": "99",
+                  "price_fixed_cost": "300",
+                  "price_per_unit_cost": "0"
+                },
+                {
+                  "min_qty": "100",
+                  "max_qty": "149",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "4"
+                },
+                {
+                  "min_qty": "150",
+                  "max_qty": "200",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3.5"
+                },
+                {
+                  "min_qty": "200",
+                  "max_qty": "",
+                  "price_fixed_cost": "0",
+                  "price_per_unit_cost": "3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
-import {IAvailableTechniques} from "../type";
+import {IBrandingAreas} from "../type";
 import {initCanvas} from "./canvasController";
 
-export const CanvasEditor = (defaultSelectedTechnique: IAvailableTechniques) => {
+export const CanvasEditor = (defaultSelectedTechnique: IBrandingAreas) => {
 
     setTimeout(() => {
         initCanvas(defaultSelectedTechnique);

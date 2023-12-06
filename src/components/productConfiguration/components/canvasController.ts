@@ -1,18 +1,17 @@
-//@ts-nocheck
-import { fabric } from "fabric";
-import { images } from "../../../assets/images";
-import { qtyProxy } from "../../../../index";
-import { IAvailableSections } from "../type";
-import { DownloadImage } from "../util/downloadCanvas.ts";
-import { clickStepBtnHandler } from "../util";
-import { initUndoRedoEventHandler } from "../util/undoRedoController";
+import {fabric} from "fabric";
+import {images} from "../../../assets/images";
+import {qtyProxy} from "../../../../index";
+import {IBrandingAreas} from "../type";
+import {DownloadImage} from "../util/downloadCanvas";
+import {clickStepBtnHandler} from "../util";
+import {initUndoRedoEventHandler} from "../util/undoRedoController";
 import { initAligningGuidelines } from "../util/snappingGuidlines";
 import { errorMessages } from "../../../assets/config";
 
 let canvas, drawableArea, editor;
 
 export function mouseZoom() {
-  document.getElementById("zoomIn").addEventListener("click", (opt) => {
+  document.getElementById("zoomIn").addEventListener("click", () => {
     let zoom = canvas.getZoom();
     zoom *= 0.999 ** -20;
     if (zoom > 3) zoom = 3;
@@ -41,14 +40,14 @@ export function mouseZoom() {
 
   let isPanning = false;
 
-  canvas.on("mouse:down", function (event) {
+  canvas.on("mouse:down", function () {
     if (!canvas.getActiveObject()) {
       isPanning = true;
       canvas.defaultCursor = "grabbing"; // Change cursor to indicate panning
     }
   });
 
-  canvas.on("mouse:up", function (event) {
+  canvas.on("mouse:up", function () {
     isPanning = false;
     canvas.defaultCursor = "grab"; // Restore default cursor
   });
@@ -61,9 +60,9 @@ export function mouseZoom() {
   });
 }
 
-export function initCanvas(defaultSelectedTechnique) {
+export function initCanvas(defaultSelectedBrandingArea: IBrandingAreas) {
   const initImage =
-    images[defaultSelectedTechnique.availableSections[0].defaultImage];
+    images[defaultSelectedBrandingArea.defaultImage];
   canvas = new fabric.Canvas("productCanvas", {
     selection: false,
     controlsAboveOverlay: true,
@@ -77,18 +76,19 @@ export function initCanvas(defaultSelectedTechnique) {
 
   // Created the drawable area.
   editor = new fabric.Rect({
-    top: defaultSelectedTechnique.availableSections[0].top,
-    left: defaultSelectedTechnique.availableSections[0].left,
-    width: defaultSelectedTechnique.availableSections[0].width,
-    height: defaultSelectedTechnique.availableSections[0].height,
+    top: +defaultSelectedBrandingArea.top,
+    left: +defaultSelectedBrandingArea.left,
+    width: defaultSelectedBrandingArea.width,
+    height: defaultSelectedBrandingArea.height,
   });
 
   drawableArea = new fabric.Rect({
+    // @ts-ignore
     id: "drawableArea",
-    top: defaultSelectedTechnique.availableSections[0].top,
-    left: defaultSelectedTechnique.availableSections[0].left,
-    width: defaultSelectedTechnique.availableSections[0].width,
-    height: defaultSelectedTechnique.availableSections[0].height,
+    top: +defaultSelectedBrandingArea.top,
+    left: +defaultSelectedBrandingArea.left,
+    width: defaultSelectedBrandingArea.width,
+    height: defaultSelectedBrandingArea.height,
     fill: "transparent",
     stroke: "red",
     strokeWidth: 1,
@@ -102,7 +102,7 @@ export function initCanvas(defaultSelectedTechnique) {
   canvas.add(drawableArea);
   mouseZoom();
 
-  const canvasHistory = {
+  qtyProxy["initialHistory"] = {
     state: [
       {
         canvasJson: JSON.stringify(canvas.toJSON(["id", "selectable"])),
@@ -115,13 +115,11 @@ export function initCanvas(defaultSelectedTechnique) {
     undoFinishedStatus: true,
     redoFinishedStatus: true,
   };
-
-  qtyProxy["initialHistory"] = canvasHistory;
   initUndoRedoEventHandler();
   initAligningGuidelines();
 }
 
-export function canvasConfigurationChangeHandler(brand: IAvailableSections) {
+export function canvasConfigurationChangeHandler(brand: IBrandingAreas) {
   canvas?.overlayImage?.setSrc(
     images[brand.defaultImage],
     canvas.renderAll.bind(canvas)
@@ -156,8 +154,8 @@ export const deleteSelectedObjects = () => {
   });
 };
 
-export const saveImage = (name = "", type = "image") => {
-  name = Date.now();
+export const saveImage = (name = "") => {
+  name = Date.now().toString();
   const saveButton = document.getElementById("downloadFullImage");
   if (!saveButton) return;
 
@@ -178,7 +176,7 @@ export const clearCanvasHandler = () => {
       initUndoRedoEventHandler();
       canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
       document
-        .getElementById(qtyProxy?.selectedProduct?.availableTechniques[0]?.id)
+        .getElementById(qtyProxy?.selectedProduct?.brandingAreas[0]?.id)
         .click();
       clickStepBtnHandler(0);
     }
@@ -198,6 +196,7 @@ export function alignObjectHandler() {
     if (activeObject) {
       const { top: areaTop, left: areaLeft, width: areaWidth, height: areaHeight } = drawableArea;
 
+      // @ts-ignore
       switch (alignSelector.value) {
         case "top":
           activeObject.set("top", areaTop);
@@ -223,11 +222,13 @@ export function alignObjectHandler() {
       canvas.renderAll();
     }else {
       alert(errorMessages.OBJ_NOT_SELECTED);
+      // @ts-ignore
       alignSelector.value = "align";
     }
   });
 
   canvas.on("selection:cleared" , () => {
+    // @ts-ignore
     alignSelector.value = "align"
   })
 }
