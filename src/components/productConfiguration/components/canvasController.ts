@@ -6,6 +6,8 @@ import { IAvailableSections } from "../type";
 import { DownloadImage } from "../util/downloadCanvas.ts";
 import { clickStepBtnHandler } from "../util";
 import { initUndoRedoEventHandler } from "../util/undoRedoController";
+import { initAligningGuidelines } from "../util/snappingGuidlines";
+import { errorMessages } from "../../../assets/config";
 
 let canvas, drawableArea, editor;
 
@@ -116,6 +118,7 @@ export function initCanvas(defaultSelectedTechnique) {
 
   qtyProxy["initialHistory"] = canvasHistory;
   initUndoRedoEventHandler();
+  initAligningGuidelines();
 }
 
 export function canvasConfigurationChangeHandler(brand: IAvailableSections) {
@@ -131,8 +134,11 @@ export function canvasConfigurationChangeHandler(brand: IAvailableSections) {
   };
   editor.set(newCoords);
   drawableArea.set(newCoords);
+  editor.setCoords();
+  drawableArea.setCoords();
   qtyProxy["drawableArea"] = drawableArea;
   qtyProxy["canvasEditor"] = editor;
+  qtyProxy["selectedBrandArea"] = brand;
 }
 
 // Function to delete selected objects
@@ -178,3 +184,51 @@ export const clearCanvasHandler = () => {
     }
   });
 };
+
+
+export function alignObjectHandler() {
+  const drawableArea = qtyProxy?.drawableArea;
+  const alignSelector = document.getElementById("activeObjAlign");
+
+  if (!alignSelector) return;
+
+  alignSelector.addEventListener("change", () => {
+    const activeObject = canvas.getActiveObject();
+
+    if (activeObject) {
+      const { top: areaTop, left: areaLeft, width: areaWidth, height: areaHeight } = drawableArea;
+
+      switch (alignSelector.value) {
+        case "top":
+          activeObject.set("top", areaTop);
+          break;
+        case "bottom":
+          activeObject.set("top", areaTop + areaHeight - activeObject.getScaledHeight());
+          break;
+        case "left":
+          activeObject.set("left", areaLeft);
+          break;
+        case "right":
+          activeObject.set("left", areaLeft + areaWidth - activeObject.getScaledWidth());
+          break;
+        case "center":
+          activeObject.set("left", areaLeft + (areaWidth / 2) - ( activeObject.getScaledWidth() / 2));
+          activeObject.set("top", areaTop + (areaHeight / 2) - ( activeObject.getScaledHeight() / 2));
+          break;
+        default:
+          return;
+      }
+
+      canvas.fire("object:modified");
+      canvas.renderAll();
+    }else {
+      alert(errorMessages.OBJ_NOT_SELECTED);
+      alignSelector.value = "align";
+    }
+  });
+
+  canvas.on("selection:cleared" , () => {
+    alignSelector.value = "align"
+  })
+}
+

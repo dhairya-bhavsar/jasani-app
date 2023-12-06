@@ -1,5 +1,6 @@
 import {qtyProxy} from "../../../../index";
 import { errorMessages } from "../../../assets/config";
+import { findLogoCordsHelper } from "./logoSizeEstimator";
 
 export function tabHideShow() {
     const currentActiveTab = document.querySelector(".tabView.tabShow");
@@ -42,10 +43,8 @@ export function tabController() {
 }
 
 export function saveButtonAction() {
-    let saveButtonAction = function remove() {}
     const nextButton = document.getElementById('nextStepButton');
     const saveButton = document.getElementById('saveButton');
-    saveButton.addEventListener('click', saveButtonAction);
     if (qtyProxy["activeTab"] !== 4) {
         nextButton.classList.remove('hidden');
         saveButton.classList.add('hidden');
@@ -53,10 +52,14 @@ export function saveButtonAction() {
     }
     nextButton.classList.add('hidden');
     saveButton.classList.remove('hidden');
-    // TODO: need to check multiple time binding click event.
-    saveButtonAction = function save() {
+    
+    const saveButtonAction = function save() {
+        const data = findLogoCordsHelper();
         alert(errorMessages.PROJECT_SAVED);
-    }
+        console.log(data,"Data fot popup ... upcoming");
+
+        saveButton.removeEventListener("click",saveButtonAction)
+    };
     saveButton.addEventListener('click', saveButtonAction);
 }
 

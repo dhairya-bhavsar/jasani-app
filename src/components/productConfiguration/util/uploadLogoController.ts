@@ -77,13 +77,13 @@ const addApiImageToCanvas = (url, id) => {
   fabric.Image.fromURL(imgURL, function (img) {
     if (canvas) {
       const image = img.set({
-        padding: 6,
         objectCaching: false,
         id: id,
       });
 
-      const editableArea = qtyProxy?.drawableArea;
+      image.setControlsVisibility({ mt: false,ml: false, mr: false, mb : false })
 
+      const editableArea = qtyProxy?.drawableArea;
       // Resize the image to fit within the canvas
       if (img.width > editableArea.width || img.height > editableArea.height) {
         let scale =
@@ -211,11 +211,13 @@ export function logoDimensionHandler() {
   width.addEventListener('change', (event) => {
     const value = +event.target.value;
     activeCanvasObj.scaleToWidth(value);
+    height.value = Math.round(activeCanvasObj.getScaledHeight());
     canvas.renderAll();
   });
   height.addEventListener('change', (event) => {
     const value = +event.target.value;
     activeCanvasObj.scaleToHeight(value);
+    width.value = Math.round(activeCanvasObj.getScaledWidth());
     canvas.renderAll();
   });
 }
