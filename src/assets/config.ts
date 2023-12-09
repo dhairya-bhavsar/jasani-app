@@ -4,12 +4,14 @@ export const fileTypeSupport = ['application/pdf', 'image/x-eps', 'application/i
 export const APIEndPoint = "https://jasaniapi.demo.brainvire.dev"; // demo
 // export const APIEndPoint = "https://4d51-180-211-97-51.ngrok-free.app"; //local
 export const APIVersion = '/api/';
+export const GoogleAPIKey = 'AIzaSyCNnUWe_Zp6LRPqvFZP3B6sYJaV98UyJyE'
 
 export const apiUrls = {
     imageConvert: APIEndPoint + APIVersion + 'convert/',
     convertedImage: APIEndPoint + '/media/',
     imageColorReplace : APIEndPoint + APIVersion + 'fill-color/',
-    backgroundRemove : APIEndPoint + APIVersion + 'background/'
+    backgroundRemove : APIEndPoint + APIVersion + 'background/',
+    googleFontApi: `https://www.googleapis.com/webfonts/v1/webfonts?key=${GoogleAPIKey}`
 }
 
 
