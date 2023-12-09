@@ -153,6 +153,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                           <p class="font-bold">Add Remarks for the Printer (optional)</p>
                           <textarea name="remark" class="remark-text-area" id="remark" cols="3"
                                     placeholder="Please enter remark" rows="3"></textarea>
+                                    <div id="productSummary"> </div>
                         </div>
                         <div class="nextStep">
                           <button id="nextStepButton">Next</button>

@@ -50,6 +50,7 @@ export async function uploadLogo(event) {
         logoColors: data.data.colors,
         imgUrl: data.data.image,
         isBackground: data.data.isBackground,
+        removeBackground: false,
         isGradient: data.data.isGradient
       },
     ];
@@ -172,9 +173,11 @@ function updateListOfColors() {
   const logoList = JSON.parse(JSON.stringify(qtyProxy?.logoList));
   const index = logoList?.findIndex((el) => el.id === newSelectedLogo.id);
   logoList[index] = newSelectedLogo;
-  qtyProxy['logoList'] = logoList;
+  qtyProxy['logoList'] = JSON.parse(JSON.stringify(logoList));
   delete qtyProxy.newColor;
   colorContainerHtmlRender();
+  qtyProxy?.canvas.fire("object:modified");
+  qtyProxy?.canvas.renderAll();
 }
 
 function setUpdatedImage(imageName, colorChange = true) {
@@ -255,7 +258,7 @@ export function logoDimensionHandler() {
 }
 
 async function removeButtonHandle(event) {
-  qtyProxy['backgroundColorChecked'] = event.target.checked;
+  qtyProxy['selectedLogo']['removeBackground'] = event.target.checked;
   const reqObject = {
     fileName: qtyProxy?.selectedLogo?.imgUrl,
     action: event.target.checked ? 'remove' : 'add',
@@ -284,16 +287,16 @@ async function removeButtonHandle(event) {
     console.log('Background color API calling!!');
     setLoader(false);
   }
-  // removeBackgroundAPI()
 }
 export function removeBackgroundHandler() {
   const removeButton = document.getElementById('removeWhiteBg');
   if (!removeButton) return;
   if (CheckTechniqueSingleColor()) {
+    removeButton.checked = false;
     removeButton.disabled = true;
     return;
   }
-  removeButton.checked = qtyProxy?.backgroundColorChecked || false;
+  removeButton.checked = qtyProxy?.selectedLogo?.removeBackground || false;
   removeButton.addEventListener('change', removeButtonHandle);
 }
 
@@ -365,10 +368,11 @@ export function checkBackGroundRemove() {
   const removeButton = document.getElementById('removeWhiteBg')
   if (!removeButton) return;
   if (CheckTechniqueSingleColor()) {
+    removeButton.checked = false;
     removeButton.disabled = true;
     return;
   }
-  removeButton.disabled = hasBackGround
+  removeButton.disabled = hasBackGround;
 }
 
 const onLogoChangeEvent = () => {

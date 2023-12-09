@@ -918,3 +918,18 @@ input[type="checkbox"]:disabled {
   padding: 4px;
   font-size: 12px;
 }
+
+.product-summary {
+  display: flex;
+  margin-top: 12px;
+  flex-direction: column;
+  gap: 6px;
+  background-color: aliceblue;
+  padding: 10px;
+}
+
+.product-summary p {
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 600;
+}

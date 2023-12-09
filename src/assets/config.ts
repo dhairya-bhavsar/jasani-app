@@ -2,7 +2,7 @@ export const downloadImageType = 'png';
 export const maxFileSize = 10;
 export const fileTypeSupport = ['application/pdf', 'image/x-eps', 'application/illustrator', 'application/postscript', 'image/jpeg', 'image/jpg', 'image/png'];
 export const APIEndPoint = "https://jasaniapi.demo.brainvire.dev"; // demo
-// export const APIEndPoint = "https://fc88-180-211-97-51.ngrok-free.app"; //local
+// export const APIEndPoint = "https://4d51-180-211-97-51.ngrok-free.app"; //local
 export const APIVersion = '/api/';
 
 export const apiUrls = {
@@ -22,7 +22,9 @@ export const errorMessages = {
     LOGO_NOT_PROPER: 'Please upload proper logo file!!',
     LOGO_FILE_GREATER: "File may not be greater than 10 MB",
     LOGO_FORMATE_ISSUE: "Please upload only this file type: jpg, jpeg, png, pdf, eps, ai format",
-    OBJ_NOT_SELECTED: "Please select image or text you want to align"
+    OBJ_NOT_SELECTED: "Please select image or text you want to align",
+    ALERT_OBJECT_SELECTION: "Please select any object!!",
+    CONFIRMATION_MESSAGE: "Are you sure want to delete?"
 }
 
 export const Techniques = {

@@ -144,8 +144,12 @@ export function canvasConfigurationChangeHandler(brand: IBrandingAreas) {
 export const deleteSelectedObjects = () => {
   document.getElementById("deleteButton")?.addEventListener("click", () => {
     const selectedObjects: fabric.Object[] = canvas.getActiveObjects();
+    if (!selectedObjects || selectedObjects.length === 0) {
+      alert(errorMessages.ALERT_OBJECT_SELECTION);
+      return
+    }
     selectedObjects?.forEach((object: fabric.Object) => {
-      if (canvas) canvas.remove(object);
+      if (canvas && confirm(errorMessages.CONFIRMATION_MESSAGE)) canvas.remove(object);
     });
 
     if (canvas) {
