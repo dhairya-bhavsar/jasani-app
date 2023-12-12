@@ -1,6 +1,6 @@
 import { fabric } from "fabric";
 import {qtyProxy} from "../../../index";
-import { clickStepBtnHandler, applyGoogleFontHandler } from "../productConfiguration/util";
+import { clickStepBtnHandler } from "../productConfiguration/util";
 import {clearInputBoxHandler} from "../../helpers/helper";
 
 export function addTextToCanvasHandler(canvas) {
@@ -44,8 +44,12 @@ export const changeFontFamilyHandler = (canvas) => {
   fontType.addEventListener("change", () => {
     const activeObject = canvas.getActiveObject();
     if (activeObject instanceof fabric.Text) {
-      applyGoogleFontHandler(fontType.value.replaceAll("-", " "),activeObject);
+      // applyGoogleFontHandler(fontType.value.replaceAll("-", " "),activeObject);
+      activeObject.set("fontFamily", fontType.value);
+      selectedTextBoxStyleHelper("fontFamily", activeObject);
+      canvas.fire('object:modified');
     }
+    canvas.renderAll();
   });
 };
 
