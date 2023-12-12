@@ -1,9 +1,7 @@
-// @ts-nocheck
 import { fabric } from "fabric";
-import {qtyProxy} from "../../../index.ts";
-import { clickStepBtnHandler } from "../productConfiguration/util";
-import { clearInputBoxHandler } from "../../helpers/helper.js";
-import { applyGoogleFontHandler } from "../productConfiguration/util/googleFontIntigration.js";
+import {qtyProxy} from "../../../index";
+import { clickStepBtnHandler, applyGoogleFontHandler } from "../productConfiguration/util";
+import {clearInputBoxHandler} from "../../helpers/helper";
 
 export function addTextToCanvasHandler(canvas) {
   const addTextButton = document.getElementById("applyText");
@@ -14,31 +12,29 @@ export function addTextToCanvasHandler(canvas) {
       const text = new fabric.Textbox(addedText, {
         editable: false,
         transparentCorners : false,
-        borderScaleFactor: 2,
       });
-      const editor = qtyProxy.canvasEditor;
+      const editor = qtyProxy?.canvasEditor;
       const top = editor.top + (editor.height - text.height) / 2;
       const left = editor.left + (editor.width - text.width) / 2;
 
       text.set({
         top: top,
-        left: left
+        left: left,
       });
+      text.setControlsVisibility({ mt: false,ml: false, mr: false, mb : false })
       clearInputBoxHandler("addedText");
       canvas.add(text);
+      canvas.setActiveObject(text);
     }
   });
 }
 
 export const changeFontFamilyHandler = (canvas) => {
   const fontType = document.getElementById("fontType") as HTMLSelectElement;
-
   if (!fontType) return;
-
   const updateDropdpwnValue = (e) => {
     fontType.value = e.selected[0].fontFamily.replaceAll(" ", "-");
   };
-
   const onDeselectHandler = () => {
     fontType.value = "Times-New-Roman";
   };
@@ -55,7 +51,7 @@ export const changeFontFamilyHandler = (canvas) => {
 
 export const changeFontSizeHandler = (canvas) => {
   const fontSize = document.getElementById("fontSize") as HTMLInputElement;
-
+  if (!fontSize) return;
   const updateInpuBoxValue = (e) => {
     fontSize.value = e.selected[0].fontSize;
   };
@@ -66,13 +62,30 @@ export const changeFontSizeHandler = (canvas) => {
 
   canvasSelectEventHandler(canvas, updateInpuBoxValue, onDeselectHandler);
 
-  fontSize.addEventListener("input", (event) => {
+  fontSize.addEventListener("keyup", (event) => {
     const activeObject = canvas.getActiveObject();
     if (activeObject instanceof fabric.Text) {
-      activeObject.set("fontSize", +(event.target as HTMLInputElement).value);
+      activeObject._clearCache();
+      activeObject.set({
+        width: 20,
+        // @ts-ignore
+        fontSize: Number(event.target.value),
+      });
       canvas.fire('object:modified');
+      canvas.renderAll();
     }
-    canvas.renderAll();
+  });
+
+  canvas.on('object:scaling', function(event) {
+    if (event.target) {
+      fontSize.value = (event.target.fontSize * event.target.scaleX).toFixed(0);
+    }
+  });
+
+  canvas.on('object:selected', function(options) {
+    if (options.target) {
+      fontSize.value = options.target.fontSize;
+    }
   });
 };
 
@@ -260,8 +273,13 @@ export const editTextHandler = (canvas) => {
   selectedTextBox.addEventListener("input", (event) => {
     const activeObject = canvas.getActiveObject();
     if (activeObject instanceof fabric.Text) {
-      activeObject.set("text", (event.target as HTMLInputElement).value);
+      activeObject._clearCache();
+      activeObject.set({
+        width: 20,
+        text: (event.target as HTMLInputElement).value
+      });
       canvas.renderAll();
+      canvas.fire('object:modified');
     }
   });
 };

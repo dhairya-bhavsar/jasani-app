@@ -2,9 +2,7 @@ import {fabric} from "fabric";
 import {images} from "../../../assets/images";
 import {qtyProxy} from "../../../../index";
 import {IBrandingAreas} from "../type";
-import {DownloadImage} from "../util/downloadCanvas";
-import {clickStepBtnHandler} from "../util";
-import {initUndoRedoEventHandler} from "../util/undoRedoController";
+import {DownloadImage, initUndoRedoEventHandler, clickStepBtnHandler} from "../util";
 // import { initAligningGuidelines } from "../util/snappingGuidlines";
 import { errorMessages } from "../../../assets/config";
 
@@ -87,8 +85,8 @@ export function initCanvas(defaultSelectedBrandingArea: IBrandingAreas) {
     id: "drawableArea",
     top: +defaultSelectedBrandingArea.top,
     left: +defaultSelectedBrandingArea.left,
-    width: defaultSelectedBrandingArea.width,
-    height: defaultSelectedBrandingArea.height,
+    width: defaultSelectedBrandingArea.width + 20,
+    height: defaultSelectedBrandingArea.height + 20,
     fill: "transparent",
     stroke: "red",
     strokeWidth: 1,
@@ -143,19 +141,23 @@ export function canvasConfigurationChangeHandler(brand: IBrandingAreas) {
 // Function to delete selected objects
 export const deleteSelectedObjects = () => {
   document.getElementById("deleteButton")?.addEventListener("click", () => {
-    const selectedObjects: fabric.Object[] = canvas.getActiveObjects();
-    if (!selectedObjects || selectedObjects.length === 0) {
+    const selectedObject = canvas.getActiveObject();
+    const logoListCopy = JSON.parse(JSON.stringify(qtyProxy?.logoList));
+    if (!selectedObject) {
       alert(errorMessages.ALERT_OBJECT_SELECTION);
       return
     }
-    selectedObjects?.forEach((object: fabric.Object) => {
-      if (canvas && confirm(errorMessages.CONFIRMATION_MESSAGE)) canvas.remove(object);
-    });
-
-    if (canvas) {
+    const logoIndex = logoListCopy?.findIndex((el) => el.id == selectedObject.id);
+    if (logoIndex >= 0 && canvas && confirm(errorMessages.CONFIRMATION_MESSAGE)) {
+      logoListCopy.splice(logoIndex, 1)
+      qtyProxy['logoList'] = JSON.parse(JSON.stringify(logoListCopy));
+      canvas.remove(selectedObject);
       canvas.discardActiveObject();
       canvas.renderAll();
+      canvas.fire("object:modified");
+      return;
     }
+    console.log("Object not found!!");
   });
 };
 
@@ -191,7 +193,7 @@ export const clearCanvasHandler = () => {
 
 export function alignObjectHandler() {
   const drawableArea = qtyProxy?.drawableArea;
-  const alignSelector = document.getElementById("activeObjAlign");
+  const alignSelector = document.getElementById("activeObjAlign") as HTMLSelectElement;
 
   if (!alignSelector) return;
 
@@ -201,7 +203,7 @@ export function alignObjectHandler() {
     if (activeObject) {
       const { top: areaTop, left: areaLeft, width: areaWidth, height: areaHeight } = drawableArea;
 
-      // @ts-ignore
+
       switch (alignSelector.value) {
         case "top":
           activeObject.set("top", areaTop);
@@ -232,8 +234,7 @@ export function alignObjectHandler() {
     }
   });
 
-  canvas.on("selection:cleared" , () => {
-    // @ts-ignore
+    canvas.on("selection:cleared" , () => {
     alignSelector.value = "align"
   })
 }

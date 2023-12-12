@@ -1,4 +1,9 @@
-import { qtyProxy } from "../../..";
+// import { qtyProxy } from "../../..";
+// ${qtyProxy?.fontList.map((fontData)=>{
+//   return`
+//   <option value=${fontData.family.replaceAll(" ", "-")}>${fontData.family}</option>
+//     `
+//}).join("")}
 
 export const addTextHTMLHandler = () => {
   return `
@@ -11,11 +16,8 @@ export const addTextHTMLHandler = () => {
               <div class="customisation-option">
                   <select id="fontType">
                       <option value="Times-New-Roman">Times New Roman</option>
-                      ${qtyProxy?.fontList.map((fontData)=>{
-                        return`
-                        <option value=${fontData.family.replaceAll(" ", "-")}>${fontData.family}</option>
-                        `
-                      }).join("")}
+                      <option value="Arial">Arial</option>
+                      <option value="Tahoma">Tahoma</option>
                   </select>
                   <label for="fontType">Font Type</label>
               </div>

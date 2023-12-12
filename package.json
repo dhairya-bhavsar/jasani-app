@@ -6,6 +6,7 @@
     "dev": "open-cli http://localhost:3336 && parcel index.html -p 3336",
     "demo:dev": "open-cli https://jasani.demo.brainvire.dev/ && parcel index.html -p 3336",
     "cleanup": "rm -rf .parcel-cache dist",
+    "cleanup:win": "del .parcel-cache dist && rmdir .parcel-cache dist",
     "start": "parcel index.html -p 3336",
     "build": "parcel build index.html"
   },
@@ -17,14 +18,12 @@
   },
   "devDependencies": {
     "@parcel/transformer-typescript-tsc": "^2.7.0",
+    "@types/webfontloader": "^1.6.38",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
-    "eslint": "^8.53.0",
-    "eslint-config-semistandard": "^17.0.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-n": "^15.7.0",
-    "eslint-plugin-promise": "^6.1.1",
+    "eslint": "^8.55.0",
     "events": "^3.3.0",
     "open-cli": "^7.0.1",
     "os-browserify": "^0.3.0",
@@ -34,7 +33,7 @@
     "punycode": "^1.4.1",
     "stream-browserify": "^3.0.0",
     "timers-browserify": "^2.0.12",
-    "typescript": "^5.0.2",
+    "typescript": "^5.3.3",
     "util": "^0.12.5"
   },
   "keywords": [

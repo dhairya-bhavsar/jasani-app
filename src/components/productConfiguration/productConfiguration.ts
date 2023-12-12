@@ -1,16 +1,11 @@
-// @ts-ignore
 import * as productData from "../../assets/db/brandings.json";
 import {IAvailableTechniques, IBrandingAreas, IProductDetail, IProductInputProps} from "./type";
 import {TitleComponent} from "../title/title";
 import {images} from "../../assets/images";
-import {CanvasEditor} from "./components";
-import {qtyChangeHandel, tabController} from "./util";
-import {techniqueController} from "./util/techniqueController";
+import {initialisePopupFunctions, qtyChangeHandel, tabController, techniqueController, initUploadLogoButton} from "./util";
 import {addTextHTMLHandler} from "../productDetail/textCustomisationBox";
 import {textEditorInitial} from "./productConfigurationController";
-import {alignObjectHandler, clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components/canvasController";
-import {initUploadLogoButton} from "./util/uploadLogoController";
-import { initialisePopupFunctions } from "./util/popupController";
+import {CanvasEditor, alignObjectHandler, clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components";
 import { qtyProxy } from "../../..";
 
 const { products } = productData;
@@ -163,7 +158,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                     <div class="stepper-actions">
                         <button id="clearCanvas">Discard</button>
                         <button id="openPreviewBtn">Preview</button>
-                        <button>Finish</button>
+                        <button id="finishBtn">Finish</button>
                     </div>
                 </div>
             </section>

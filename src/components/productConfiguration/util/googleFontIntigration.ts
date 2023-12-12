@@ -1,11 +1,10 @@
-//@ts-nocheck
 import { qtyProxy } from "../../../..";
-import { apiUrls, errorMessages } from "../../../assets/config";
+import {apiUrls, errorMessages} from "../../../assets/config";
 import { setLoader } from "../../../helpers/helper";
 import { selectedTextBoxStyleHelper } from "../../productDetail/textController";
 import WebFont from "webfontloader";
 
-export async function getFontData() {
+export async function getFontData(): Promise<void> {
   setLoader(true);
   try {
     const response = await fetch(apiUrls.googleFontApi);
@@ -19,26 +18,22 @@ export async function getFontData() {
   }
 }
 
-export function applyGoogleFontHandler(font, activeObject) {
+export function applyGoogleFontHandler(font, activeObject): void {
   qtyProxy["addedFontList"] = qtyProxy?.addedFontList || ["Times New Roman"];
 
   if (!font && !activeObject) return;
 
-  if (!qtyProxy.addedFontList.includes(font)) {
-    const url =
-      "https://fonts.googleapis.com/css?family=" +
-      font.replace(/ /g, "+") +
-      ":" +
-      "&display=swap";
-
-    document.head.append(
-      new DOMParser().parseFromString(
-        `<link rel="stylesheet" href=${url} type="text/css"/>`,
-        "text/html"
-      ).head.firstChild
-    );
-    qtyProxy.addedFontList.push(font);
-  }
+  // TODO:: Google Font
+  // if (!qtyProxy.addedFontList.includes(font)) {
+  //   const url = GoogleFontApi + font.replace(/ /g, "+") + ":" + "&display=swap";
+  //   document.head.append(
+  //     new DOMParser().parseFromString(
+  //       `<link rel="stylesheet" href=${url} type="text/css"/>`,
+  //       "text/html"
+  //     ).head.firstChild
+  //   );
+  //   qtyProxy.addedFontList.push(font);
+  // }
 
   setLoader(true);
   WebFont.load({

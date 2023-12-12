@@ -16,14 +16,17 @@ export function AddEventBackButton() {
 }
 
 // @ts-ignore
-export let qtyProxy = new Proxy({}, {
+export let qtyProxy: {
+    [key: string]: any
+} = new Proxy({}, {
     set (obj, key, value) {
         // Update the property
         obj[key] = value;
         // Find the matching fields in the DOM
-        let fields = document.querySelectorAll(`[name="${key}"]`);
         // @ts-ignore
+        let fields = document.querySelectorAll(`[name="${key}"]`);
         for (let field of fields) {
+            // @ts-ignore
             field.value = value;
         }
         return true;

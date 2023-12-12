@@ -307,6 +307,11 @@ p {
   padding: 19px;
 }
 
+#nextStepButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .bg-blue {
   background-color: #057ac7;
   color: #fff !important;
@@ -632,13 +637,14 @@ div#available-sections {
   display: flex;
   justify-content: space-between;
   padding-top: 16px;
+  font-size: 12px;
 }
 
 .customisation-option {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12.8px;
+  gap: 13px;
 }
 
 .bold-font, .italic-font, .underline-font{
@@ -646,7 +652,7 @@ div#available-sections {
   font-weight: bolder;
   opacity: 0.5;
   cursor: pointer;
-  height:32px;
+  height: 32px;
 }
 
 #fontBold,
@@ -932,4 +938,17 @@ input[type="checkbox"]:disabled {
   text-decoration: underline;
   font-size: 16px;
   font-weight: 600;
+}
+
+.product-summary .product-summary-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.product-summary-card li:first-child {
+  width: 100%;
 }

@@ -1,9 +1,7 @@
 import { qtyProxy } from "../../../..";
-import { fabric } from "fabric";
 import {replaceCurrentElementWithNewId} from "../../../helpers/helper";
 
 export function findLogoCordsHelper() {
-    console.log(qtyProxy?.selectedBrandArea,"find func helper....");
     if(!qtyProxy?.selectedBrandArea) return;
 
     const pxTocmH = (px) => (qtyProxy.selectedBrandArea.detail_height * px )/ qtyProxy.selectedBrandArea.height;
@@ -12,30 +10,43 @@ export function findLogoCordsHelper() {
     const drawableArea = qtyProxy.drawableArea;
 
     const canvasObjects = qtyProxy?.canvas?.getObjects();
-    console.log("logo", qtyProxy?.canvas?.getObjects());
     // TODO: text object summary get
     // const textObjects = canvasObjects.filter((obj) => obj instanceof fabric.Text);
 
     const imageObjectsCords = canvasObjects.filter((obj) => obj.type === 'image').map((imgObj) => {
+        const imageObject = qtyProxy?.logoList?.find((el) => el.id == imgObj.id)
         const logoWidthInCm =  Math.ceil(pxTocmW(imgObj.width * imgObj.scaleX));
         const logoHeightInCm =  Math.ceil(pxTocmH(imgObj.height * imgObj.scaleY));
         const logoFromLeftInCm =  Math.ceil(pxTocmW(imgObj.left - drawableArea.left));
         const logoFromTopInCm = Math.ceil(pxTocmH(imgObj.top - drawableArea.top));
+        return {
+            id : imageObject?.id,
+            fileName: imageObject?.imgName,
+            imageUrl: imageObject?.imgUrl ,
+            cords : [logoWidthInCm,logoHeightInCm,logoFromTopInCm,logoFromLeftInCm]
+        }
+    });
 
-        return {id : imgObj.id , cords : [logoWidthInCm,logoHeightInCm,logoFromTopInCm,logoFromLeftInCm]}
-    })
+    let _html = `<div class="product-summary">
+                <p>Logo Summary in (cm)</p>   
+                <ul class="product-summary-card">
+                        <li>No Logo Found!</li>
+                    </ul>
+                </div>`;
 
-    console.log(imageObjectsCords);
-
-    const _html = `<div class="product-summary">
+    if (imageObjectsCords && imageObjectsCords.length > 0) {
+        _html = `<div class="product-summary">
                 <p>Logo Summary in (cm)</p>   
                 ${imageObjectsCords?.map((obj) => {
-                    return `<ul>
-                        <li><span>Image Width (cm): </span> ${obj?.cords[0]}</li>
-                        <li><span>Image Height (cm): </span> ${obj?.cords[1]}</li>
-                    </ul>`    
-                }).join(" ")}
+            return `<ul class="product-summary-card">
+                        <li><b>Name: </b> ${obj?.fileName}</li>
+                        <li><b>Image Url: </b> ${obj?.imageUrl}</li>
+                        <li><b>Image Width (cm): </b> ${obj?.cords[0]}</li>
+                        <li><b>Image Height (cm): </b> ${obj?.cords[1]}</li>
+                    </ul>`
+        }).join(" ")}
         </div>`
+    }
 
     replaceCurrentElementWithNewId('productSummary', _html);
 

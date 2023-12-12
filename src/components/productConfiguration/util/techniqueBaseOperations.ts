@@ -2,7 +2,6 @@ import {qtyProxy} from "../../../../index";
 
 const singleColorPositionTechnique = ["Laser Engraving","Gold Foil Debossing","Silver Foil Debossing", "Blind Debossing"];
 export function CheckTechniqueSingleColor(): boolean {
-    // @ts-ignore
     return singleColorPositionTechnique.includes(qtyProxy?.selectedTechnique?.techniqueName);
 }
 

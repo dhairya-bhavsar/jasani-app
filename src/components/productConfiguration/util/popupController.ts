@@ -1,8 +1,8 @@
-//@ts-nocheck
 import {replaceCurrentElementWithNewId} from "../../../helpers/helper";
-import { DownloadImage } from "./downloadCanvas";
+import {DownloadImage} from "./downloadCanvas.ts";
 
-const dialog = document.getElementById("previewDialog");
+
+const dialog = document.getElementById("previewDialog") as HTMLDialogElement;
 
 function addPreviewImage() {
   const url = DownloadImage(" ", "image", false);
@@ -32,11 +32,24 @@ function addPreviewEvents() {
   document
     .getElementById("downloadImgPreview")
     .addEventListener("click", () => {
-      const imageName = Date.now();
+      const imageName = Date.now().toString();
       DownloadImage(imageName);
     });
 }
 
+export function finishBtnEvents() {
+  const btn = document.getElementById('finishBtn');
+  if(!btn) return;
+  btn.addEventListener('click', function () {
+    const backBtn = document.getElementById('back-btn');
+    if (!backBtn) return;
+    if (confirm("Are you sure editing is completed?")) {
+      backBtn.click();
+    }
+  })
+}
+
 export const initialisePopupFunctions = () => {
   addPreviewEvents();
+  finishBtnEvents();
 };

@@ -12,7 +12,9 @@ import { clickStepBtnHandler } from ".";
 import {CheckTechniqueSingleColor, TechniqueBaseSingleColor} from "./techniqueBaseOperations";
 
 function clearUploadInputValue() {
-  document.getElementById('uploadLogo').value = "";
+  const logoBtn = document.getElementById('uploadLogo') as HTMLButtonElement;
+  if (!logoBtn) return;
+  logoBtn.value = "";
 }
 
 export async function uploadLogo(event) {
@@ -37,6 +39,7 @@ export async function uploadLogo(event) {
     setLoader(false);
     const data = await response.json();
     const id = "id" + Math.random().toString(16).slice(2);
+    const fileName = files[0]?.name;
     if (!data.data.image) {
       alert(errorMessages.LOGO_NOT_PROPER);
       return
@@ -49,6 +52,7 @@ export async function uploadLogo(event) {
       { id: id,
         logoColors: data.data.colors,
         imgUrl: data.data.image,
+        imgName: fileName,
         isBackground: data.data.isBackground,
         removeBackground: false,
         isGradient: data.data.isGradient
@@ -79,7 +83,6 @@ export async function uploadLogo(event) {
 
 function validateImage(file) {
   if (file) {
-    //@ts-ignore
     if (fileTypeSupport.includes(file.type)) {
       const size = file.size / 10024 / 10024;
       if (size > maxFileSize) {
@@ -113,8 +116,8 @@ const addApiImageToCanvas = (url, id) => {
       if (img.width > editableArea.width || img.height > editableArea.height) {
         let scale =
           Math.min(
-            editableArea.width / img.width,
-            editableArea.height / img.height
+            (editableArea.width) / img.width,
+            (editableArea.height) / img.height
           );
         img.scale(scale);
       }
@@ -285,6 +288,7 @@ async function removeButtonHandle(event) {
     setUpdatedImage(data.data.image, false);
   } catch (error) {
     console.log('Background color API calling!!');
+    alert(errorMessages.SERVER_ERROR);
     setLoader(false);
   }
 }
@@ -310,6 +314,12 @@ export function checkAllowedLogo() {
         </div>`;
   }
   replaceCurrentElementWithNewId('toastMessage', _html);
+}
+
+export function checkNextButtonActive() {
+  const nextButton = document.getElementById('nextStepButton');
+  const totalColor: boolean = qtyProxy?.logoList?.some((logo) => logo.logoColors?.length > 4);
+  nextButton.disabled = totalColor && qtyProxy?.selectedTechnique?.techniqueName === "Screen Printing";
 }
 
 export function colorContainerHtmlRender() {
@@ -388,6 +398,7 @@ const onLogoChangeEvent = () => {
   }
   checkAllowedLogo();
   checkBackGroundRemove();
+  checkNextButtonActive();
 };
 
 const logoSelectionEventHandler = () => {

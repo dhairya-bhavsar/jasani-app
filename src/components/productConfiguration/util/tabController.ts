@@ -8,11 +8,15 @@ export function tabHideShow() {
         currentActiveTab.classList.remove('tabShow');
         currentActiveTab.classList.add('tabHide');
     }
-    // @ts-ignore
+
     const activeNewTab = document.getElementById(qtyProxy.activeTab.toString());
     if (activeNewTab) {
         activeNewTab.classList.remove("tabHide");
         activeNewTab.classList.add("tabShow");
+    }
+
+    if (qtyProxy?.activeTab == 4) {
+        findLogoCordsHelper()
     }
 }
 export function tabController() {
@@ -30,7 +34,10 @@ export function tabController() {
     //     });
     // });
 
-    document.getElementById('nextStepButton').addEventListener("click", () => {
+    const nextStepButton = document.getElementById('nextStepButton');
+    if (!nextStepButton) return;
+
+    nextStepButton.addEventListener("click", () => {
         let id = qtyProxy?.activeTab || 1;
         id += 1
         const active = document.querySelector(".step-button.active");
@@ -48,21 +55,20 @@ export function saveButtonAction() {
     const nextButton = document.getElementById('nextStepButton');
     const saveButton = document.getElementById('saveButton');
     if (qtyProxy["activeTab"] !== 4) {
-        nextButton.classList.remove('hidden');
-        saveButton.classList.add('hidden');
+        nextButton?.classList.remove('hidden');
+        saveButton?.classList.add('hidden');
         return;
     }
-    nextButton.classList.add('hidden');
-    saveButton.classList.remove('hidden');
+    nextButton?.classList.add('hidden');
+    saveButton?.classList.remove('hidden');
 
     const saveButtonAction = function save() {
-        const data = findLogoCordsHelper();
         alert(errorMessages.PROJECT_SAVED);
-        console.log(data,"Data fot popup ... upcoming");
-
-        saveButton.removeEventListener("click",saveButtonAction)
+        saveButton.removeEventListener("click",saveButtonAction);
     };
-    saveButton.addEventListener('click', saveButtonAction);
+    saveButton.addEventListener('click', function () {
+        saveButtonAction();
+    });
 }
 
 

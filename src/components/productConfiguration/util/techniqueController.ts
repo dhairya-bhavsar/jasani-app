@@ -1,7 +1,7 @@
 import {IAvailableTechniques, IBrandingAreas, IProductDetail} from "../type";
 import {replaceCurrentElementWithNewId} from "../../../helpers/helper";
 import {qtyChangeHandel} from "./pricingCalculation";
-import {canvasConfigurationChangeHandler} from "../components/canvasController";
+import {canvasConfigurationChangeHandler} from "../components";
 import {qtyProxy} from "../../../../index";
 
 export function techniqueRender(tech: IBrandingAreas) {

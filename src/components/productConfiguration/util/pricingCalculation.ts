@@ -4,11 +4,19 @@ import {replaceCurrentElementWithNewId} from "../../../helpers/helper";
 
 
 export function qtyChangeHandel(technique: IAvailableTechniques) {
-    document.getElementById('qtySelector').addEventListener('input', function (event) {
-        // @ts-ignore
-        qtyProxy[event.target.name] = event.target.value;
-        // @ts-ignore
-        if ("0" !== event.target.value) {
+    const inputQty = document.getElementById('qtySelector') as HTMLInputElement;
+    if (!inputQty) return;
+
+    inputQty.addEventListener("keypress", function (evt) {
+        if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+            evt.preventDefault();
+        }
+    });
+
+    inputQty.addEventListener('input', function (event) {
+        let el = event.target as HTMLInputElement;
+        qtyProxy[el.value] = el.value;
+        if ("0" !== el.value) {
             calculatedPricing(technique);
         }
     });
@@ -17,7 +25,6 @@ export function qtyChangeHandel(technique: IAvailableTechniques) {
 
 export function calculatedPricing(technique: IAvailableTechniques) {
     const qty = qtyProxy?.quantity || 1;
-    // @ts-ignore
     const pricingData: IPricing = technique?.pricing?.find((data) => {
         if (+qty >= +data.min_qty && +qty <= +data.max_qty) {
             return true;
@@ -37,7 +44,7 @@ export function calculatedPricing(technique: IAvailableTechniques) {
 
 export function getTotalCost(fixedCost, pricePerUnitCost): number {
     let totalCost = 0;
-    // @ts-ignore
+
     const qty = qtyProxy?.quantity || 1;
     totalCost = Number((
         +fixedCost +
