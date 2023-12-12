@@ -15,8 +15,8 @@ export function qtyChangeHandel(technique: IAvailableTechniques) {
 
     inputQty.addEventListener('input', function (event) {
         let el = event.target as HTMLInputElement;
-        qtyProxy[el.value] = el.value;
-        if ("0" !== el.value) {
+        qtyProxy["quantity"] = el.value;
+        if ("0" != el.value) {
             calculatedPricing(technique);
         }
     });
@@ -31,7 +31,7 @@ export function calculatedPricing(technique: IAvailableTechniques) {
         }
         if (
             !(+qty >= +data.min_qty && +qty <= +data.max_qty) &&
-            data.max_qty === ""
+            data.max_qty == ""
         ) {
             return true;
         }
