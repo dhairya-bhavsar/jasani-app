@@ -20,19 +20,21 @@ export function tabHideShow() {
     }
 }
 export function tabController() {
-    // TODO: Tab selection step changes.
-
-    // document.querySelectorAll(".step-button").forEach((ele) => {
-    //     ele.addEventListener("click", () => {
-    //         const active = document.querySelector(".step-button.active");
-    //         if (active) active.classList.remove("active");
-    //         ele.classList.add("active");
-    //         // @ts-ignore
-    //         qtyProxy['activeTab'] = +ele.name;
-    //         tabHideShow();
-    //         saveButtonAction();
-    //     });
-    // });
+    document.querySelectorAll(".step-button").forEach((ele) => {
+        ele.addEventListener("click", () => {
+            // @ts-ignore
+            if (+ele.name === 1) {
+                return
+            }
+            const active = document.querySelector(".step-button.active");
+            if (active) active.classList.remove("active");
+            ele.classList.add("active");
+            // @ts-ignore
+            qtyProxy['activeTab'] = +ele.name;
+            tabHideShow();
+            saveButtonAction();
+        });
+    });
 
     const nextStepButton = document.getElementById('nextStepButton');
     if (!nextStepButton) return;

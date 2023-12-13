@@ -2,7 +2,7 @@ import {fabric} from "fabric";
 import {images} from "../../../assets/images";
 import {qtyProxy} from "../../../../index";
 import {IBrandingAreas} from "../type";
-import {DownloadImage, initUndoRedoEventHandler, clickStepBtnHandler} from "../util";
+import {DownloadImage, initUndoRedoEventHandler, clickStepBtnHandler, checkNextButtonActive} from "../util";
 // import { initAligningGuidelines } from "../util/snappingGuidlines";
 import { errorMessages } from "../../../assets/config";
 
@@ -142,15 +142,17 @@ export function canvasConfigurationChangeHandler(brand: IBrandingAreas) {
 export const deleteSelectedObjects = () => {
   document.getElementById("deleteButton")?.addEventListener("click", () => {
     const selectedObject = canvas.getActiveObject();
-    const logoListCopy = JSON.parse(JSON.stringify(qtyProxy?.logoList));
+    const logoListCopy = JSON.parse(JSON.stringify(qtyProxy?.logoList || []));
     if (!selectedObject) {
       alert(errorMessages.ALERT_OBJECT_SELECTION);
       return
     }
     const logoIndex = logoListCopy?.findIndex((el) => el.id == selectedObject.id);
-    if (logoIndex >= 0 && canvas && confirm(errorMessages.CONFIRMATION_MESSAGE)) {
-      logoListCopy.splice(logoIndex, 1)
-      qtyProxy['logoList'] = JSON.parse(JSON.stringify(logoListCopy));
+    if (selectedObject && canvas && confirm(errorMessages.CONFIRMATION_MESSAGE)) {
+      if (logoIndex >= 0) {
+        logoListCopy.splice(logoIndex, 1)
+        qtyProxy['logoList'] = JSON.parse(JSON.stringify(logoListCopy));
+      }
       canvas.remove(selectedObject);
       canvas.discardActiveObject();
       canvas.renderAll();
@@ -180,6 +182,8 @@ export const clearCanvasHandler = () => {
           canvas.remove(element);
         }
       });
+      qtyProxy['logoList'] = [];
+      checkNextButtonActive();
       initUndoRedoEventHandler();
       canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
       document

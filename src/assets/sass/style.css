@@ -912,9 +912,8 @@ input[type="checkbox"]:disabled {
   }
 }
 
-/*// TODO: display flex for the position alignment*/
 .objectAlign{
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
@@ -951,4 +950,14 @@ input[type="checkbox"]:disabled {
 
 .product-summary-card li:first-child {
   width: 100%;
+}
+
+.image-conatiner {
+  width: 500px;
+  height: 500px;
+}
+
+.image-conatiner img {
+  width: 100%;
+  height: auto;
 }

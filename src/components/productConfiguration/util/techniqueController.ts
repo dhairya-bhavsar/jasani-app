@@ -4,7 +4,7 @@ import {qtyChangeHandel} from "./pricingCalculation";
 import {canvasConfigurationChangeHandler} from "../components";
 import {qtyProxy} from "../../../../index";
 
-export function techniqueRender(tech: IBrandingAreas) {
+export function techniqueRender(tech: IBrandingAreas, id = "techniquesSelection") {
     const _html = `
         <div class="techniques">
             ${tech?.availableTechniques.map((el) => {
@@ -20,7 +20,7 @@ export function techniqueRender(tech: IBrandingAreas) {
                       </div>`
             }).join(" ")}
         </div>`
-    replaceCurrentElementWithNewId('techniquesSelection', _html);
+    replaceCurrentElementWithNewId(id, _html);
     const initSelectedBrandingEl = document.getElementById(tech.availableTechniques[0].id);
     if (initSelectedBrandingEl) initSelectedBrandingEl.classList.add('active');
     techniqueClickHandler(tech?.availableTechniques);
@@ -56,6 +56,11 @@ export function assignClickHandlerOnBrand(product: IProductDetail) {
         const techEl = document.getElementById(tech.id);
         techEl.addEventListener('click', (element) => {
             const selectedBrand = document.querySelector('.section-img-container.active');
+            const activeObjects = qtyProxy?.canvas?.getActiveObjects();
+            if (activeObjects && activeObjects.length !== 0) {
+                alert("Please clear canvas to change the branding area!");
+                return
+            }
             if (selectedBrand) selectedBrand.classList.remove('active');
             // @ts-ignore
             const currentSelectionEle = element.target.closest('.section-img-container');

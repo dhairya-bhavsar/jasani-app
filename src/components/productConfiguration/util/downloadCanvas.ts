@@ -21,6 +21,7 @@ export function DownloadImage(name = "", type = "image", isDownload = true) {
     if (type === "image") {
       url = canvas.toDataURL({
         format: downloadImageType,
+        multiplier: 4
       });
     }
   } catch (error) {
