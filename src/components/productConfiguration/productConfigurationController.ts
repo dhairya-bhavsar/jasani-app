@@ -5,6 +5,7 @@ import {
     changeFontSizeHandler, changeTextAlignHandler,
     changeTextColor, editTextHandler, fontBoldUnderlineAndItalicHandler
 } from "../productDetail/textController";
+import {CheckTechniqueSingleColor} from "./util";
 
 export function textEditorInitial() {
     const canvas = qtyProxy.canvas;
@@ -16,4 +17,25 @@ export function textEditorInitial() {
     fontBoldUnderlineAndItalicHandler(canvas);
     editTextHandler(canvas);
     changeTextAlignHandler(canvas);
+    ObserveTechniqueChange();
+}
+
+export function ObserveTechniqueChange() {
+    const techniqueName = document.getElementById('selectedTechniqueName');
+    const config = { attributes: true, childList: true, subtree: true };
+    const callback = (mutationList) => {
+        for (const mutation of mutationList) {
+            if (mutation.type === "childList") {
+                const textColorInputbox = document.getElementById("textColor") as HTMLInputElement;
+                textColorInputbox.disabled = false;
+                if (CheckTechniqueSingleColor()){
+                    textColorInputbox.disabled = true;
+                }
+            }
+        }
+
+    };
+
+    const observer = new MutationObserver(callback);
+    observer.observe(techniqueName, config);
 }

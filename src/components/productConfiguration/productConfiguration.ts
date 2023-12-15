@@ -7,6 +7,7 @@ import {addTextHTMLHandler} from "../productDetail/textCustomisationBox";
 import {textEditorInitial} from "./productConfigurationController";
 import {CanvasEditor, alignObjectHandler, clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components";
 import { qtyProxy } from "../../..";
+import 'vanilla-picker/dist/vanilla-picker.csp.css';
 
 const { products } = productData;
 
@@ -97,6 +98,9 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                     </div>
                     
                     <div class="stepper-section">
+                        <div class="card-title">
+                            <b>Technique Name:</b> <span id="selectedTechniqueName"> </span>
+                        </div> 
                         <div class="tabButtons">
                             <button class="step-button active" name="1">Step 1</button>                       
                             <button class="step-button" name="2">Step 2</button>

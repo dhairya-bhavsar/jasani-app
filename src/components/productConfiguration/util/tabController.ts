@@ -22,8 +22,10 @@ export function tabHideShow() {
 export function tabController() {
     document.querySelectorAll(".step-button").forEach((ele) => {
         ele.addEventListener("click", () => {
+            const activeObjects = qtyProxy?.canvas?.getActiveObjects();
             // @ts-ignore
-            if (+ele.name === 1) {
+            if (+ele.name === 1 && activeObjects.length !== 0) {
+                alert("Please discard changes!!");
                 return
             }
             const active = document.querySelector(".step-button.active");

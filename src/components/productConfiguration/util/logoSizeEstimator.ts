@@ -10,7 +10,7 @@ export function findLogoCordsHelper() {
     const drawableArea = qtyProxy.drawableArea;
 
     const canvasObjects = qtyProxy?.canvas?.getObjects();
-    // TODO: text object summary get
+    // TODO: text object summary to estimator
     // const textObjects = canvasObjects.filter((obj) => obj instanceof fabric.Text);
 
     const imageObjectsCords = canvasObjects.filter((obj) => obj.type === 'image').map((imgObj) => {

@@ -1,7 +1,12 @@
 import { fabric } from "fabric";
 import {qtyProxy} from "../../../index";
-import { clickStepBtnHandler } from "../productConfiguration/util";
-import {clearInputBoxHandler} from "../../helpers/helper";
+import {
+  applyGoogleFontHandler,
+  CheckTechniqueSingleColor,
+  clickStepBtnHandler,
+  TechniqueBaseSingleColor
+} from "../productConfiguration/util";
+import {clearInputBoxHandler, rgbToHex} from "../../helpers/helper";
 
 export function addTextToCanvasHandler(canvas) {
   const addTextButton = document.getElementById("applyText");
@@ -9,9 +14,11 @@ export function addTextToCanvasHandler(canvas) {
   addTextButton?.addEventListener("click", () => {
     let addedText = (document.getElementById("addedText") as HTMLInputElement).value;
     if (addedText) {
+      const techColor = TechniqueBaseSingleColor()
       const text = new fabric.Textbox(addedText, {
         editable: false,
         transparentCorners : false,
+        fill: rgbToHex(techColor[0], techColor[1], techColor[2])
       });
       const editor = qtyProxy?.canvasEditor;
       const top = editor.top + (editor.height - text.height) / 2;
@@ -44,10 +51,7 @@ export const changeFontFamilyHandler = (canvas) => {
   fontType.addEventListener("change", () => {
     const activeObject = canvas.getActiveObject();
     if (activeObject instanceof fabric.Text) {
-      // applyGoogleFontHandler(fontType.value.replaceAll("-", " "),activeObject);
-      activeObject.set("fontFamily", fontType.value);
-      selectedTextBoxStyleHelper("fontFamily", activeObject);
-      canvas.fire('object:modified');
+      applyGoogleFontHandler(fontType.value.replaceAll("-", " "),activeObject);
     }
     canvas.renderAll();
   });
@@ -163,7 +167,9 @@ export const fontBoldUnderlineAndItalicHandler = (canvas) => {
 
 export const changeTextColor = (canvas) => {
   const textColorInputbox = document.getElementById("textColor") as HTMLInputElement;
-
+  if (CheckTechniqueSingleColor()){
+    textColorInputbox.disabled = true;
+  }
   const updateInpuBoxValue = (e) => {
     textColorInputbox.value = e.selected[0].fill;
   };

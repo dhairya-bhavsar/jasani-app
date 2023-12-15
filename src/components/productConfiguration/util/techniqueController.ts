@@ -23,6 +23,7 @@ export function techniqueRender(tech: IBrandingAreas, id = "techniquesSelection"
     replaceCurrentElementWithNewId(id, _html);
     const initSelectedBrandingEl = document.getElementById(tech.availableTechniques[0].id);
     if (initSelectedBrandingEl) initSelectedBrandingEl.classList.add('active');
+    document.getElementById('selectedTechniqueName').innerHTML = tech.availableTechniques[0].techniqueName;
     techniqueClickHandler(tech?.availableTechniques);
     canvasConfigurationChangeHandler(tech);
 }
@@ -45,6 +46,7 @@ export function techniqueClickHandler(tech: IAvailableTechniques[]) {
             if (selectedTechnique) selectedTechnique.classList.add('active');
 
             qtyProxy['selectedTechnique'] = technique;
+            document.getElementById('selectedTechniqueName').innerHTML = technique.techniqueName;
             qtyChangeHandel(technique);
         });
     });

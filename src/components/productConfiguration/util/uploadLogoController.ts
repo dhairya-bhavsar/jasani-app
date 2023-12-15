@@ -5,11 +5,12 @@ import {fabric} from "fabric";
 import {
   compareArr,
   hexToRgb,
-  replaceCurrentElementWithNewId,
+  replaceCurrentElementWithNewId, rgbToHex,
   setLoader, uniqBy
 } from "../../../helpers/helper";
 import { clickStepBtnHandler } from ".";
 import {CheckTechniqueSingleColor, TechniqueBaseSingleColor} from "./techniqueBaseOperations";
+import Picker from 'vanilla-picker';
 
 function clearUploadInputValue() {
   const logoBtn = document.getElementById('uploadLogo') as HTMLButtonElement;
@@ -146,6 +147,8 @@ export function colorSelectionHandle() {
   if (!colorElement) return;
   colorElement.forEach((el, index) => {
     el.disabled = CheckTechniqueSingleColor();
+    if (CheckTechniqueSingleColor()) return;
+
     el.addEventListener('click', () => {
       const previousSelection = document.querySelector('.replacedByColor.show');
       if (previousSelection) {
@@ -153,11 +156,22 @@ export function colorSelectionHandle() {
         previousSelection.classList.remove('show');
       }
       const changeInput = document.getElementById(`replacedBy-${index}`);
+      const hiddenInput = document.getElementById(`replacedBy-color-hidden-${index}`) as HTMLInputElement;
       if (!changeInput) return;
       changeInput.classList.remove('hidden');
       changeInput.classList.add('show');
-      qtyProxy['oldColor'] = el.value;
-      onChangeLogoColor(index);
+      new Picker({
+          // @ts-ignore
+          parent: changeInput,
+          alpha: false,
+          editor: false,
+          color: hiddenInput.value,
+          onDone: function(color) {
+            qtyProxy['oldColor'] = el.value;
+            hiddenInput.value = rgbToHex(color._rgba[0],color._rgba[1],color._rgba[2]);
+            onChangeLogoColor(index);
+          }
+      });
     });
   })
 }
@@ -216,12 +230,11 @@ async function convertLogoColor(requestObject) {
 }
 
 function onChangeLogoColor(index) {
-  const colorInput = document.getElementById(`replacedBy-${index}`);
+  const colorInput = document.getElementById(`replacedBy-color-hidden-${index}`) as HTMLInputElement;
   if (!colorInput) return;
-  colorInput.addEventListener('change', (e) => {
-    const replacedByColorValue = e.target.value;
+  // colorInput.addEventListener('change', (e) => {
+    const replacedByColorValue = colorInput.value;
     qtyProxy['newColor'] = hexToRgb(replacedByColorValue);
-
     const objToSend = {
       fileName: qtyProxy?.selectedLogo?.imgUrl,
       initialColor: qtyProxy?.oldColor,
@@ -232,7 +245,7 @@ function onChangeLogoColor(index) {
 
     const jsonString = JSON.stringify(objToSend);
     convertLogoColor(jsonString);
-  });
+  // });
 }
 
 export function logoDimensionHandler() {
@@ -345,7 +358,8 @@ export function colorContainerHtmlRender() {
                   class="logo-color" name="color-group" value="${[color[0], color[1], color[2]]}">
                   <label for="color-${index}" style="background-color: ${rgbColor}"></label>
                   <div class="replacedByColor hidden" id="replacedBy-${index}">
-                   <input type="color" id="replacedBy-color-${index}" value="#000002"/>
+                   <input type="color" class="hidden" id="replacedBy-color-hidden-${index}" value="${rgbToHex(color[0], color[1], color[2])}"/>
+                   <label  id="replacedBy-color-${index}" style="background-color: ${rgbColor}"></label>
                   </div>
               </div>` ;
             }).join(" ")}   

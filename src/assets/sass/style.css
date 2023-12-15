@@ -404,9 +404,21 @@ p {
   display: none;
 }
 
+b {
+  font-weight: bold;
+}
+
+.replacedByColor {
+ margin-top: 4px;
+}
+
+.color-selector .replacedByColor label {
+  padding: 5px 20px;
+}
+
 .nextStep {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
   border-top: 3px solid #E4E5E5;
   margin-bottom: 20px;
@@ -678,6 +690,10 @@ div#available-sections {
 
 #textColor, #fontSize, #fontType, #fontUnderline,  #textAlign {
   height: 32px;
+}
+
+#textColor:disabled {
+  cursor: not-allowed;
 }
 
 #fontSize{
@@ -960,4 +976,10 @@ input[type="checkbox"]:disabled {
 .image-conatiner img {
   width: 100%;
   height: auto;
+}
+
+.card-title {
+  padding: 15px 20px;
+  background-color: #057ac7;
+  color: white;
 }

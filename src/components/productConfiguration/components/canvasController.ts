@@ -2,8 +2,13 @@ import {fabric} from "fabric";
 import {images} from "../../../assets/images";
 import {qtyProxy} from "../../../../index";
 import {IBrandingAreas} from "../type";
-import {DownloadImage, initUndoRedoEventHandler, clickStepBtnHandler, checkNextButtonActive} from "../util";
-// import { initAligningGuidelines } from "../util/snappingGuidlines";
+import {
+  DownloadImage,
+  initUndoRedoEventHandler,
+  clickStepBtnHandler,
+  checkNextButtonActive,
+  initAligningGuidelines
+} from "../util";
 import { errorMessages } from "../../../assets/config";
 
 let canvas, drawableArea, editor;
@@ -114,8 +119,7 @@ export function initCanvas(defaultSelectedBrandingArea: IBrandingAreas) {
     redoFinishedStatus: true,
   };
   initUndoRedoEventHandler();
-  // TODO: Alignment Code changes for the logo and Text placement
-  // initAligningGuidelines();
+  initAligningGuidelines();
 }
 
 export function canvasConfigurationChangeHandler(brand: IBrandingAreas) {

@@ -1,5 +1,5 @@
 import { qtyProxy } from "../../../..";
-import {apiUrls, errorMessages} from "../../../assets/config";
+import {apiUrls, errorMessages, GoogleFontApi} from "../../../assets/config";
 import { setLoader } from "../../../helpers/helper";
 import { selectedTextBoxStyleHelper } from "../../productDetail/textController";
 import WebFont from "webfontloader";
@@ -23,17 +23,16 @@ export function applyGoogleFontHandler(font, activeObject): void {
 
   if (!font && !activeObject) return;
 
-  // TODO:: Google Font
-  // if (!qtyProxy.addedFontList.includes(font)) {
-  //   const url = GoogleFontApi + font.replace(/ /g, "+") + ":" + "&display=swap";
-  //   document.head.append(
-  //     new DOMParser().parseFromString(
-  //       `<link rel="stylesheet" href=${url} type="text/css"/>`,
-  //       "text/html"
-  //     ).head.firstChild
-  //   );
-  //   qtyProxy.addedFontList.push(font);
-  // }
+  if (!qtyProxy.addedFontList.includes(font)) {
+    const url = GoogleFontApi + font.replace(/ /g, "+") + ":" + "&display=swap";
+    document.head.append(
+      new DOMParser().parseFromString(
+        `<link rel="stylesheet" href=${url} type="text/css"/>`,
+        "text/html"
+      ).head.firstChild
+    );
+    qtyProxy.addedFontList.push(font);
+  }
 
   setLoader(true);
   WebFont.load({

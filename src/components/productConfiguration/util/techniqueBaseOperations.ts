@@ -16,6 +16,6 @@ export function TechniqueBaseSingleColor(): number[] {
         case "Blind Debossing":
             return [185,185,185];
         default:
-            return [255,255,255];
+            return [0,0,0];
     }
 }
