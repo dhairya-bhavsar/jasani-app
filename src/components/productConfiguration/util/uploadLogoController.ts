@@ -143,37 +143,37 @@ const addApiImageToCanvas = (url, id) => {
 };
 
 export function colorSelectionHandle() {
-  const colorElement = document.querySelectorAll('.logo-color');
-  if (!colorElement) return;
-  colorElement.forEach((el, index) => {
-    el.disabled = CheckTechniqueSingleColor();
-    if (CheckTechniqueSingleColor()) return;
+  const colorPicker = document.querySelectorAll('.color-picker');
+  if (!colorPicker) return;
 
-    el.addEventListener('click', () => {
-      const previousSelection = document.querySelector('.replacedByColor.show');
-      if (previousSelection) {
-        previousSelection.classList.add('hidden');
-        previousSelection.classList.remove('show');
-      }
-      const changeInput = document.getElementById(`replacedBy-${index}`);
-      const hiddenInput = document.getElementById(`replacedBy-color-hidden-${index}`) as HTMLInputElement;
-      if (!changeInput) return;
-      changeInput.classList.remove('hidden');
-      changeInput.classList.add('show');
-      new Picker({
-          // @ts-ignore
-          parent: changeInput,
-          alpha: false,
-          editor: false,
-          color: hiddenInput.value,
-          onDone: function(color) {
-            qtyProxy['oldColor'] = el.value;
-            hiddenInput.value = rgbToHex(color._rgba[0],color._rgba[1],color._rgba[2]);
-            onChangeLogoColor(index);
-          }
-      });
+  colorPicker.forEach((picker, index) => {
+    const colorInput = document.getElementById(`color-${index}`);
+    if (CheckTechniqueSingleColor()) {
+      picker.classList.add('disabled');
+      return;
+    }
+    picker.addEventListener('click', () => {
+      const selected = document.querySelector('.color-picker.selected');
+      if (selected) selected.classList.remove('selected');
+
+      picker.classList.add('selected');
     });
-  })
+    new Picker({
+      // @ts-ignore
+      parent: picker,
+      alpha: false,
+      editor: true,
+      color: colorInput.value,
+      popup: "bottom",
+      editorFormat: 'rgb',
+      onDone: function(color) {
+        console.log("color", color.rgbString, color.hex)
+        qtyProxy['oldColor'] = hexToRgb(colorInput.value).toString();
+        colorInput.value = color.hex.slice(0, -2);
+        onChangeLogoColor(index);
+      }
+    });
+  });
 }
 
 function updateListOfColors() {
@@ -230,7 +230,7 @@ async function convertLogoColor(requestObject) {
 }
 
 function onChangeLogoColor(index) {
-  const colorInput = document.getElementById(`replacedBy-color-hidden-${index}`) as HTMLInputElement;
+  const colorInput = document.getElementById(`color-${index}`) as HTMLInputElement;
   if (!colorInput) return;
   // colorInput.addEventListener('change', (e) => {
     const replacedByColorValue = colorInput.value;
@@ -354,13 +354,9 @@ export function colorContainerHtmlRender() {
             const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
             return `
                <div class="color-selector">
-                  <input type="radio" id="color-${index}"                   
-                  class="logo-color" name="color-group" value="${[color[0], color[1], color[2]]}">
-                  <label for="color-${index}" class="color-picker" style="background-color: ${rgbColor}"></label>
-                  <div class="replacedByColor hidden" id="replacedBy-${index}">
-                   <input type="color" class="hidden" id="replacedBy-color-hidden-${index}" value="${rgbToHex(color[0], color[1], color[2])}"/>
-                   <label  id="replacedBy-color-${index}" style="background-color: ${rgbColor}"></label>
-                  </div>
+                  <input type="color" id="color-${index}"                   
+                  class="logo-color hidden" name="color-group" value="${rgbToHex(color[0], color[1], color[2])}">
+                  <label for="color-picker-${index}" class="color-picker" style="background-color: ${rgbColor}"></label>
               </div>` ;
             }).join(" ")}   
       </div>
@@ -376,6 +372,10 @@ export function colorContainerHtmlRender() {
           <div class="input-group">
             <input type="checkbox" id="removeWhiteBg" placeholder="" />
             <label for="removeWhiteBg">Remove Background</label>
+          </div> 
+          <div class="input-group">
+            <input type="checkbox" id="removePadding" placeholder="" />
+            <label for="removePadding">Adjust Padding</label>
           </div> 
       </div>
     </div>

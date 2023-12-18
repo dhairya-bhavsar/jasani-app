@@ -228,6 +228,7 @@ p {
 
 .left-side {
   width: 50%;
+  overflow: hidden;
 }
 
 .font-bold {
@@ -826,25 +827,29 @@ div#available-sections {
   box-shadow: 0 0 5px rgb(0,0,0,0.5);
 }
 
-.color-selector input[type="radio"]:checked+label:before {
+.color-selector .color-picker.selected:before {
   content:'';
   border: 1px solid;
   position: absolute;
   inset: 0;
 }
 
-.color-selector input[type="radio"]:checked+label:after {
+.color-selector .color-picker.selected:after {
   content:'';
   inset: 1px;
   position: absolute;
   border: 4px solid #ffffff;
 }
 
-.color-selector input[type="radio"]:disabled+label {
+.color-selector .color-picker.disabled {
   opacity: 0.3;
-  cursor: not-allowed;
+  cursor: not-allowed !important;
   border: 1px solid;
   box-shadow: none;
+}
+
+.color-picker .picker_editor {
+  width: 100% !important;
 }
 
 input[type="checkbox"]:disabled {
