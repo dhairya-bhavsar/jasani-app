@@ -356,7 +356,7 @@ export function colorContainerHtmlRender() {
                <div class="color-selector">
                   <input type="radio" id="color-${index}"                   
                   class="logo-color" name="color-group" value="${[color[0], color[1], color[2]]}">
-                  <label for="color-${index}" style="background-color: ${rgbColor}"></label>
+                  <label for="color-${index}" class="color-picker" style="background-color: ${rgbColor}"></label>
                   <div class="replacedByColor hidden" id="replacedBy-${index}">
                    <input type="color" class="hidden" id="replacedBy-color-hidden-${index}" value="${rgbToHex(color[0], color[1], color[2])}"/>
                    <label  id="replacedBy-color-${index}" style="background-color: ${rgbColor}"></label>

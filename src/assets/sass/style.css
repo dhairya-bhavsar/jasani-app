@@ -275,6 +275,7 @@ p {
 .inputLabel,
 .textInput button,
 #nextStepButton,
+#backStepButton,
 #saveButton,
 .preview-buttons > button {
   display: flex;
@@ -299,6 +300,7 @@ p {
 .inputLabel,
 .textInput button,
 #nextStepButton,
+#backStepButton,
 #saveButton {
   color: #fff;
   width: 96px;
@@ -307,9 +309,14 @@ p {
   padding: 19px;
 }
 
-#nextStepButton:disabled {
+#nextStepButton:disabled,
+#backStepButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.nextStep #backStepButton {
+  background-color: lightslategray;
 }
 
 .bg-blue {
@@ -808,8 +815,8 @@ div#available-sections {
 
 .color-selector input[type="radio"] {
   display: none;
-  height: 100%;
-  width: 100%;
+  height: 0;
+  width: 0;
 }
 
 .color-selector label {

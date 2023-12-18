@@ -155,6 +155,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                                     <div id="productSummary"> </div>
                         </div>
                         <div class="nextStep">
+                        <button id="backStepButton">Back</button>
                           <button id="nextStepButton">Next</button>
                           <button id="saveButton" class="hidden">Save</button>
                         </div>

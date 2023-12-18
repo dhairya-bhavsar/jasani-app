@@ -180,7 +180,8 @@ export const saveImage = (name = "") => {
 
 export const clearCanvasHandler = () => {
   document.getElementById("clearCanvas").addEventListener("click", () => {
-    if (confirm("Are you sure want to clear canvas?")) {
+    const confirmation = !qtyProxy.backOnTab ? confirm("Are you sure want to clear canvas?") : true;
+    if (confirmation) {
       [...canvas.getObjects()].forEach((element) => {
         if (element.id !== "drawableArea") {
           canvas.remove(element);
@@ -190,6 +191,7 @@ export const clearCanvasHandler = () => {
       checkNextButtonActive();
       initUndoRedoEventHandler();
       canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+      qtyProxy['backOnTab'] = false;
       document
         .getElementById(qtyProxy?.selectedProduct?.brandingAreas[0]?.id)
         .click();

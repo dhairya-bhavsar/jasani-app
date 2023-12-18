@@ -4,7 +4,7 @@ export const fileTypeSupport = ['application/pdf', 'image/x-eps', 'application/i
 
 export const GoogleFontApi = "https://fonts.googleapis.com/css?family=";
 export const APIEndPoint = 'https://jasaniapi.demo.brainvire.dev'; // demo
-// export const APIEndPoint = "https://4d51-180-211-97-51.ngrok-free.app"; //local
+// export const APIEndPoint = "https://63ce-103-211-14-98.ngrok-free.app"; //local
 export const APIVersion = '/api/';
 export const GoogleAPIKey = 'AIzaSyCNnUWe_Zp6LRPqvFZP3B6sYJaV98UyJyE';
 
@@ -28,7 +28,8 @@ export const errorMessages = {
     LOGO_FORMATE_ISSUE: "Please upload only this file type: jpg, jpeg, png, pdf, eps, ai format",
     OBJ_NOT_SELECTED: "Please select image or text you want to align",
     ALERT_OBJECT_SELECTION: "Please select any object!!",
-    CONFIRMATION_MESSAGE: "Are you sure want to delete?"
+    CONFIRMATION_MESSAGE: "Are you sure want to delete?",
+    CONFIRMATION_BACK_TO_STEP_1: "If you move step 1, it will discard all the changes. Are you sure you want to switch to step 1?"
 }
 
 export const Techniques = {
