@@ -13,6 +13,7 @@ export const apiUrls = {
     convertedImage: APIEndPoint + '/media/',
     imageColorReplace : APIEndPoint + APIVersion + 'fill-color/',
     backgroundRemove : APIEndPoint + APIVersion + 'background/',
+    adjustPadding : APIEndPoint + APIVersion + 'media/',
     googleFontApi: `https://www.googleapis.com/webfonts/v1/webfonts?key=${GoogleAPIKey}`
 }
 

@@ -56,7 +56,8 @@ export async function uploadLogo(event) {
         imgName: fileName,
         isBackground: data.data.isBackground,
         removeBackground: false,
-        isGradient: data.data.isGradient
+        isGradient: data.data.isGradient,
+        isAdjustPadding: false,
       },
     ];
     clearUploadInputValue();
@@ -317,6 +318,39 @@ export function removeBackgroundHandler() {
   removeButton.addEventListener('change', removeButtonHandle);
 }
 
+async function removeButtonPaddingHandle(event) {
+  qtyProxy['selectedLogo']['isAdjustPadding'] = event.target.checked;
+  const reqObject = {
+    fileName: qtyProxy?.selectedLogo?.imgUrl,
+    haveBackground: event.target.checked,
+  }
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  setLoader(true);
+  try {
+    const response = await fetch(apiUrls.adjustPadding, {
+      method: "DELETE",
+      headers: headers,
+      body: JSON.stringify(reqObject),
+    });
+    const data = await response.json();
+    console.log("data", data);
+    // setUpdatedImage(data.data.image, false);
+  } catch (error) {
+    console.log('Background color API calling!!');
+    alert(errorMessages.SERVER_ERROR);
+    setLoader(false);
+  }
+}
+
+export function adjustBackgroundPaddingHandler() {
+  const adjustPaddingButton = document.getElementById('removePadding');
+  if (!adjustPaddingButton) return;
+
+  adjustPaddingButton.checked = qtyProxy?.selectedLogo?.isAdjustPadding || false;
+  adjustPaddingButton.addEventListener('change', removeButtonPaddingHandle);
+}
+
 export function checkAllowedLogo() {
   const activeObject = qtyProxy?.canvas?.getActiveObject();
   const totalColor: number = qtyProxy?.logoList?.find((logo) => logo.id === activeObject?.id)?.logoColors?.length || 0;
@@ -373,7 +407,7 @@ export function colorContainerHtmlRender() {
             <input type="checkbox" id="removeWhiteBg" placeholder="" />
             <label for="removeWhiteBg">Remove Background</label>
           </div> 
-          <div class="input-group">
+          <div class="input-group hidden">
             <input type="checkbox" id="removePadding" placeholder="" />
             <label for="removePadding">Adjust Padding</label>
           </div> 
@@ -384,6 +418,7 @@ export function colorContainerHtmlRender() {
   colorSelectionHandle();
   logoDimensionHandler();
   removeBackgroundHandler();
+  adjustBackgroundPaddingHandler();
 }
 
 export function checkBackGroundRemove() {
