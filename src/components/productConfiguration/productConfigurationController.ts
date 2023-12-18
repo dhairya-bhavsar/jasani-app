@@ -27,10 +27,7 @@ export function ObserveTechniqueChange() {
         for (const mutation of mutationList) {
             if (mutation.type === "childList") {
                 const textColorInputbox = document.getElementById("textColor") as HTMLInputElement;
-                textColorInputbox.disabled = false;
-                if (CheckTechniqueSingleColor()){
-                    textColorInputbox.disabled = true;
-                }
+                textColorInputbox.disabled = CheckTechniqueSingleColor();
             }
         }
 

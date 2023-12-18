@@ -43,7 +43,7 @@ export function calculatedPricing(technique: IAvailableTechniques) {
 }
 
 export function getTotalCost(fixedCost, pricePerUnitCost): number {
-    let totalCost = 0;
+    let totalCost: number;
 
     const qty = qtyProxy?.quantity || 1;
     totalCost = Number((
@@ -55,7 +55,7 @@ export function getTotalCost(fixedCost, pricePerUnitCost): number {
 }
 
 export function getTotalPrintCost(): number {
-    let totalPrintCost = 0;
+    let totalPrintCost: number;
     const totalCost = +qtyProxy.totalCost || 0;
     const qty = qtyProxy?.quantity || 1;
     totalPrintCost = +(totalCost / qty).toFixed(2);
