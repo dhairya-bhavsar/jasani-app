@@ -130,6 +130,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                           </div>
                         </div>
                         <div id="2" class="tabView tabHide">
+                           <div id="noteMessage" class="bg-warning hidden"></div>
                           <small class="noteSummary">We accept: jpg, jpeg, png, .eps, .pdf or .ai Maximum 10mb file size.</small>
                           <div class="uploadLogo">
                             <p class="font-bold upload_file_center">Upload file (optional)</p>

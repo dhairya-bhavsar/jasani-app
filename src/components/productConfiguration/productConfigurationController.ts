@@ -5,7 +5,8 @@ import {
     changeFontSizeHandler, changeTextAlignHandler,
     changeTextColor, editTextHandler, fontBoldUnderlineAndItalicHandler
 } from "../productDetail/textController";
-import {CheckTechniqueSingleColor} from "./util";
+import {CheckTechniqueGradientSupport, CheckTechniqueSingleColor} from "./util";
+import {errorMessages} from "../../assets/config.ts";
 
 export function textEditorInitial() {
     const canvas = qtyProxy.canvas;
@@ -18,6 +19,14 @@ export function textEditorInitial() {
     editTextHandler(canvas);
     changeTextAlignHandler(canvas);
     ObserveTechniqueChange();
+
+    // To add the waring message based on the technique on load.
+    const noteEL = document.getElementById('noteMessage');
+    if (CheckTechniqueGradientSupport()) {
+        if (!noteEL) return;
+        noteEL.classList.remove('hidden')
+        noteEL.innerHTML = errorMessages.NOTE_MESSAGE_TECHNIQUE;
+    }
 }
 
 export function ObserveTechniqueChange() {
@@ -27,7 +36,15 @@ export function ObserveTechniqueChange() {
         for (const mutation of mutationList) {
             if (mutation.type === "childList") {
                 const textColorInputbox = document.getElementById("textColor") as HTMLInputElement;
+                const noteEL = document.getElementById('noteMessage');
+                if (!noteEL.className.includes('hidden')) noteEL.classList.add('hidden')
+
                 textColorInputbox.disabled = CheckTechniqueSingleColor();
+                if (CheckTechniqueGradientSupport()) {
+                    if (!noteEL) return;
+                    noteEL.classList.remove('hidden')
+                    noteEL.innerHTML = errorMessages.NOTE_MESSAGE_TECHNIQUE;
+                }
             }
         }
 

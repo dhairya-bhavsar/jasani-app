@@ -8,7 +8,7 @@ import {
   replaceCurrentElementWithNewId, rgbToHex,
   setLoader, uniqBy
 } from "../../../helpers/helper";
-import { clickStepBtnHandler } from ".";
+import {CheckTechniqueGradientSupport, clickStepBtnHandler} from ".";
 import {CheckTechniqueSingleColor, TechniqueBaseSingleColor} from "./techniqueBaseOperations";
 import Picker from 'vanilla-picker';
 
@@ -46,6 +46,10 @@ export async function uploadLogo(event) {
       return
     }
 
+    if (data.data.isGradient === "True" && CheckTechniqueGradientSupport() && !confirm(errorMessages.CONFIRMATION_GRADIENT_MESSAGE_TECHNIQUE)) {
+        return;
+    }
+
     addApiImageToCanvas(data.data.image, id);
     const preLogoList = qtyProxy?.logoList ?? [];
     qtyProxy["logoList"] = [
@@ -54,7 +58,7 @@ export async function uploadLogo(event) {
         logoColors: data.data.colors,
         imgUrl: data.data.image,
         imgName: fileName,
-        isBackground: data.data.isBackground,
+        isBackground: data.data.isBackground !== 0,
         removeBackground: false,
         isGradient: data.data.isGradient,
         isAdjustPadding: false,
@@ -179,7 +183,7 @@ export function colorSelectionHandle() {
 
 function updateListOfColors() {
   const newSelectedLogo = {...qtyProxy?.selectedLogo};
-  const oldColor = qtyProxy?.oldColor.split(",");
+  const oldColor = qtyProxy?.oldColor?.split(",");
   newSelectedLogo?.logoColors.forEach((el, index) => {
     if (compareArr(el, oldColor)) {
       if (qtyProxy?.newColor) newSelectedLogo.logoColors[index] = [...qtyProxy?.newColor];
@@ -322,20 +326,19 @@ async function removeButtonPaddingHandle(event) {
   qtyProxy['selectedLogo']['isAdjustPadding'] = event.target.checked;
   const reqObject = {
     fileName: qtyProxy?.selectedLogo?.imgUrl,
-    haveBackground: event.target.checked,
+    haveBackground: !qtyProxy?.selectedLogo?.isBackground,
   }
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
   setLoader(true);
   try {
     const response = await fetch(apiUrls.adjustPadding, {
-      method: "DELETE",
+      method: "POST",
       headers: headers,
       body: JSON.stringify(reqObject),
     });
     const data = await response.json();
-    console.log("data", data);
-    // setUpdatedImage(data.data.image, false);
+    setUpdatedImage(data.data, false);
   } catch (error) {
     console.log('Background color API calling!!');
     alert(errorMessages.SERVER_ERROR);
@@ -348,6 +351,7 @@ export function adjustBackgroundPaddingHandler() {
   if (!adjustPaddingButton) return;
 
   adjustPaddingButton.checked = qtyProxy?.selectedLogo?.isAdjustPadding || false;
+  adjustPaddingButton.disabled = qtyProxy?.selectedLogo?.isAdjustPadding || false;
   adjustPaddingButton.addEventListener('change', removeButtonPaddingHandle);
 }
 
@@ -407,7 +411,7 @@ export function colorContainerHtmlRender() {
             <input type="checkbox" id="removeWhiteBg" placeholder="" />
             <label for="removeWhiteBg">Remove Background</label>
           </div> 
-          <div class="input-group hidden">
+          <div class="input-group">
             <input type="checkbox" id="removePadding" placeholder="" />
             <label for="removePadding">Adjust Padding</label>
           </div> 
@@ -461,6 +465,6 @@ const logoSelectionEventHandler = () => {
 export function initUploadLogoButton() {
   const btn = document.getElementById("uploadLogo");
   if (!btn) return;
-  btn.addEventListener("change", uploadLogo);
+  btn.addEventListener("change",  uploadLogo);
   logoSelectionEventHandler();
 }

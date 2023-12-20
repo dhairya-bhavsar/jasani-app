@@ -89,6 +89,8 @@ export function rgbToHex(r: number, g: number, b: number): string {
 
 
 export const compareArr = (arr1, arr2) => {
+    if (!arr1 || !arr2) return false;
+    if (arr1.length === 0 || arr2.length === 0) return false;
     if(arr1.length !== arr2.length){ return false;}
     return arr1.every((item, index) => item == arr2[index]);
 };

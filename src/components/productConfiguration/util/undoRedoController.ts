@@ -57,6 +57,9 @@ function undo() {
         canvasHistory.undoStatus = false;
         canvasHistory.undoFinishedStatus = true;
         qtyProxy["updatedHistory"] = canvasHistory;
+        canvas.getObjects().forEach((object) => {
+          object.setControlsVisibility({ mt: false,ml: false, mr: false, mb : false })
+        })
       }
     );
   }
@@ -83,8 +86,12 @@ function redo() {
         canvasHistory.currentStateIndex++;
         canvasHistory.redoFinishedStatus = true;
         qtyProxy["updatedHistory"] = canvasHistory;
+        canvas.getObjects().forEach((object) => {
+          object.setControlsVisibility({ mt: false,ml: false, mr: false, mb : false })
+        })
       }
     );
+
   }
 }
 

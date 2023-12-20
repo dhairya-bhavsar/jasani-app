@@ -13,7 +13,7 @@ export const apiUrls = {
     convertedImage: APIEndPoint + '/media/',
     imageColorReplace : APIEndPoint + APIVersion + 'fill-color/',
     backgroundRemove : APIEndPoint + APIVersion + 'background/',
-    adjustPadding : APIEndPoint + APIVersion + 'media/',
+    adjustPadding : APIEndPoint + APIVersion + 'remove-padding/',
     googleFontApi: `https://www.googleapis.com/webfonts/v1/webfonts?key=${GoogleAPIKey}`
 }
 
@@ -30,7 +30,9 @@ export const errorMessages = {
     OBJ_NOT_SELECTED: "Please select image or text you want to align",
     ALERT_OBJECT_SELECTION: "Please select any object!!",
     CONFIRMATION_MESSAGE: "Are you sure want to delete?",
-    CONFIRMATION_BACK_TO_STEP_1: "If you move step 1, it will discard all the changes. Are you sure you want to switch to step 1?"
+    CONFIRMATION_BACK_TO_STEP_1: "If you move step 1, it will discard all the changes. Are you sure you want to switch to step 1?",
+    NOTE_MESSAGE_TECHNIQUE: "Note: Only solid color logos are permitted for the selected technique.",
+    CONFIRMATION_GRADIENT_MESSAGE_TECHNIQUE: "We have detected an gradient image. Are you certain you want to continue with the same logo? Only solid color logos are permitted for the selected technique."
 }
 
 export const Techniques = {
