@@ -68,6 +68,7 @@ export function assignClickHandlerOnBrand(product: IProductDetail) {
             const currentSelectionEle = element.target.closest('.section-img-container');
             currentSelectionEle.classList.add('active');
             qtyProxy['selectedBrandingArea'] = tech;
+            qtyProxy['selectedTechnique'] = tech?.availableTechniques[0];
             techniqueRender(tech);
             qtyChangeHandel(tech?.availableTechniques[0]);
         });

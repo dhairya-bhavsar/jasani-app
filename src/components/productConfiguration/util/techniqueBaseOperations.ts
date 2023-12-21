@@ -7,7 +7,6 @@ export function CheckTechniqueSingleColor(): boolean {
 }
 
 export function CheckTechniqueGradientSupport(): boolean {
-    console.log("tech", qtyProxy?.selectedTechnique?.techniqueName)
     return gradientColorPositionTechnique.includes(qtyProxy?.selectedTechnique?.techniqueName);
 }
 
