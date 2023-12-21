@@ -326,7 +326,7 @@ async function removeButtonPaddingHandle(event) {
   qtyProxy['selectedLogo']['isAdjustPadding'] = event.target.checked;
   const reqObject = {
     fileName: qtyProxy?.selectedLogo?.imgUrl,
-    haveBackground: !qtyProxy?.selectedLogo?.isBackground,
+    haveBackground: qtyProxy?.selectedLogo?.isBackground,
   }
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
