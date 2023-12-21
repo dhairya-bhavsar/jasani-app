@@ -1,6 +1,7 @@
 
 import { errorMessages } from "../../../assets/config";
 import {qtyProxy} from "../../../../index";
+import {CheckTechniqueSingleColor} from "./techniqueBaseOperations.ts";
 
 function updateHistory() {
   let canvas = qtyProxy?.canvas;
@@ -40,7 +41,12 @@ function updateHistory() {
 function undo() {
   let canvas = qtyProxy?.canvas;
   let canvasHistory = JSON.parse(JSON.stringify(qtyProxy?.updatedHistory));
-  if (canvasHistory.currentStateIndex - 1 <= 0) {
+  const index = canvasHistory.currentStateIndex - 1;
+  if (index <= 0) {
+    alert(errorMessages.UNDO_FINISH);
+    return;
+  }
+  if (index == 1 && CheckTechniqueSingleColor()) {
     alert(errorMessages.UNDO_FINISH);
     return;
   }

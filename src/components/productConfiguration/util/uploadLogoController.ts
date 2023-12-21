@@ -62,6 +62,7 @@ export async function uploadLogo(event) {
         removeBackground: false,
         isGradient: data.data.isGradient,
         isAdjustPadding: false,
+        hasBackground: data.data.isBackground !== 0,
       },
     ];
     clearUploadInputValue();
@@ -280,6 +281,7 @@ export function logoDimensionHandler() {
 
 async function removeButtonHandle(event) {
   qtyProxy['selectedLogo']['removeBackground'] = event.target.checked;
+  qtyProxy['selectedLogo']['isBackground'] = !qtyProxy?.selectedLogo?.isBackground;
   const reqObject = {
     fileName: qtyProxy?.selectedLogo?.imgUrl,
     action: event.target.checked ? 'remove' : 'add',
@@ -427,7 +429,7 @@ export function colorContainerHtmlRender() {
 
 export function checkBackGroundRemove() {
   const activeObject = qtyProxy?.canvas?.getActiveObject();
-  const hasBackGround = !qtyProxy?.logoList?.find((logo) => logo.id === activeObject?.id)?.isBackground;
+  const hasBackGround = !qtyProxy?.logoList?.find((logo) => logo.id === activeObject?.id)?.hasBackground;
   const removeButton = document.getElementById('removeWhiteBg')
   if (!removeButton) return;
   if (CheckTechniqueSingleColor()) {
