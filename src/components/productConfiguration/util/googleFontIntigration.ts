@@ -22,7 +22,7 @@ export async function getFontData(): Promise<void> {
     // });
     //
     // setTimeout(() => {
-    //   setLoader(false);
+      setLoader(false);
     // }, 15000)
   } catch (error) {
     console.log("Google Font API fetching Error!!!");
