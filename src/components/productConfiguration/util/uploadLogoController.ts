@@ -170,7 +170,7 @@ export function colorSelectionHandle() {
       alpha: false,
       editor: true,
       color: colorInput.value,
-      popup: "bottom",
+      popup: "left",
       editorFormat: 'rgb',
       onDone: function(color) {
         console.log("color", color.rgbString, color.hex)

@@ -10,7 +10,20 @@ export async function getFontData(): Promise<void> {
     const response = await fetch(apiUrls.googleFontApi);
     const data = await response.json();
     qtyProxy["fontList"] = data?.items;
-    setLoader(false);
+    // TODO: drop-down for the google font API.
+    // data?.items?.forEach((font) => {
+    //   const url = GoogleFontApi + font.family.replaceAll(" ", "-").replace(/ /g, "+") + ":" + "&display=swap";
+    //   document.head.append(
+    //       new DOMParser().parseFromString(
+    //           `<link rel="stylesheet" href=${url} type="text/css"/>`,
+    //           "text/html"
+    //       ).head.firstChild
+    //   );
+    // });
+    //
+    // setTimeout(() => {
+    //   setLoader(false);
+    // }, 15000)
   } catch (error) {
     console.log("Google Font API fetching Error!!!");
     alert(errorMessages.SERVER_ERROR);

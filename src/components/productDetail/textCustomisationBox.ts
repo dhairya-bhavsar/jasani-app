@@ -11,10 +11,10 @@ export const addTextHTMLHandler = () => {
           <div class="text-customisation">
               <div class="customisation-option">
                   <select id="fontType">
-                      <option value="Times-New-Roman">Times New Roman</option>
+                      <option value="Times-New-Roman" style="font-family: 'Times-New-Roman'">Times New Roman</option>
                       ${qtyProxy?.fontList.map((fontData)=>{
                           return`
-                        <option value=${fontData.family.replaceAll(" ", "-")}>${fontData.family}</option>
+                        <option style="font-family: ${fontData.family.replaceAll(" ", "-")}" value=${fontData.family.replaceAll(" ", "-")}>${fontData.family}</option>
                           `
                         }).join("")}
                   </select>
