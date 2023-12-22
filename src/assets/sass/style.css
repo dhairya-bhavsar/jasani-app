@@ -868,7 +868,7 @@ input[type="checkbox"]:disabled {
 .logo-dimensions {
   display: flex;
   margin-top: 20px;
-  gap: 16px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -1006,7 +1006,8 @@ input[type="checkbox"]:disabled {
 }
 
 .product-show .popup.popup_left {
-  right: 140%;
+  right: 80%;
+  top: 75%;
 }
 
 ::-webkit-scrollbar {

@@ -14,7 +14,7 @@ export const apiUrls = {
     imageColorReplace : APIEndPoint + APIVersion + 'fill-color/',
     backgroundRemove : APIEndPoint + APIVersion + 'background/',
     adjustPadding : APIEndPoint + APIVersion + 'remove-padding/',
-    googleFontApi: `https://www.googleapis.com/webfonts/v1/webfonts?key=${GoogleAPIKey}`
+    googleFontApi: `https://www.googleapis.com/webfonts/v1/webfonts?key=${GoogleAPIKey}&sort=popularity`
 }
 
 
