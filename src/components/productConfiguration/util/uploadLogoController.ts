@@ -11,6 +11,7 @@ import {
 import {CheckTechniqueGradientSupport, clickStepBtnHandler} from ".";
 import {CheckTechniqueSingleColor, TechniqueBaseSingleColor} from "./techniqueBaseOperations";
 import Picker from 'vanilla-picker';
+import {alignToolsBtn} from "../components";
 
 function clearUploadInputValue() {
   const logoBtn = document.getElementById('uploadLogo') as HTMLButtonElement;
@@ -418,6 +419,14 @@ export function colorContainerHtmlRender() {
             <label for="removePadding">Adjust Padding</label>
           </div> 
       </div>
+      <div class="align-tools">
+          <label>Align Position: </label>
+          <input type="button" class="align-tools-btn" value="Top" />
+          <input type="button" class="align-tools-btn" value="Bottom" />
+          <input type="button" class="align-tools-btn" value="Left" />
+          <input type="button" class="align-tools-btn" value="Right" />
+          <input type="button" class="align-tools-btn" value="Center" />
+      </div>
     </div>
       `;
   replaceCurrentElementWithNewId('colorContainer', colorListHtml);
@@ -425,6 +434,7 @@ export function colorContainerHtmlRender() {
   logoDimensionHandler();
   removeBackgroundHandler();
   adjustBackgroundPaddingHandler();
+  alignToolsBtn();
 }
 
 export function checkBackGroundRemove() {

@@ -203,6 +203,48 @@ export const clearCanvasHandler = () => {
   });
 };
 
+export function alignToolsBtn() {
+  const drawableArea = qtyProxy?.drawableArea;
+  const alignSelector = document.querySelectorAll(".align-tools-btn");
+
+  if (!alignSelector) return;
+  alignSelector.forEach((el) => {
+    el.addEventListener('click', () => {
+      const activeObject = canvas.getActiveObject();
+
+      if (activeObject) {
+        const {top: areaTop, left: areaLeft, width: areaWidth, height: areaHeight} = drawableArea;
+        // @ts-ignore
+        switch (el.value) {
+          case "Top":
+            activeObject.set("top", areaTop);
+            break;
+          case "Bottom":
+            activeObject.set("top", areaTop + areaHeight - activeObject.getScaledHeight());
+            break;
+          case "Left":
+            activeObject.set("left", areaLeft);
+            break;
+          case "Right":
+            activeObject.set("left", areaLeft + areaWidth - activeObject.getScaledWidth());
+            break;
+          case "Center":
+            activeObject.set("left", areaLeft + (areaWidth / 2) - (activeObject.getScaledWidth() / 2));
+            activeObject.set("top", areaTop + (areaHeight / 2) - (activeObject.getScaledHeight() / 2));
+            break;
+          default:
+            console.log("event not found!!");
+            return;
+        }
+        canvas.fire("object:modified");
+        canvas.renderAll();
+      } else {
+        alert(errorMessages.OBJ_NOT_SELECTED);
+      }
+    });
+  });
+}
+
 
 export function alignObjectHandler() {
   const drawableArea = qtyProxy?.drawableArea;
@@ -248,7 +290,7 @@ export function alignObjectHandler() {
   });
 
     canvas.on("selection:cleared" , () => {
-    alignSelector.value = "align"
-  })
+      alignSelector.value = "align"
+    })
 }
 

@@ -659,7 +659,7 @@ div#available-sections {
 .text-customisation {
   display: flex;
   justify-content: space-between;
-  padding-top: 16px;
+  padding: 16px 0;
   font-size: 12px;
 }
 
@@ -1027,4 +1027,18 @@ input[type="checkbox"]:disabled {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.align-tools {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.align-tools-btn {
+  color: #ffff;
+  background-color: #057ac7;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
 }

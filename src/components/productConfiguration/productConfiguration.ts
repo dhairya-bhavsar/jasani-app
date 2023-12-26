@@ -5,7 +5,14 @@ import {images} from "../../assets/images";
 import {initialisePopupFunctions, qtyChangeHandel, tabController, techniqueController, initUploadLogoButton} from "./util";
 import {addTextHTMLHandler} from "../productDetail/textCustomisationBox";
 import {textEditorInitial} from "./productConfigurationController";
-import {CanvasEditor, alignObjectHandler, clearCanvasHandler, deleteSelectedObjects, saveImage} from "./components";
+import {
+    CanvasEditor,
+    alignObjectHandler,
+    clearCanvasHandler,
+    deleteSelectedObjects,
+    saveImage,
+    alignToolsBtn
+} from "./components";
 import { qtyProxy } from "../../..";
 import 'vanilla-picker/dist/vanilla-picker.csp.css';
 
@@ -32,6 +39,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
         initUploadLogoButton();
         initialisePopupFunctions();
         alignObjectHandler();
+        alignToolsBtn();
     }, 100)
 
     return `
@@ -70,7 +78,7 @@ export const ProductConfiguration = (props: IProductInputProps): string => {
                                 <img src="${images['recycle_bin.png']}" alt="${images["Save.png"]}" class="recycle_bin_img"/>
                                 Delete
                              </button>
-                             <div class="objectAlign">
+                             <div class="objectAlign hidden">
                                 <img src="${images['position.png']}" alt="${images["position.png"]}" class="recycle_bin_img"/>
                                 <select id="activeObjAlign">
                                     <option value="align" selected disabled>Align Position</option>

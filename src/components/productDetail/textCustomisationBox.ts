@@ -58,5 +58,13 @@ export const addTextHTMLHandler = () => {
                   <label for="textAlign">Text Alignment</label>
               </div>
           </div>
+          <div class="align-tools">
+              <label>Align Position: </label>
+              <input type="button" class="align-tools-btn" value="Top" />
+              <input type="button" class="align-tools-btn" value="Bottom" />
+              <input type="button" class="align-tools-btn" value="Left" />
+              <input type="button" class="align-tools-btn" value="Right" />
+              <input type="button" class="align-tools-btn" value="Center" />
+          </div>
         </div>`;
 };
