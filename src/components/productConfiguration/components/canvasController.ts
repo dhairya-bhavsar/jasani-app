@@ -66,9 +66,12 @@ export function mouseZoom() {
 export function initCanvas(defaultSelectedBrandingArea: IBrandingAreas) {
   const initImage =
     images[defaultSelectedBrandingArea.defaultImage];
+
   canvas = new fabric.Canvas("productCanvas", {
     selection: false,
     controlsAboveOverlay: true,
+    // @ts-ignore
+    uniScaleKey: false
   });
   qtyProxy["canvas"] = canvas;
   canvas.setOverlayImage(initImage, canvas.renderAll.bind(canvas), {
