@@ -9,19 +9,17 @@ export async function getFontData(): Promise<void> {
   try {
     const response = await fetch(apiUrls.googleFontApi);
     const data = await response.json();
-    qtyProxy["fontList"] = data?.items;
+    qtyProxy["fontList"] = data?.items?.slice(0,100);
 
-    data?.items?.slice(0,100)?.forEach((font) => {
-      const url = GoogleFontApi + font.family.replaceAll(" ", "-").replace(/ /g, "+") + ":" + "&display=swap";
-      document.head.append(
-          new DOMParser().parseFromString(
-              `<link rel="stylesheet" href=${url} type="text/css"/>`,
-              "text/html"
-          ).head.firstChild
-      );
+    // setLoader(true);
+    WebFont.load({
+      google: {
+        families: data?.items?.slice(0,100).map((font) => font.family),
+      },
+      active: function () {
+        // setLoader(false);
+      },
     });
-
-    setLoader(false);
   } catch (error) {
     console.log("Google Font API fetching Error!!!");
     alert(errorMessages.SERVER_ERROR);
@@ -34,16 +32,17 @@ export function applyGoogleFontHandler(font, activeObject): void {
 
   if (!font && !activeObject) return;
 
-  if (!qtyProxy.addedFontList.includes(font)) {
-    const url = GoogleFontApi + font.replace(/ /g, "+") + ":" + "&display=swap";
-    document.head.append(
-      new DOMParser().parseFromString(
-        `<link rel="stylesheet" href=${url} type="text/css"/>`,
-        "text/html"
-      ).head.firstChild
-    );
-    qtyProxy.addedFontList.push(font);
-  }
+  // TODO: Modify changes on google font load on canvas.
+  // if (!qtyProxy.addedFontList.includes(font)) {
+  //   const url = GoogleFontApi + font.replace(/ /g, "+") + ":" + "&display=swap";
+  //   document.head.append(
+  //     new DOMParser().parseFromString(
+  //       `<link rel="stylesheet" href=${url} type="text/css"/>`,
+  //       "text/html"
+  //     ).head.firstChild
+  //   );
+  //   qtyProxy.addedFontList.push(font);
+  // }
 
   setLoader(true);
   WebFont.load({
