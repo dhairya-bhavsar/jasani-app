@@ -11,7 +11,7 @@ export async function getFontData(): Promise<void> {
     const data = await response.json();
     qtyProxy["fontList"] = data?.items?.slice(0,100);
 
-    // setLoader(false);
+    // setLoader(true);
     WebFont.load({
       google: {
         families: data?.items?.slice(0,100).map((font) => font.family),
