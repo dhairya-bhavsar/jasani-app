@@ -5,13 +5,13 @@ import { selectedTextBoxStyleHelper } from "../../productDetail/textController";
 import WebFont from "webfontloader";
 
 export async function getFontData(): Promise<void> {
-  setLoader(true);
+  // setLoader(true);
   try {
     const response = await fetch(apiUrls.googleFontApi);
     const data = await response.json();
     qtyProxy["fontList"] = data?.items?.slice(0,100);
 
-    // setLoader(true);
+    // setLoader(false);
     WebFont.load({
       google: {
         families: data?.items?.slice(0,100).map((font) => font.family),
