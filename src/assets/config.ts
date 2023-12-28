@@ -6,7 +6,7 @@ export const GoogleFontApi = "https://fonts.googleapis.com/css?family=";
 export const APIEndPoint = 'https://jasaniapi.demo.brainvire.dev'; // demo
 // export const APIEndPoint = "https://63ce-103-211-14-98.ngrok-free.app"; //local
 export const APIVersion = '/api/';
-export const GoogleAPIKey = 'AIzaSyCNnUWe_Zp6LRPqvFZP3B6sYJaV98UyJyE';
+export const GoogleAPIKey = 'AIzaSyCufaGUt_NMB89NuJG4tIZXD8V11EwCLPs';
 
 export const apiUrls = {
     imageConvert: APIEndPoint + APIVersion + 'convert/',
